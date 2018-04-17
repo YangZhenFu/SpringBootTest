@@ -9,6 +9,14 @@
 		this.onClick = null;
 		this.settings = null;
 		this.ondblclick=null;
+		this.onNodeCreated=function(e, treeId, treeNode){
+			if(!treeNode.icon){
+				$('#'+treeNode.tId+'_ico').attr({'background-image':'none!important',
+												 'font-family':'FontAwesome',
+												 'height':'auto','font-size':'130%',
+												 'text-align':'center','vertical-align':'middle'});
+			}
+		};
 	};
 
 	$ZTree.prototype = {
@@ -24,7 +32,8 @@
 				data : {simpleData : {enable : true}},
 				callback : {
 					onClick : this.onClick,
-					onDblClick:this.ondblclick
+					onDblClick:this.ondblclick,
+					onNodeCreated:this.onNodeCreated
 				}
 			};
 			return settings;
@@ -87,6 +96,8 @@
 			var nodes = zTree.getSelectedNodes();
 			return nodes[0].name;
 		}
+		
+		
 	};
 
 	window.$ZTree = $ZTree;

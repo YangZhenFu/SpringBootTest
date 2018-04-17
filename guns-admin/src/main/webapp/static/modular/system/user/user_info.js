@@ -34,6 +34,15 @@ var UserInfoDlg = {
                     field: 'rePassword',
                     message: '两次密码不一致'
                 },
+                stringLength: {
+                    min: 6,
+                    max: 30,
+                    message: '密码长度必须在6到30之间'
+                },
+                regexp: {
+                    regexp: /^[a-zA-Z0-9_\.]+$/,
+                    message: '密码只能由字母、数字、点和下划线组成'
+                }
             }
         },
         rePassword: {
@@ -46,7 +55,19 @@ var UserInfoDlg = {
                     message: '两次密码不一致'
                 },
             }
+        },
+        phone:{
+        	validators:{
+        		notEmpty:{
+        			message:'电话不能为空'
+        		},
+                regexp: {
+                    regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                    message: '请输入正确的手机号码'
+                }
+        	}
         }
+        
     }
 };
 
@@ -223,10 +244,57 @@ UserInfoDlg.editSubmit = function () {
     ajax.start();
 };
 
+
 /**
  * 修改密码
  */
 UserInfoDlg.chPwd = function () {
+    //初始化表单验证器
+	Feng.initValidator('chPwdForm',{
+		oldPwd:{
+        	validators:{
+        		notEmpty:{
+        			message:'原密码不能为空'
+        		}
+        	}
+        },
+        newPwd:{
+        	validators:{
+        		notEmpty:{
+        			message:'新密码不能为空'
+        		},
+        		stringLength: {
+                    min: 6,
+                    max: 30,
+                    message: '密码长度必须在6到30之间'
+                },
+                regexp: {
+                    regexp: /^[a-zA-Z0-9_\.]+$/,
+                    message: '密码只能由字母、数字、点和下划线组成'
+                }
+        	}
+        },
+        rePwd:{
+        	validators:{
+        		notEmpty:{
+        			message:'新密码不能为空'
+        		},
+                identical: {
+                    field: 'newPwd',
+                    message: '两次密码输入不一致'
+                }
+        	}
+        }
+	});
+	//获取表单对象
+	var checkForm=$("#chPwdForm").data('bootstrapValidator');
+	//触发手动验证
+	checkForm.validate();
+	//获取验证状态
+    var isValid=checkForm.isValid();
+    if(!isValid){
+    	return;
+    }
     var ajax = new $ax(Feng.ctxPath + "/mgr/changePwd", function (data) {
         Feng.success("修改成功!");
     }, function (data) {

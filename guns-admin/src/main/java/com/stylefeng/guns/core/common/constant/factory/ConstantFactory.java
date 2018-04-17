@@ -329,5 +329,10 @@ public class ConstantFactory implements IConstantFactory {
         return parentDeptIds;
     }
 
+	@Override
+	public String getAreaType(Integer type) {
+		return getDictsByName("区域类型", type);
+	}
+
 
 }

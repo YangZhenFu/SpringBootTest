@@ -17,6 +17,7 @@
         this.height = 665;						//默认表格高度665
         this.data = {};
         this.queryParams = {}; // 向后台传递的自定义参数
+        this.queryParamsType = 'limit';//查询参数组织方式
     };
 
     BSTable.prototype = {
@@ -43,7 +44,7 @@
                     pageNumber: 1,      			//初始化加载第一页，默认第一页
                     pageSize: 14,      			//每页的记录行数（*）
                     pageList: [14, 50, 100],  	//可供选择的每页的行数（*）
-                    queryParamsType: 'limit', 	//默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                    queryParamsType: this.queryParamsType, 	//默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
                     queryParams: function (param) {
                         return $.extend(me.queryParams, param);
                     }, // 向后台传递的自定义参数
@@ -67,6 +68,14 @@
                 });
             return this;
         },
+        
+        /**
+         * 设置查询参数组织方式，默认值为 'limit',在默认情况下 传给服务端的参数为：offset,limit,sort 。 设置为 '' 在这种情况下传给服务器的参数为：pageSize,pageNumber
+         */
+        setQueryParamsType: function (queryParamsType) {
+        	this.queryParamsType=queryParamsType;
+        },
+        
         /**
          * 向后台传递的自定义参数
          * @param param

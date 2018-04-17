@@ -105,6 +105,8 @@ MenuInfoDlg.addSubmit = function () {
     if (!this.validate()) {
         return;
     }
+    
+    this.menuInfoData['icon']=$('#icon-input').val();
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/menu/add", function (data) {
@@ -130,6 +132,8 @@ MenuInfoDlg.editSubmit = function () {
         return;
     }
 
+    this.menuInfoData['icon']=$('#icon-input').val();
+    
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/menu/edit", function (data) {
         Feng.success("修改成功!");

@@ -54,6 +54,19 @@ public class Dept extends Model<Dept> {
      */
 	private Integer version;
 
+	/*
+	 * 部门图标
+	 */
+	private String icon;
+	
+	
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon=icon;
+	}
 
 	public Integer getId() {
 		return id;
@@ -118,6 +131,7 @@ public class Dept extends Model<Dept> {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
+	
 
 	@Override
 	protected Serializable pkVal() {
@@ -135,6 +149,7 @@ public class Dept extends Model<Dept> {
 			", fullname=" + fullname +
 			", tips=" + tips +
 			", version=" + version +
+			", icon=" + icon +
 			"}";
 	}
 }

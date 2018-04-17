@@ -12,10 +12,11 @@
         <result column="fullname" property="fullname"/>
         <result column="tips" property="tips"/>
         <result column="version" property="version"/>
+        <result column="icon" property="icon"/>
     </resultMap>
 
     <select id="tree" resultType="com.stylefeng.guns.core.node.ZTreeNode">
-		select id,pid as pId,simplename as name,
+		select id,pid as pId,simplename as name,icon,
 		(
 		CASE
 		WHEN (pId = 0 OR pId IS NULL) THEN

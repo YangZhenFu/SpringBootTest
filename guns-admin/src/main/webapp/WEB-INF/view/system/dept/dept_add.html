@@ -16,9 +16,11 @@
                 <div class="col-sm-6">
                     <#input id="num" name="排序" underline="true"/>
 
-                    <#input id="pName" name="上级部门" readonly="readonly" hidden="pid"
+                    <#input id="pName" name="上级部门" readonly="readonly" hidden="pid" underline="true"
                             clickFun="DeptInfoDlg.showDeptSelectTree(); return false;"
                             style="background-color: #ffffff !important;"/>
+                            
+                     <#iconselect  name="icon"  title="部门图标" underline="true"/>
                 </div>
             </div>
 

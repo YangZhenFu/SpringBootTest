@@ -1,5 +1,39 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.naming.NoPermissionException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.github.abel533.easyxls.EasyXls;
+import com.github.abel533.easyxls.bean.ExcelConfig;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.base.tips.Tip;
@@ -12,10 +46,12 @@ import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.core.datascope.DataScope;
 import com.stylefeng.guns.core.db.Db;
+import com.stylefeng.guns.core.excel.ExcelUtils;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
+import com.stylefeng.guns.core.util.FileUtils;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.factory.UserFactory;
@@ -23,20 +59,6 @@ import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IUserService;
 import com.stylefeng.guns.modular.system.transfer.UserDto;
 import com.stylefeng.guns.modular.system.warpper.UserWarpper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.naming.NoPermissionException;
-import javax.validation.Valid;
-import java.io.File;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * 系统管理员控制器
@@ -56,6 +78,8 @@ public class UserMgrController extends BaseController {
     @Autowired
     private IUserService userService;
 
+    private static Logger logger = LoggerFactory.getLogger(UserMgrController.class);
+    
     /**
      * 跳转到查看管理员列表的页面
      */
@@ -137,6 +161,10 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/changePwd")
     @ResponseBody
     public Object changePwd(@RequestParam String oldPwd, @RequestParam String newPwd, @RequestParam String rePwd) {
+    	//参数不能为空校验
+    	if(StringUtils.isBlank(oldPwd) || StringUtils.isBlank(newPwd) || StringUtils.isBlank(rePwd)){
+    		throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+    	}
         if (!newPwd.equals(rePwd)) {
             throw new GunsException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
         }
@@ -366,4 +394,89 @@ public class UserMgrController extends BaseController {
         }
 
     }
+    
+    
+    /**
+	 * 导出用户
+	 * @param params
+	 * @param response
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="export", method=RequestMethod.POST )
+	public void exportFile(@RequestParam(required=false)String name,@RequestParam(required=false)String beginTime,@RequestParam(required=false)String endTime,@RequestParam(required=false)Integer deptid, HttpServletResponse response) {
+		List<User> users=Lists.newArrayList();
+		if(ShiroKit.isAdmin()){
+			List<Map<String, Object>> list = userService.selectUsers(null, name, beginTime, endTime, deptid);
+			users.addAll((List<User>)new UserWarpper(list).warp());
+		}else{
+			DataScope dataScope = (DataScope) ShiroKit.getDeptDataScope();
+			List<Map<String,Object>> list = userService.selectUsers(dataScope, name, beginTime, endTime, deptid);
+			users.addAll((List<User>)new UserWarpper(list).warp());
+		}
+//		List<User> users = userService.selectList(new EntityWrapper<User>(new User()));
+		Map<String, String> titleMap=Maps.newLinkedHashMap();
+		titleMap.put("编号", "id");
+		titleMap.put("姓名", "name");
+		titleMap.put("账号", "account");
+		titleMap.put("性别", "sexName");
+		titleMap.put("头像", "avatar");
+		titleMap.put("生日", "birthday");
+		titleMap.put("角色", "roleName");
+		titleMap.put("部门", "deptName");
+		titleMap.put("状态", "statusName");
+		titleMap.put("电子邮箱", "email");
+		titleMap.put("电话", "phone");
+		titleMap.put("创建时间", "createtime");
+		
+		try {
+			//流的方式直接下载
+			ExcelUtils.exportExcel(response, "用户.xls", users, titleMap);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+	}
+	
+	@RequestMapping(value="import",method=RequestMethod.POST)
+	public void importFile(HttpServletRequest request,HttpServletResponse response){
+		ExcelConfig config=new ExcelConfig.Builder(User.class)
+										  .startRow(1)
+										  .sheetNum(0)
+										  .separater(",")
+										  .addColumn("id,java.lang.Integer","name","account","sex,java.lang.Integer","avatar","birthday,java.util.Date","roleid,java.util.String","deptid,java.lang.Integer","status,java.lang.Integer","email","phone","createtime,java.util.Date").build();
+		int count=0;
+		try {
+			List<User> list = (List<User>) EasyXls.xls2List(config, FileUtils.uploadFile(request));
+			if(CollectionUtils.isNotEmpty(list)){
+				for(int i=0;i<list.size();i++){
+					User sysuser=new User();
+					System.out.println(list.get(i));
+					count++;
+				}
+			}
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("成功导入"+count+"条数据!");
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			try {
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write("导入失败！");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+	}
+	
+	// Map --> Bean 2: 利用org.apache.commons.beanutils 工具类实现 Map --> Bean  
+    public static void transMap2Bean2(Map<String, Object> map, Object obj) {  
+        if (map == null || obj == null) {  
+            return;  
+        }  
+        try {  
+            BeanUtils.populate(obj, map);  
+        } catch (Exception e) {  
+        	logger.error(e.getMessage(), e);
+            System.out.println("transMap2Bean2 Error " + e);  
+        }  
+    } 
 }

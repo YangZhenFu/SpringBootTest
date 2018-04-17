@@ -3,11 +3,18 @@
     name : select的名称
     id : select的id
     underline : 是否带分割线
+    disabled : 是否禁用
+    value : select的value
 @*/
+@var value = value!'';
 <div class="form-group">
     <label class="col-sm-3 control-label">${name}</label>
     <div class="col-sm-9">
-        <select class="form-control" id="${id}" name="${id}">
+        <select class="form-control" id="${id}" name="${id}" 
+        	@if(isNotEmpty(disabled)){
+        		disabled="${disabled}"
+        	@}
+        >
             ${tagBody!}
         </select>
         @if(isNotEmpty(hidden)){
@@ -18,5 +25,4 @@
 @if(isNotEmpty(underline) && underline == 'true'){
     <div class="hr-line-dashed"></div>
 @}
-
 

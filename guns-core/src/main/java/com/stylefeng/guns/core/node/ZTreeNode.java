@@ -1,5 +1,10 @@
 package com.stylefeng.guns.core.node;
 
+import java.io.Serializable;
+import java.util.List;
+
+import com.stylefeng.guns.core.node.tree.BaseTreeObj;
+
 /**
  * 
  * jquery ztree 插件的节点
@@ -7,7 +12,10 @@ package com.stylefeng.guns.core.node;
  * @author fengshuonan
  * @date 2017年2月17日 下午8:25:14
  */
-public class ZTreeNode {
+public class ZTreeNode extends BaseTreeObj<ZTreeNode, Serializable> {
+
+	/** serialVersionUID*/
+	private static final long serialVersionUID = 6162072782711456825L;
 
 	private Long id;	//节点id
 	
@@ -18,6 +26,19 @@ public class ZTreeNode {
 	private Boolean open;//是否打开节点
 	
 	private Boolean checked;//是否被选中
+	
+	private String icon;//图标
+	
+	private List<ZTreeNode> childList;//子节点
+	
+	
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon=icon;
+	}
 
 	public Long getId() {
 		return id;
@@ -25,6 +46,7 @@ public class ZTreeNode {
 
 	public void setId(Long id) {
 		this.id = id;
+		super.setId(id);
 	}
 
 	public Long getpId() {
@@ -33,6 +55,7 @@ public class ZTreeNode {
 
 	public void setpId(Long pId) {
 		this.pId = pId;
+		super.setParentId(pId);
 	}
 
 	public String getName() {
@@ -76,4 +99,33 @@ public class ZTreeNode {
 		zTreeNode.setpId(0L);
 		return zTreeNode;
 	}
+
+	/* (non-Javadoc)  
+	 * <p>Title: toString</p>  
+	 * <p>Description: </p>  
+	 * @return  
+	 * @see java.lang.Object#toString()  
+	 */
+	@Override
+	public String toString() {
+		return "ZTreeNode [id=" + id + ", pId=" + pId + ", name=" + name + ", open=" + open + ", checked=" + checked
+				+ ", icon=" + icon + "]";
+	}
+
+	/**
+	 * @return the childList  
+	 */
+	public List<ZTreeNode> getChildList() {
+		return childList;
+	}
+
+	/**
+	 * @param childList the childList to set
+	 */
+	public void setChildList(List<ZTreeNode> childList) {
+		this.childList = childList;
+		super.setChildsList(childList);
+	}
+
+	
 }

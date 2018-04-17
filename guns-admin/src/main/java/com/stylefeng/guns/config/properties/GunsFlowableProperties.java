@@ -29,7 +29,7 @@ public class GunsFlowableProperties {
     /**
      * 默认多数据源的数据库密码
      */
-    private String password = "root";
+    private String password = "root123";
 
     public void config(DruidDataSource dataSource) {
         dataSource.setUrl(url);

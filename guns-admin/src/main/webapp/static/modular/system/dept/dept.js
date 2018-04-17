@@ -18,6 +18,11 @@ Dept.initColumn = function () {
         {title: '部门简称', field: 'simplename', align: 'center', valign: 'middle', sortable: true},
         {title: '部门全称', field: 'fullname', align: 'center', valign: 'middle', sortable: true},
         {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
+        {title: '图标', field: 'icon', align: 'center', valign: 'middle', sortable: true, width: '12%',
+        	formatter:function(value,row,index){
+        		return '<i class="ace-icon fa '+row.icon+' bigger-130" style="font-size:130% !important"></i>';
+        	}
+        },
         {title: '备注', field: 'tips', align: 'center', valign: 'middle', sortable: true}];
 };
 

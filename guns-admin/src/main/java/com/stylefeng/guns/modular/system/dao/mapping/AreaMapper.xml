@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.AreaMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Area">
+        <id column="id" property="id" />
+        <result column="parent_id" property="parentId" />
+        <result column="parent_ids" property="parentIds" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="create_by" property="createBy" />
+        <result column="create_date" property="createDate" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_date" property="updateDate" />
+        <result column="remarks" property="remarks" />
+        <result column="del_flag" property="delFlag" />
+        <result column="icon" property="icon" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, parent_id AS parentId, parent_ids AS parentIds, code, name, type, create_by AS createBy, create_date AS createDate, update_by AS updateBy, update_date AS updateDate, remarks, del_flag AS delFlag, icon
+    </sql>
+
+
+	<select id="getAreaListByParams" resultType="map">
+		select <include refid="Base_Column_List"/> from sys_area
+		<where>
+			<if test="name!=null and name!=''">
+				and name like CONCAT('%', #{name}, '%')
+			</if>
+			<if test="code!=null and code!=''">
+				and code like CONCAT('%', #{code}, '%')
+			</if>
+			<if test="areaId!=null and areaId!=''">
+				and (id = #{areaId} or FIND_IN_SET(#{areaId}, parent_ids))
+			</if>
+				and del_flag = '0'
+		</where>
+		<choose>
+			<when test="orderByField!=null and orderByField!=''">
+				<choose>
+					<when test="isAsc == true">
+						order by ${orderByField} ASC
+					</when>
+					<otherwise>
+						order by ${orderByField} DESC
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				order by id ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getZtree" resultType="com.stylefeng.guns.core.node.ZTreeNode">
+		select id,parent_id AS pId,name,icon,
+			(
+				CASE 
+					WHEN(parent_id=0 or parent_id is null) THEN 'true'
+					ELSE 'false' 
+				END
+			) AS isOpen
+		from sys_area where del_flag='0'
+	</select>
+	
+	<!-- 根据节点Id删除底下全部子节点包括孙子节点 -->
+	<delete id="deleteAreaByRootId">
+		delete from sys_area where FIND_IN_SET(#{id},parent_ids) or id = #{id}
+	</delete>
+	
+</mapper>

@@ -112,5 +112,13 @@ public interface IConstantFactory {
      * 获取所有父部门id
      */
     List<Integer> getParentDeptIds(Integer deptid);
+    
+    /**
+     * <p>Title: getAreaType</p>  
+     * <p>Description: 获取区域类型</p>  
+     * @param type
+     * @return
+     */
+    String getAreaType(Integer type);
 
 }

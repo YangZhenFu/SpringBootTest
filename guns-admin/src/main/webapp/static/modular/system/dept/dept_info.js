@@ -129,6 +129,8 @@ DeptInfoDlg.addSubmit = function() {
         return;
     }
 
+    this.deptInfoData['icon']=$('#icon-input').val();
+    
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/dept/add", function(data){
         Feng.success("添加成功!");
@@ -153,6 +155,8 @@ DeptInfoDlg.editSubmit = function() {
         return;
     }
 
+    this.deptInfoData['icon']=$('#icon-input').val();
+    
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/dept/update", function(data){
         Feng.success("修改成功!");

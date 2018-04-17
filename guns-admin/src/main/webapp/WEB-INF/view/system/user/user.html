@@ -20,7 +20,7 @@
 							<div class="col-lg-10 col-sm-9">
 								<div class="row">
 									<div class="col-lg-10 col-sm-9">
-										<div class="row">
+										<div class="row form-horizontal"  id="searchForm">
 											<div class="col-lg-4 col-sm-12">
 												<#NameCon id="name" name="用户名称" placeholder="帐号/姓名/手机号"/>
 											</div>
@@ -63,6 +63,23 @@
 									@if(shiro.hasPermission("/mgr/setRole")){
 									<#button name="角色分配" icon="fa-user-secret" clickFun="MgrUser.roleAssign()" space="true"/>
 									@}
+									@if(shiro.hasPermission("/mgr/import")){
+											<div class="progress progress-striped active pos-rel" style="width:200px;display: none;" 
+												data-percent="0%" id="excel-progress">
+													<div class="progress-bar progress-bar-pink" style="width:0%"></div>
+											</div>
+											<button type="button" class="btn btn-primary button-margin" id="importFile" >
+												    <i class="fa fa-cloud-download"></i>&nbsp;<span>导入数据</span>
+												    <input type="file" class="phide"  name="excel" 
+													data-url="${ctxPath}/mgr/import" accept="application/vnd.ms-excel" 
+													data-progressid="#excel-progress"
+													onchange="Angel.uploadFile.excel(this);"/>
+											</button>
+											
+									@}
+									@if(shiro.hasPermission("/mgr/export")){
+									<#button name="导出Excel" icon="fa-cloud-upload" clickFun="MgrUser.exportExcel()" space="true"/>
+									@}
 								</div>
 								<#table id="managerTable"/>
 							</div>
@@ -73,5 +90,6 @@
 		</div>
 	</div>
 </div>
+ <link href="${ctxPath}/static/css/mystyle.css" rel="stylesheet">
 <script src="${ctxPath}/static/modular/system/user/user.js"></script>
 @}

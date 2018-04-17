@@ -172,6 +172,30 @@ MgrUser.resetPwd = function () {
     }
 };
 
+
+/**
+ * 导出Excel
+ */
+MgrUser.exportExcel = function() {
+	//先根据查询条件刷新表格
+	MgrUser.table.refresh({query: this.queryData()});
+	var url=Feng.ctxPath+'mgr/export';
+	//调用表格导出插件
+	Angel.downloadFile(this.queryData(),url)
+}
+
+/**
+ * 查询条件
+ */
+MgrUser.queryData = function (){
+	var queryData={};
+	queryData['deptid'] = MgrUser.deptid;
+    queryData['name'] = $("#name").val();
+    queryData['beginTime'] = $("#beginTime").val();
+    queryData['endTime'] = $("#endTime").val();
+    return queryData;
+}
+
 MgrUser.resetSearch = function () {
     $("#name").val("");
     $("#beginTime").val("");
@@ -181,14 +205,15 @@ MgrUser.resetSearch = function () {
 }
 
 MgrUser.search = function () {
-    var queryData = {};
-
-    queryData['deptid'] = MgrUser.deptid;
-    queryData['name'] = $("#name").val();
-    queryData['beginTime'] = $("#beginTime").val();
-    queryData['endTime'] = $("#endTime").val();
-
-    MgrUser.table.refresh({query: queryData});
+//    var queryData = {};
+//
+//    queryData['deptid'] = MgrUser.deptid;
+//    queryData['name'] = $("#name").val();
+//    queryData['beginTime'] = $("#beginTime").val();
+//    queryData['endTime'] = $("#endTime").val();
+//
+//    MgrUser.table.refresh({query: queryData});
+	  MgrUser.table.refresh({query: this.queryData()});
 }
 
 MgrUser.onClickDept = function (e, treeId, treeNode) {

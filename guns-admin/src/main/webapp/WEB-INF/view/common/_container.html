@@ -16,10 +16,13 @@
     <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
     <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
-    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+   <!--  <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet"> -->
+   <link href="${ctxPath}/static/css/plugins/ztree/metro.css" rel="stylesheet">
     <link href="${ctxPath}/static/css/plugins/jquery-treegrid/css/jquery.treegrid.css" rel="stylesheet"/>
+    <link href="${ctxPath}/static/chosen/chosen.min.css" rel="stylesheet"/>
+    <link href="${ctxPath}/static/jquery-tags-input/jquery.tagsinput.css" rel="stylesheet"/>
     <!-- <link href="${ctxPath}/static/css/plugins/ztree/demo.css" rel="stylesheet"> -->
-
+    
     <!-- 全局js -->
     <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
     <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
@@ -42,12 +45,31 @@
     <script src="${ctxPath}/static/js/common/web-upload-object.js"></script>
     <script src="${ctxPath}/static/js/common/ztree-object.js"></script>
     <script src="${ctxPath}/static/js/common/Feng.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/chosen/chosen.jquery.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/jquery-tags-input/jquery.tagsinput.min.js"></script>
 
+	<script src="${ctxPath}/static/js/jquery.form.js"></script>
+	<script src="${ctxPath}/static/js/common/public.js"></script>
 
+		<!-- ace BEGIN -->
+		<link rel="stylesheet" href="${ctxPath!}/static/ace/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="${ctxPath!}/static/ace/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${ctxPath!}/static/ace/css/ace.min.css" />
+		<!--[if lte IE 9]>
+		 	<link rel="stylesheet" href="${ctxPath!}/static/ace/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- ace settings handler -->
+		<script src="${ctxPath!}/static/ace/js/ace-extra.min.js"></script>
+		<script src="${ctxPath!}/static/ace/js/ace-elements.min.js"></script>
+		<script src="${ctxPath!}/static/ace/js/ace.min.js"></script>
+		<!-- ace END -->
+			
     <script type="text/javascript">
         Feng.addCtx("${ctxPath}");
         Feng.sessionTimeoutRegistry();
     </script>
+    
 </head>
 
 <body class="gray-bg">
