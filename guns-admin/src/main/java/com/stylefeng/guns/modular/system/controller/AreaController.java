@@ -56,8 +56,6 @@ public class AreaController extends BaseController {
      */
     @RequestMapping("")
     public String index(Model model) {
-    	List<Area> list = areaService.selectList(new EntityWrapper<Area>());
-    	model.addAttribute("areaTree", JSON.toJSONString(list));
         return PREFIX + "area.html";
     }
 
@@ -79,7 +77,6 @@ public class AreaController extends BaseController {
     public List<ZTreeNode> getAreaZtree(){
     	List<ZTreeNode> ztree=areaService.getZtreeNode();
     	ztree.add(ZTreeNode.createParent());
-//    	return new TreeUtils().getChildTreeObjects(ztree, 0L);
     	return ztree;
     }
     

@@ -8,10 +8,11 @@
     clickFun : 点击事件的方法名
     style : 附加的css属性
 @*/
+@var placeholder = placeholder!'';
 <div class="form-group">
     <label class="col-sm-3 control-label">${name}</label>
     <div class="col-sm-9">
-        <input class="form-control" id="${id}" name="${id}"
+        <input class="form-control" id="${id}" name="${id}" placeholder="${placeholder}"
                @if(isNotEmpty(value)){
                     value="${tool.dateType(value)}"
                @}

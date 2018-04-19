@@ -1,0 +1,80 @@
+@layout("/common/_container.html"){
+@var stationTypes = airStation.findAllAirStationType();
+@var areaTree = sysArea.findAreaList();
+@var connMethods = airStation.findAllConnMethod();
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="airStationForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                           
+                            <#input id="tName" name="名称" underline="true"/>
+                            <#input id="sortCode" name="排序" underline="true"/>
+                             <#myselect name="type" width="100%" id="type-choose" underline="true" describe="类型">
+                             	  @for(stationType in stationTypes){
+                             	       <option value="${stationType.key}">${stationType.value}</option>
+                             	  @}
+							</#myselect>
+                             
+                             <#input id="deptName" name="归属部门" underline="true" readonly="readonly" hidden="deptId" 
+								clickFun="StationInfoDlg.showDeptSelectTree(); return false;"
+								style="background-color: #ffffff !important;"/>
+                             
+                             <div  id="gsarea">
+							<#pullDownTree order="one" treeData="${areaTree}" name="areaId" underline="true" title="归属区域" 
+							class="width-100" isRoot="false" rootNodeName="请选择归属区域" />
+							</div>
+							<#button btnType="primary" clickFun="StationInfoDlg.layerAmap();" name="获取经纬度" space="false" icon=""/>
+							<div class="hr-line-dashed"></div>
+                            <#input id="detailAddress" name="详细地址" underline="true" readonly="true"/>
+                           	
+                            <#input id="longitude" name="经度" underline="true" readonly="true"/>
+                            <#input id="latitude" name="纬度" readonly="true" underline="true"/>
+                </div>
+
+                <div class="col-sm-6">
+                           
+                            <#select id="connMethod" name="通讯方式" underline="true" >
+                            	@for(method in connMethods){
+                            	<option value="${method}">${method}</option>
+                            	@}
+                            
+							</#select>
+                            <#input id="ipAddr" name="ip地址" underline="true"/>
+                            <#input id="port" name="端口号" underline="true"/>
+                             <#input id="offx" name="坐标x" underline="true"/>
+                            <#input id="offy" name="坐标y" underline="true"/>
+                            
+                            <#input id="location" name="位置分布" underline="true" placeholder="气象站具体位置,例：教学楼楼顶"/>
+                            
+                            <#input id="installer" name="安装者" underline="true"/>
+                            <#input id="installTimes" name="安装时间" underline="true" type="date"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+                            <#input id="remark" name="备注" underline="true"/>
+                </div>
+            </div>
+
+			<!-- 这是部门选择的下拉框 -->
+			<div id="menuContent" class="menuContent"
+				style="display: none; position: absolute; z-index: 200;">
+				<ul id="treeDemo" class="ztree tree-box" style="width: 249px !important;"></ul>
+			</div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="StationInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="StationInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/air/station/station_info.js"></script>
+<script type="text/javascript">
+	$('#connMethod').val('');
+</script>
+@}

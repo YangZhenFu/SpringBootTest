@@ -30,7 +30,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
     }
 
     protected void strategyConfig() {
-        strategyConfig.setTablePrefix(new String[]{"sys_"});// 此处可以修改为您的表前缀
+        //strategyConfig.setTablePrefix(new String[]{"sys_"});// 此处可以修改为您的表前缀
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
     }
 

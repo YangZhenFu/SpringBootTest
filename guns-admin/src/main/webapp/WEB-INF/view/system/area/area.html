@@ -40,7 +40,7 @@
 												  <option value="0571">杭州</option>
 												</#myselect>
 											</div>
-											
+											@var areaTree = sysDept.findAllDeptInfo();
 											<#pullDownTree order="two" treeData="${areaTree}" name="officeId" 
 							class="width-50" isRoot="false" rootNodeName="请选择归属机构" />
 											

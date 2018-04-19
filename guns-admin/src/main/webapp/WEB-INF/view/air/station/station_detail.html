@@ -1,0 +1,51 @@
+@layout("/common/_container.html"){
+@var stationTypes = airStation.findAllAirStationType();
+@var connMethods = airStation.findAllConnMethod();
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                		<#input id="code" name="编号" underline="true" value="${item.code}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="tName" name="名称" underline="true" value="${item.tName}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="sortCode" name="排序" underline="true" value="${item.sortCode}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	  @for(stationType in stationTypes){
+                          	       @if(item.type==stationType.key){
+                          	       	<#input id="type" name="类型" underline="true" value="${stationType.value}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	       @}
+                          	  @}
+                             
+                             <#input id="deptName" name="归属部门" underline="true" readonly="readonly"  value="${deptName!'顶级'}" style="background-color: #ffffff !important;"/>
+                             
+                             <#input id="areaName" name="归属区域"  underline="true"  readonly="true" value="${areaName!''}" style="background-color: #ffffff !important;"/>
+                             
+                            <#input id="detailAddress" name="详细地址" underline="true" readonly="true" value="${item.detailAddress}" style="background-color: #ffffff !important;"/>
+                           	
+                            <#input id="longitude" name="经度" underline="true" readonly="true" value="${item.longitude}" style="background-color: #ffffff !important;"/>
+                            <#input id="latitude" name="纬度" readonly="true" underline="true" value="${item.latitude}" style="background-color: #ffffff !important;"/>
+                </div>
+
+                <div class="col-sm-6">
+                           <#input id="connMethod" name="通讯方式" underline="true" value="${item.connMethod}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="ipAddr" name="ip地址" underline="true" value="${item.ipAddr}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="port" name="端口号" underline="true" value="${item.port}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                             <#input id="offx" name="坐标x" underline="true" value="${item.offx}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="offy" name="坐标y" underline="true" value="${item.offy}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            
+                            <#input id="location" name="位置分布" underline="true" value="${item.location}" placeholder="气象站具体位置,例：教学楼楼顶" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            
+                            <#input id="installer" name="安装者" underline="true" value="${item.installer}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="installTimes" name="安装时间" underline="true" type="date" value="${item.installTime}"  readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="remark" name="备注" underline="true" value="${item.remark}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/air/station/station_info.js"></script>
+@}

@@ -1,0 +1,263 @@
+.context_menu {
+    margin: 2px;
+    padding: 2px;
+    list-style-type: none;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 5px;
+    box-shadow: rgb(153, 153, 153) 2px 2px 8px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.context_menu li {
+    text-indent: 0.5em;
+    color: blue;
+    font-size: 13px;
+    font-family: verdana;
+    height: 20px;
+    line-height: 20px;
+    word-break: break-all;
+    white-space: nowrap;
+}
+.context_menu li.split_line {
+    border-bottom-color: rgb(204, 204, 204);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+.info {
+    border: solid 1px silver;
+    background-color: white;
+}
+div.info-top {
+    position: relative;
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-bottom: 1px solid #CCC;
+    border-radius: 5px 5px 0 0;
+}
+div.info-top div {
+    display: inline-block;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 31px;
+    padding: 0 10px;
+}
+div.info-top img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition-duration: 0.25s;
+}
+div.info-top img:hover {
+    box-shadow: 0px 0px 5px #000;
+}
+div.info-middle {
+    font-size: 12px;
+    padding: 6px 6px 0px;
+    line-height: 20px;
+}
+div.info-bottom {
+    height: 0px;
+    width: 100%;
+    clear: both;
+    text-align: center;
+}
+div.info-bottom img {
+    position: relative;
+    z-index: 104;
+}
+span {
+    margin-left: 5px;
+    /* font-size: 11px; */
+}
+.info-middle img {
+    /*  float: left;
+  margin-right: 6px; */
+}
+/** 线杆提示信息  **/
+.info-middle{
+	border-top: solid thin #e7e8ec;
+	display: inline-block;
+	padding: 15px 15px 0;
+	width: 100%;
+}
+.info-middle{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.info-middle .row{
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-top: 10px;
+}
+.info-middle .order{
+	margin-bottom: 15px; 
+}
+.info-middle .orders{
+	/* background: #6bc5a4; */
+    background: #98d0b9;
+	border: 1px solid #e8e8e8;
+	padding:3px 0;  
+	border-radius:5px; 
+	box-shadow: 2px 3px 4px #eee; 
+}
+.info-middle .order p{
+    margin: 10px 0;
+}
+
+/* .info-middle .order p.icon{
+    overflow: hidden;
+}
+.info-middle .order p.icon span{
+    position: relative;
+    left: -63px;
+    border-right: 60px solid transparent;
+}
+.cred{
+    -webkit-filter: drop-shadow(#e54646 85px 0);
+    filter: drop-shadow(#e54646 85px 0);
+    box-shadow:#e54646 85px 0;
+}
+.cgreen{
+    -webkit-filter: drop-shadow(#50a625 85px 0);
+    filter: drop-shadow(#50a625 85px 0);
+    box-shadow: #50a625 85px 0; 
+}
+.cgray{
+    -webkit-filter: drop-shadow(#d7d7d7 85px 0);
+    filter: drop-shadow(#d7d7d7 85px 0);
+    box-shadow:#d7d7d7 85px 0; 
+} */
+.info-middle .order h3{
+   font-size: 15px;
+   margin: 5px 0 15px;
+   color: white;
+}
+
+.info-middle .orders:hover{
+    /* background:#6ca2f6; */
+    /* background:#85b3f8; */
+    background:#6bc5a4;
+    box-shadow: 2px 3px 4px #ddd;
+    cursor: pointer;
+}
+
+.info-middle  .orders:hover h3{
+    color:white;
+}
+
+.info-middle .col-md-3,.info-middle .col-sm-6,.info-middle .col-xs-6{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*.info-middle  .order p,#main-content  .order h3{
+    background: #ccc; 
+}*/
+/** 首页切换地图按钮 */
+.qhdt{
+	border: 1px solid #FFF;
+	padding: 3px 12px;
+}
+
+
+
+
+/*路灯地图监控自定义css  BEGIN*/
+.gatewaytip {
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    top: 260px;
+    left: 66px;
+    border: 1px solid #4d90fe;
+    background: #f7f9fd url(../img/light/11281420.png) 10px 3px no-repeat;
+} 
+.gatewayn {
+    padding-top: 35px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+.realdata {
+    position: absolute;
+    right: 100px;
+    width: 0px;
+    height: 100%;
+    top: 40px;
+    overflow: visible;
+  }
+.realpanel {
+    text-align: center;
+    cursor: pointer;
+    border: 0px;
+    width: 50px;
+    height: 48px;
+    background: url(../img/light/13080265.png.thumb.jpg) center no-repeat;
+}
+.datainfo{
+	float:left;
+	width:100%;
+	background-color:#2C98CE;
+	font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 13px;
+	color: #676a6c;
+}
+ .datainfo table{
+     width:100%;
+     border-right:1px solid #E4E4F1;
+     border-bottom:1px solid #E4E4F1;
+     text-align:center;
+     border-radius:5px;
+ }        
+ .datainfo table th{
+     text-align:center;
+ }
+ .datainfo table td{
+     border-left:1px solid #E4E4F1;
+     border-top:1px solid #E4E4F1;
+     height:20px;
+     line-height:20px;
+ }
+ .gateway{
+     height:50px;
+     line-height:50px;
+     color:white;
+     float:left;
+ }
+ .gateway span{
+     height:50px;
+     line-height:50px;
+     float:left;
+ }
+ .gatewaythree{
+     float:left;
+     width:100%;
+     background-color:white;
+     border-radius:5px;
+ }
+ .gatewayloop{
+     float:left;
+     width:100%;
+     margin:10px 0px;
+     background-color:white;
+     border-radius:5px;
+ }
+ .gatewayloopsplit{
+     float:left;
+     width:100%;
+     margin:10px 0px;
+     background-color:white;
+     border-radius:5px;
+ }
+/*路灯地图监控自定义css  END*/
+
+/*去掉左下角地图logo和版权*/
+.amap-logo,.amap-copyright{
+display: none!important;
+} 
+
+
+
+		       

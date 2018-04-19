@@ -12,24 +12,34 @@
 @var class = class!;
 @var isRoot = isRoot!"true";
 @var rootNodeName = rootNodeName!"全部";
+@var underline = underline!'';
+@var title = title!'';
+<div class="form-group">
+    <label class="col-sm-3 control-label">${title}</label>
+    <div class="col-sm-9">
 
-<div class="btn-group ${class!}"   style="width:${width};">
-	<span data-toggle="dropdown" class="btn btn-primary btn-white dropdown-toggle width-100">
-		<span id="pullDownTreeCurName${order}">${rootNodeName}</span> <i class="ace-icon fa fa-angle-down icon-on-right"></i>
-	</span>
-
-	<div class="dropdown-menu dropdown-caret scrollable width-100" data-height="250">
-		<div class="padding-15">
-			<div style="padding-bottom: 10px;">
-				<input type="text" id="pullDownTreeSearch${order}" placeholder="搜索" class="width-100"/>
+		<div class="btn-group ${class!}"   style="width:${width};">
+			<span data-toggle="dropdown" class="btn btn-primary btn-white dropdown-toggle width-100">
+				<span id="pullDownTreeCurName${order}">${rootNodeName}</span> <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+			</span>
+		
+			<div class="dropdown-menu dropdown-caret scrollable width-100" data-height="250">
+				<div class="padding-15">
+					<div style="padding-bottom: 10px;">
+						<input type="text" id="pullDownTreeSearch${order}" placeholder="搜索" class="width-100"/>
+					</div>
+					<ul class="ztree" id="pullDownTree${order}"></ul>
+				</div>
 			</div>
-			<ul class="ztree" id="pullDownTree${order}"></ul>
 		</div>
+		<input type="hidden" name="${name}" value="${value}" id="pullDownTreeCurId${order}"/>
+		<input type="hidden" name="${pName}" value="${pId}" id="pullDownTreeCurPid${order}"/>
+		<input type="hidden" name="${cName}" value="${cId}" id="pullDownTreeCurCid${order}"/>
 	</div>
 </div>
-<input type="hidden" name="${name}" value="${value}" id="pullDownTreeCurId${order}"/>
-<input type="hidden" name="${pName}" value="${pId}" id="pullDownTreeCurPid${order}"/>
-<input type="hidden" name="${cName}" value="${cId}" id="pullDownTreeCurCid${order}"/>
+@if(isNotEmpty(underline) && underline == 'true'){
+    <div class="hr-line-dashed"></div>
+@}
 
 <script type="text/javascript">
 

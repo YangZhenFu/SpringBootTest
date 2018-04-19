@@ -62,8 +62,22 @@ Code.generate = function () {
 Code.setTableName = function (tableName) {
     var preSize = $("#ignoreTabelPrefix").val().length;
     $("#tableName").val(tableName);
-    $("#className").val(Feng.underLineToCamel(tableName.substring(preSize)));
+   // $("#className").val(Feng.underLineToCamel(tableName.substring(preSize)));
+    $('#className').val(toCamelCase(tableName));
 };
+
+/**
+ * 将表名转为驼峰
+ * @param str
+ * @returns
+ */
+function toCamelCase(str){  
+    var regExp=/[-_]\w/ig;  
+    str=str.replace(regExp,function(match){  
+         return match.charAt(1).toUpperCase();  
+     });
+    return str.charAt(0).toUpperCase()+str.substring(1);
+}
 
 /**
  * 点击父级编号input框时
