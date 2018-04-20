@@ -24,8 +24,9 @@ var StationInfoDlg = {
 	            notEmpty: {
 	                message: '排序不能为空'
 	            },
-	            numeric:{
-	            	message: '只能填写数字'
+	            regexp:{
+	            	regexp:/^\d+$/,
+	            	message:'只能输入整数'
 	            }
 	        }
 	    },

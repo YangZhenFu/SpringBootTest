@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.air.dao.AirSensorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.air.model.AirSensor">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="t_name" property="tName" />
+        <result column="sort_code" property="sortCode" />
+        <result column="valid" property="valid" />
+        <result column="station_id" property="stationId" />
+        <result column="type_id" property="typeId" />
+        <result column="sensor_model" property="sensorModel" />
+        <result column="rtu_id" property="rtuId" />
+        <result column="status" property="status" />
+        <result column="voltage" property="voltage" />
+        <result column="electricity" property="electricity" />
+        <result column="installer" property="installer" />
+        <result column="install_time" property="installTime" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="icon" property="icon" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, t_name AS tName, sort_code AS sortCode, valid, station_id AS stationId, type_id AS typeId, sensor_model AS sensorModel, rtu_id AS rtuId, status, voltage, electricity, installer, install_time AS installTime, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, icon, remark
+    </sql>
+    
+    
+    
+    <select id="findListByParams" resultType="map">
+		select <include refid="Base_Column_List"/> from air_sensor
+			<where>
+				<if test="condition!=null and condition!=''">
+					and (t_name like CONCAT('%', #{condition}, '%') or sort_code like CONCAT('%', #{condition}, '%'))
+				</if>
+					and valid = '0'
+			</where>
+			<choose>
+				<when test="orderByField!=null and orderByField!=''">
+					<choose>
+						<when test="isAsc == true">
+							order by ${orderByField} ASC
+						</when>
+						<otherwise>
+							order by ${orderByField} DESC
+						</otherwise>
+					</choose>
+				</when>
+				<otherwise>
+					order by create_time desc
+				</otherwise>
+			</choose>
+	
+	</select>
+
+</mapper>

@@ -1,5 +1,6 @@
 package com.stylefeng.guns.core.beetl;
 
+import com.stylefeng.guns.core.beetl.function.AirSensorFunction;
 import com.stylefeng.guns.core.beetl.function.AirStationFunction;
 import com.stylefeng.guns.core.beetl.function.AreaFunction;
 import com.stylefeng.guns.core.beetl.function.DeptFunction;
@@ -25,5 +26,6 @@ public class BeetlConfiguration extends BeetlGroupUtilConfiguration {
         groupTemplate.registerFunctionPackage("sysArea", AreaFunction.class);
         groupTemplate.registerFunctionPackage("sysDept", DeptFunction.class);
         groupTemplate.registerFunctionPackage("airStation", AirStationFunction.class);
+        groupTemplate.registerFunctionPackage("airSensor", AirSensorFunction.class);
     }
 }
