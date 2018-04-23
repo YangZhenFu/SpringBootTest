@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.mapper.Condition;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
@@ -69,9 +71,13 @@ public class AirSensorController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(required=false) String condition) {
     	Page<AirSensor> page = new PageFactory<AirSensor>().defaultPage();
-		List<Map<String, Object>> list = airSensorService.findListByParams(page, condition, page.getOrderByField(), page.isAsc());
-    	page.setRecords((List<AirSensor>) new AirSensorWarpper(list).warp());
-        return packForBT(page);
+    	//List<Map<String, Object>> list = airSensorService.findListByParams(page, condition, page.getOrderByField(), page.isAsc());
+    	//page.setRecords((List<AirSensor>) new AirSensorWarpper(list).warp());
+    	Wrapper<AirSensor> sensor = Condition.create();
+    	sensor.like("t_name", condition).or().like("sort_code", condition).and().eq("valid", "0").orderBy("create_time desc");
+    	Page<Map<String, Object>> pageList = airSensorService.selectMapsPage(page, sensor);
+    	pageList.setRecords((List<Map<String,Object>>) new AirSensorWarpper(pageList.getRecords()).warp());
+        return packForBT(pageList);
         
     }
 

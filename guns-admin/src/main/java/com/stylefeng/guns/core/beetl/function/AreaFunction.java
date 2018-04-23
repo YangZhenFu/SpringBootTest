@@ -41,7 +41,7 @@ public class AreaFunction {
 	 */
 	public Map<Long, Area> getAllAreaMap(){
 		Map<Long, Area> allAreaMap=Maps.newHashMap();
-		List<Area> list = areaService.selectList(new EntityWrapper<Area>());
+		List<Area> list = areaService.selectList(new EntityWrapper<Area>().eq("del_flag", "0"));
 		if(CollectionUtils.isNotEmpty(list)){
 			for(Area area : list){
 				allAreaMap.put(area.getId(), area);
@@ -60,7 +60,7 @@ public class AreaFunction {
 		if(allAreaMap!=null){
 			Area Area=new Area();
 			Area.setType("5");
-			List<Area> list = areaService.selectList(new EntityWrapper<Area>(Area));
+			List<Area> list = areaService.selectList(new EntityWrapper<Area>(Area).eq("del_flag", "0").orderBy("id"));
 			if(CollectionUtils.isNotEmpty(list)){
 				for(Area area : list){
 					StringBuilder builder=new StringBuilder();

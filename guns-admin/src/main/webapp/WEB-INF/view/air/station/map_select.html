@@ -35,9 +35,14 @@ AMap.plugin(['AMap.ToolBar','AMap.Scale'],function(){
 	          var lat=location.lat;
 	          map.setZoomAndCenter(20,[lng,lat]);
 	          
+	      	//根据经纬度获取地图容器像素坐标
+        	  var pixel = map.lnglatTocontainer(location);
+	          
 	          $(window.parent.document).find('#longitude').val(lng);
         	  $(window.parent.document).find('#latitude').val(lat);
         	  $(window.parent.document).find('#detailAddress').val(result.geocodes[0].formattedAddress);
+        	  $(window.parent.document).find('#offx').val(pixel.getX());
+        	  $(window.parent.document).find('#offy').val(pixel.getY());
 	          
 	          var marker = new AMap.Marker({
 	              position: [lng,lat],
@@ -65,8 +70,14 @@ AMap.plugin(['AMap.ToolBar','AMap.Scale'],function(){
 	          AMap.event.addListener(marker, 'dragend', function(e) {
 	        	  var lng=marker.getPosition().getLng();
 	        	  var lat=marker.getPosition().getLat();
+	        	  
+	        	//根据经纬度获取地图容器像素坐标
+	        	  var pixel = map.lnglatTocontainer([lng,lat]);
+	        	  
 	        	  $(window.parent.document).find('#longitude').val(lng);
 	        	  $(window.parent.document).find('#latitude').val(lat);
+	        	  $(window.parent.document).find('#offx').val(pixel.getX());
+	        	  $(window.parent.document).find('#offy').val(pixel.getY());
 	        	  
 	        	  var geocoder = new AMap.Geocoder({
 	        	        radius: 1000,

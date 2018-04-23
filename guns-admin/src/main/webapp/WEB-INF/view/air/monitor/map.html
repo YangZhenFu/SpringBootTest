@@ -1,0 +1,326 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>地图监控</h5>
+                
+                 <span class="tools pull-right" style="margin-top: -8px;">
+							@var allAreaStr=sysArea.getAllAreaStr();
+							<#myselect name="type" width="300px" id="area-select" describe="切换地图">
+								<option value="">默认地图</option>
+								@for(areaStr in allAreaStr){
+									<option value="${areaStr.value!}">${areaStr.key!}</option>
+								@}
+							</#myselect>
+            			</span>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                        
+                      <div class="col-sm-12" id="ditus" style="">
+							<div id="container" tabindex="0" style="width: 1644px;height: 800px;"></div>
+							<div id='panel'></div>
+						</div>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	Date.prototype.format =function(format){var o = {"M+" : this.getMonth()+1, //month
+			 										 "d+" : this.getDate(), //day
+            										 "h+" : this.getHours(), //hour
+            									     "m+" : this.getMinutes(), //minute
+            										 "s+" : this.getSeconds(), //second
+            										 "q+" : Math.floor((this.getMonth()+3)/3), //quarter
+            										 "S" : this.getMilliseconds() //millisecond
+											}
+		if(/(y+)/.test(format)) format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4- RegExp.$1.length));
+		for(var k in o)if(new RegExp("("+ k +")").test(format))format = format.replace(RegExp.$1,RegExp.$1.length==1? o[k] :("00"+ o[k]).substr((""+ o[k]).length));
+		return format;
+	}
+	</script>
+
+<script type="text/javascript">
+
+//地图初始化
+var map = new AMap.Map('container',{
+    resizeEnable: true,
+    expandZoomRange:true,
+    zoom: 10,
+    center: [113.665412 , 34.757975]
+});
+//加载地图插件
+AMap.plugin(['AMap.ToolBar','AMap.Scale'],function(){
+	var toolBar = new AMap.ToolBar();
+	var scale = new AMap.Scale();
+	map.addControl(toolBar);
+	map.addControl(scale);
+})
+
+//从cookie中获取线杆经纬度
+var result=eval('${result}');
+if(result){
+var lnglats=new Array(result.length/2);
+	for(var i=0;i<lnglats.length;i++){
+		lnglats[i]=new Array();
+		for(var j=0;j<2;j++){
+			lnglats[i][j]='';
+		}
+	}
+	for(var i=0;i<result.length;i++){
+		lnglats[parseInt(i/2)][i%2] = result[i]; 
+	}
+}
+console.log(lnglats);
+//实例化标注点
+for (var i = 0, marker; i < lnglats.length; i++) {
+
+    var station={};
+    //根据坐标查询线杆
+    $.post('${ctxPath}/air/map/select',{lng:lnglats[i][0],lat:lnglats[i][1]},function(result){
+		station=result.station;
+	}).done(function(){
+		if(station){
+			var coords=[parseFloat(station.longitude),parseFloat(station.latitude)];
+			var marker = new AMap.Marker({
+		        position: coords,
+		        map: map,
+		        //content: '<img src="${ctxPath!}/static/img/deng.png" width="50" height="50" />'   //自定义点标记覆盖物内容
+		    });
+			
+			 // 设置label标签
+		    marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
+		        offset: new AMap.Pixel(-15, -20),//修改label相对于maker的位置
+		        content: station.tName
+		    });
+			 
+			 
+		  //鼠标点击marker弹出自定义的信息窗体
+		    AMap.event.addListener(marker, 'click', function(e) {
+		  	   //console.log(marker);
+		  	    
+		    	
+		       var url='${ctxPath}/air/map/queryData';
+		       var params={lng:e.target.getPosition().getLng(),lat:e.target.getPosition().getLat()};
+		       $.post(url,params,function(result){
+		    	   var station=result.station;
+		    	   var sensors=result.sensors;
+		    	   $('#sensors').empty();
+		    	   $('#refresh_time').html('');
+		    	   if(station){
+		    		   $('#station_name').html(station.tName);
+		    		   $('#address').html('地址:'+station.detailAddress);
+		    	   }
+		    	   if(sensors){
+		    		   $('#refresh_time').html(new Date(result.refreshTime).format('yyyy-MM-dd hh:mm:ss') );
+		    		   for(var i=0;i<sensors.length;i++){
+		    			   var sensor=sensors[i];
+		    			   var li='<li><a href="javascript:void(0);"> <i class="fa fa-circle text-navy"></i> '+sensor.tName+':&nbsp;&nbsp;&nbsp;&nbsp; '+(sensor.sensorData.numerical||'')+(sensor.sensorData.unit||'')+'</a></li>';
+		    			   $('#sensors').append(li);
+		    		   }
+		    		   
+		    	   }
+		    	  
+		       });
+		       infoWindow.open(map, e.target.getPosition());
+		       
+		    });
+		}
+	});
+    
+    //实例化信息窗体
+    var title = '<span id="station_name">气象站</span>&nbsp;&nbsp;&nbsp;<span style="font-size:11px;color:#F00;" id="address"></span>'+
+    			"</br><div style='font-size:11px;' ><a href='javascript:void(0);' ><i class='fa fa-circle text-info'></i> 更新时间: &nbsp;&nbsp;<span id='refresh_time'></span></a></div>",
+    content = [];
+    content.push("<div class='row'>");
+    content.push('<ul class="category-list" style="padding: 0" id="sensors">');
+	content.push('<li><a href="javascript:void(0);"> <i class="fa fa-circle text-navy"></i> 风速:&nbsp;&nbsp;&nbsp;&nbsp; 2.7m/s</a></li>');
+	content.push('<li><a href="javascript:void(0);"> <i class="fa fa-circle text-danger"></i> 风向:&nbsp;&nbsp;&nbsp;&nbsp; 东南</a></li>');
+	content.push('<li><a href="javascript:void(0);"> <i class="fa fa-circle text-primary"></i> 温度: &nbsp;&nbsp;&nbsp;&nbsp;23.5°</a></li>');
+	content.push('<li> <a href="javascript:void(0);"> <i class="fa fa-circle text-info"></i> 湿度: &nbsp;&nbsp;&nbsp;&nbsp;43.2%RH</a></li>');
+    content.push('</ul>');
+    content.push("</div>");
+    var infoWindow = new AMap.InfoWindow({
+        isCustom: true,  //使用自定义窗体
+        content: createInfoWindow(title, content.join("")),
+        offset: new AMap.Pixel(15, -45)
+    });
+    //构建自定义信息窗体
+    function createInfoWindow(title, content) {
+        var info = document.createElement("div");
+        info.className = "info";
+        //可以通过下面的方式修改自定义窗体的宽高
+        info.style.width="250px";
+        //info.style.height="460px";
+        // 定义顶部标题
+        var top = document.createElement("div");
+        var titleD = document.createElement("div");
+        var closeX = document.createElement("img");
+        top.className = "info-top";
+        titleD.innerHTML = title;
+        closeX.src = "${ctxPath!}/static/img/close2.gif";
+        closeX.onclick = closeInfoWindow;
+        top.appendChild(titleD);
+        top.appendChild(closeX);
+        info.appendChild(top);
+        // 定义中部内容
+        var middle = document.createElement("div");
+        middle.className = "info-middle";
+        middle.style.backgroundColor = 'white';
+        middle.innerHTML = content;
+        info.appendChild(middle);
+        // 定义底部内容
+        var bottom = document.createElement("div");
+        bottom.className = "info-bottom";
+        bottom.style.position = 'relative';
+        bottom.style.top = '0px';
+        bottom.style.margin = '0 auto';
+        var sharp = document.createElement("img");
+        sharp.src = "${ctxPath!}/static/img/sharp.png";
+        bottom.appendChild(sharp);
+        info.appendChild(bottom);
+        return info;
+    }
+    //关闭信息窗体
+    function closeInfoWindow() {
+        map.clearInfoWindow();
+    }
+}    	   
+
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		$("#area-select").change(function(){
+			var area_select=$('.chosen-single span').html().trim();
+			area_select=area_select.replace(/-/g,'');
+			//console.log(area_select);
+			if(area_select!='默认地图'){ 
+				geocoder(area_select);
+			}else{ 
+				map.setZoomAndCenter(10,[113.665412 , 34.757975]);
+			}
+		});
+		function geocoder(data) {
+		    var geocoder = new AMap.Geocoder({
+		        //city: "0371", //城市，默认：“全国”
+		        radius: 1000 //范围，默认：500
+		    });
+		    //地理编码,返回地理编码结果
+		    geocoder.getLocation(data, function(status, result) {
+		        if (status === 'complete' && result.info === 'OK') {
+		          //console.log(result.geocodes);
+		          var location=result.geocodes[0].location;
+		          var lng=location.lng;
+		          var lat=location.lat;
+		          map.setZoomAndCenter(20,[lng,lat]);
+		          
+		        }
+		    });
+		}
+	});
+</script>
+
+<script type="text/javascript">
+//自定义右键菜单
+var menu=new ContextMenu(map);
+function ContextMenu(map) {
+    var me = this;
+    this.mouseTool = new AMap.MouseTool(map); //地图中添加鼠标工具MouseTool插件
+    this.contextMenuPositon = null;
+    var content = [];
+    content.push("<div>");
+    content.push("    <ul class='context_menu'>");
+    content.push("        <li onclick='menu.addMarkerMenu()'>添加气象站</li>");
+    content.push("        <li class='split_line' onclick='menu.distanceMeasureMenu()'>距离量测</li>");
+    content.push("        <li class='split_line' onclick='menu.zoomMenu(1)'>放大一级</li>");
+    content.push("        <li onclick='menu.zoomMenu(0)'>缩小一级</li>");
+    content.push("    </ul>");
+    content.push("</div>");
+    this.contextMenu = new AMap.ContextMenu({isCustom: true, content: content.join('')});//通过content自定义右键菜单内容
+    //地图绑定鼠标右击事件——弹出右键菜单
+    map.on('rightclick', function(e) {
+        me.contextMenu.open(map, e.lnglat);
+        me.contextMenuPositon = e.lnglat; //右键菜单位置
+    });
+}
+//右键菜单缩放地图
+ContextMenu.prototype.zoomMenu = function zoomMenu(tag) {
+    if (tag === 0) {
+        map.zoomOut();
+    }
+    if (tag === 1) {
+        map.zoomIn();
+    }
+    this.contextMenu.close();
+}
+//右键菜单距离量测
+ContextMenu.prototype.distanceMeasureMenu=function () {  
+    this.mouseTool.rule();
+    this.contextMenu.close();
+}
+//右键菜单添加Marker标记
+ContextMenu.prototype.addMarkerMenu=function () {  
+    this.mouseTool.close();
+    var marker = new AMap.Marker({
+        map: map,
+        position: this.contextMenuPositon, //基点位置
+       // offset: new AMap.Pixel(-25, -35), //相对于基点的偏移位置
+       // content: '<img src="${ctxPath!}/static/img/deng.png" width="50" height="50" />'   //自定义点标记覆盖物内容
+       
+    });
+    this.contextMenu.close();
+    //鼠标点击marker弹出自定义的信息窗体
+    AMap.event.addListener(marker, 'click', function(e) {
+    	
+         layer.confirm('该气象站现在是待定状态，是否添加详细数据？', function(){ 
+        	 	layer.closeAll();
+	         	//根据坐标搜索地址
+                 var geocoder = new AMap.Geocoder({
+                     radius: 1000,
+                     extensions: "all"
+                 });        
+                 geocoder.getAddress(marker.getPosition(), function(status, result) {
+                     if (status === 'complete' && result.info === 'OK') {
+                    	 console.log(result.regeocode.formattedAddress);
+                    	 
+                    	 var lng=marker.getPosition().getLng();
+         	         	var lat=marker.getPosition().getLat();
+                    	var address=result.regeocode.formattedAddress;
+                    	 
+                    		//根据经纬度获取地图容器像素坐标
+                    	  var pixel = map.lnglatTocontainer(marker.getPosition());
+                    	 
+                    	  
+                    	 var index = layer.open({
+         	                type: 2,
+         	                title: '添加气象站',
+         	                area: ['920px', '750px'], //宽高
+         	                fix: false, //不固定
+         	                maxmin: true,
+         	                shadeClose:true,
+         	                content: Feng.ctxPath + '/air/map/station_add',
+         	                success:function(layero,index){
+         	                	var iframe=layero.find("iframe")[0].contentWindow.document;
+         	                	$('#detailAddress',iframe).val(address);
+         	                	$('#longitude',iframe).val(lng);
+         	                	$('#latitude',iframe).val(lat);
+         	                	$('#offx',iframe).val(pixel.getX());
+         	                	$('#offy',iframe).val(pixel.getY());
+         	                }		
+         	            });
+                    	 
+                     }
+                 });        
+	         	
+	         	
+    	});    
+    });
+}
+</script>
+<script src="${ctxPath}/static/modular/air/monitor/map.js"></script>
+@}

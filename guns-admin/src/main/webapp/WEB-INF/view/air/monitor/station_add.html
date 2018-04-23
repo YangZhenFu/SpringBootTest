@@ -27,8 +27,6 @@
 							<#pullDownTree order="one" treeData="${areaTree}" name="areaId" underline="true" title="归属区域" 
 							class="width-100" isRoot="false" rootNodeName="请选择归属区域" />
 							</div>
-							<#button btnType="primary" clickFun="StationInfoDlg.layerAmap();" name="获取经纬度" space="false" icon=""/>
-							<div class="hr-line-dashed"></div>
                             <#input id="detailAddress" name="详细地址" underline="true" readonly="true"/>
                            	
                             <#input id="longitude" name="经度" underline="true" readonly="true"/>
@@ -73,7 +71,7 @@
 
     </div>
 </div>
-<script src="${ctxPath}/static/modular/air/station/station_info.js"></script>
+<script src="${ctxPath}/static/modular/air/monitor/station_add.js"></script>
 <script type="text/javascript">
 	$('#connMethod').val('');
 </script>

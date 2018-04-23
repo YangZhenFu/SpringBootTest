@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
+
+import org.springframework.data.annotation.Transient;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
 
 /**
  * <p>
@@ -115,7 +117,19 @@ public class AirSensor extends Model<AirSensor> {
      * 备注
      */
     private String remark;
+    
+    //传感器数据
+    @TableField(exist=false)
+    private AirSensorData sensorData;
 
+    public AirSensorData getSensorData() {
+        return sensorData;
+    }
+
+    public void setSensorData(AirSensorData sensorData) {
+        this.sensorData = sensorData;
+    }
+    
 
     public Long getId() {
         return id;
