@@ -1,0 +1,322 @@
+@layout('/common/_container.html'){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+		
+            <div class="ibox-title">
+                <h5>空气网格化</h5>
+            </div>
+			
+            <div class="ibox-content">
+                <div class="row row-lg">
+				
+                    <div class="col-sm-12">
+                       	<div class="row">
+						    
+							<div class="col-lg-2 col-sm-3" style="width: 17.666667%;margin-left: inherit;">
+							    <input class="form-control" style="margin-bottom: 10px;" id="search_input" name="code" placeholder="输入名称查询" type="text">
+								<div class="panel panel-default">
+									<div class="panel-heading">区域列表</div>
+									<div class="panel-body dept-tree">
+										<ul id="areaTree" class="ztree"></ul>
+									</div>
+								</div>
+							</div> 
+							
+							<div class="col-lg-10 col-sm-9" style="margin-right: inherit;">
+								 <div class="col-sm-12">
+									<div class="row">
+									
+										<div class="col-lg-12 col-sm-12">
+											<div class="panel panel-default">
+												<div class="panel-heading" style="text-align:center">
+													<span class="aleft">实时状态</span>
+													<div class="acenter">数据更新时间：<span id="data_refresh_time">2017-08-01 11:12:22</span></div>
+													<span class="aright">刷新时间：<span id="refresh_time">11:12:20</span></span>
+													<div class="clearfix"></div>
+												</div>
+												
+												<div class="panel-body">
+												  
+													<div class="row" id="real_time_status">
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget lazur-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">风速</font></h3>
+																		<h3><strong><font color="white">m/s</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget blue-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">风向</font></h3>
+																		<h3><strong><font color="white">。</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget navy-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">大气温度</font></h3>
+																		<h3><strong><font color="white">℃</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+												
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget blue-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">大气湿度</font></h3>
+																		<h3><strong><font color="white">%RH</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget yellow-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">噪声</font></h3>
+																		<h3><strong><font color="white">dB</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget red-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">PM2.5</font></h3>
+																		<h3><strong><font color="white">μg/m3</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget yellow-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">PM10</font></h3>
+																		<h3><strong><font color="white">μg/m3</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget lazur-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">数字气压</font></h3>
+																		<h3><strong><font color="white">kPa</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget blue-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">CO</font></h3>
+																		<h3><strong><font color="white">ppm</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget navy-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">O3</font></h3>
+																		<h3><strong><font color="white">ppm</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+												
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget blue-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">SO2</font></h3>
+																		<h3><strong><font color="white">ppm</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+														
+														<div class="col-md-3 col-sm-6 col-xs-6">
+														   <div class="widget yellow-bg orders">
+															<div class="row">
+															    <a href="javascript:void(0);">
+																	<div class="col-sm-4">
+																		<div class="text-center">
+																			<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+																		</div>
+																	</div>
+																	<div class="col-sm-8">
+																		<h3><font color="white">NO2</font></h3>
+																		<h3><strong><font color="white">ppm</font></strong></h3>
+																	</div>
+																	<div class="clearfix"></div>
+															    </a>
+															</div>
+														   </div>
+														</div>
+													</div>
+												  
+												</div>
+											</div>
+										</div> 
+										
+										<div class="col-lg-12 col-sm-12">
+											<div class="panel panel-default">
+												<div class="panel-heading">24小时数据</div>
+												<div class="panel-body" style="position: relative; margin: 0; padding: 0px;overflow: hidden;">
+												
+	
+													<table class="table table-bordered table-hover atable">
+														<thead>
+															<tr style="font-weight: bold;">
+																<th class="center">传感器编号</th>
+																<th class="center">传感器名称</th>
+																<th class="center">最小值</th>
+																<th class="center">最小值时间</th>
+																<th class="center">最大值</th>
+																<th class="center">最大值时间</th>
+															</tr>
+														</thead>
+														<tbody id="sensor_status">
+															<!-- <tr>
+																<td class="center">Trident</td>
+																<td class="center">Internet Explorer 4.0</td>
+																<td class="center">23.6</td>
+																<td class="center">2018-08-01 11:13:54</td>
+																<td class="center">68.5</td>
+																<td class="center">2018-08-01 19:13:54</td>
+															</tr> -->
+															
+															
+															
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div> 
+										
+									</div>
+								</div>
+							</div> 
+                        </div>
+                    </div>
+					
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/air/monitor/monitor.js"></script>
+@}
