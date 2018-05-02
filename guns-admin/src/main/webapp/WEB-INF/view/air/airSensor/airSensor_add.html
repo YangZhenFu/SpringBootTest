@@ -1,6 +1,7 @@
 @layout("/common/_container.html"){
 @var airStations = airStation.findAllAirStation();
 @var sensorTypes = airSensor.findAllAirSensorType();
+@var units = airSensor.findAllAirUnit();
 <div class="ibox float-e-margins">
     <div class="ibox-content">
         <div class="form-horizontal" id="airSensorForm">
@@ -29,6 +30,12 @@
                 </div>
 
                 <div class="col-sm-6">
+                			 <#select id="unit" name="检测单位"  underline="true" >
+                             	  @for(unit in units){
+                             	       <option value="${unit}">${unit}</option>
+                             	  @}
+							</#select>
+							
                             <#input id="voltage" name="电压（V）" underline="true"/>
                             <#input id="electricity" name="电流（mA）" underline="true"/>
                             <#input id="installer" name="安装者" underline="true"/>
@@ -53,5 +60,6 @@
 <script type="text/javascript">
 	$('#stationId').val('');
 	$('#typeId').val('');
+	$('#unit').val('');
 </script>
 @}

@@ -12,7 +12,6 @@
         <result column="sensor_id" property="sensorId" />
         <result column="signal_strength" property="signalStrength" />
         <result column="numerical" property="numerical" />
-        <result column="unit" property="unit" />
         <result column="heartbeat_time" property="heartbeatTime" />
         <result column="create_by" property="createBy" />
         <result column="create_time" property="createTime" />
@@ -23,7 +22,101 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, code, t_name AS tName, sort_code AS sortCode, valid, sensor_id AS sensorId, signal_strength AS signalStrength, numerical, unit, heartbeat_time AS heartbeatTime, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, remark
+        id, code, t_name AS tName, sort_code AS sortCode, valid, sensor_id AS sensorId, signal_strength AS signalStrength, numerical, heartbeat_time AS heartbeatTime, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, remark
     </sql>
+    
+    
+    <select id="selectListByParams" resultType="map">
+    
+    	select <include refid="Base_Column_List"/> from air_sensor_data
+			<where>
+				<if test="condition!=null and condition!=''">
+					and (sort_code like CONCAT('%', #{condition}, '%') or code like CONCAT('%', #{condition}, '%') or sensor_id in (select id from air_sensor where t_name like CONCAT('%', #{condition}, '%') and valid=0))
+				</if>
+				
+				<if test="areaId!=null and areaId!='' and areaId.length()==17">
+					and sensor_id in (SELECT id from air_sensor where  station_id = (select id from air_station where code=#{areaId}) and valid=0)
+				</if>
+				
+				<if test="beginTime!=null and beginTime!=''">
+		  			and <![CDATA[ heartbeat_time >= str_to_date(#{beginTime}, '%Y-%m-%d %H:%i:%s') ]]>
+		  		</if>
+		  		<if test="endTime!=null and endTime!=''">
+		  			and <![CDATA[ heartbeat_time <= str_to_date(#{endTime}, '%Y-%m-%d %H:%i:%s')  ]]>
+		  		</if>
+					and valid = '0'
+			</where>
+			<choose>
+				<when test="orderByField!=null and orderByField!=''">
+					<choose>
+						<when test="isAsc == true">
+							order by ${orderByField} ASC
+						</when>
+						<otherwise>
+							order by ${orderByField} DESC
+						</otherwise>
+					</choose>
+				</when>
+				<otherwise>
+					order by id asc
+				</otherwise>
+			</choose>
+    
+    </select>
 
+
+	<select id="queryListByParams" resultType="map">
+		select <include refid="Base_Column_List"/> from air_sensor_data
+			<where>
+				<if test="condition!=null and condition!=''">
+					and (sort_code like CONCAT('%', #{condition}, '%') or code like CONCAT('%', #{condition}, '%') or sensor_id in (select id from air_sensor where t_name like CONCAT('%', #{condition}, '%') and valid=0))
+				</if>
+				
+				<if test="areaId!=null and areaId!='' and areaId.length()==17">
+					and sensor_id in (SELECT id from air_sensor where  station_id = (select id from air_station where code=#{areaId}) and valid=0)
+				</if>
+				
+				<if test="beginTime!=null and beginTime!=''">
+		  			and <![CDATA[ heartbeat_time >= str_to_date(#{beginTime}, '%Y-%m-%d %H:%i:%s') ]]>
+		  		</if>
+		  		<if test="endTime!=null and endTime!=''">
+		  			and <![CDATA[ heartbeat_time <= str_to_date(#{endTime}, '%Y-%m-%d %H:%i:%s')  ]]>
+		  		</if>
+					and valid = '0'
+			</where>
+			order by id asc
+	</select>
+	
+	
+	<select id="findOneDayMaxData" resultType="com.stylefeng.guns.modular.air.model.AirSensorData">
+		select <include refid="Base_Column_List"/> from air_sensor_data
+			where numerical = (
+					SELECT MAX(numerical+0) FROM air_sensor_data
+						WHERE
+							sensor_id = #{id}
+					AND heartbeat_time >= (NOW() - INTERVAL 24 HOUR) )
+		limit 0,1	
+	</select>
+	
+	
+	<select id="findOneDayMinData" resultType="com.stylefeng.guns.modular.air.model.AirSensorData">
+		select <include refid="Base_Column_List"/> from air_sensor_data
+			where numerical = (
+					SELECT MIN(numerical+0) FROM air_sensor_data
+						WHERE
+							sensor_id = #{id}
+					AND heartbeat_time >= (NOW() - INTERVAL 24 HOUR) )
+		limit 0,1	
+	</select>
+	
+	<select id="findMaxHeatbeatTime" parameterType="java.util.List" resultType="java.util.Date">
+		SELECT MAX(heartbeat_time) FROM air_sensor_data
+		 where sensor_id in
+		 <foreach collection="list" item="item" index="index"
+            open="(" close=")" separator=",">
+            #{item.id}
+        </foreach>
+		
+	</select>
+	
 </mapper>

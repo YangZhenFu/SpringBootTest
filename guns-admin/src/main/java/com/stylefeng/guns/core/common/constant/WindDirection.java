@@ -1,5 +1,7 @@
 package com.stylefeng.guns.core.common.constant;
 
+import org.apache.commons.lang.StringUtils;
+
 public enum WindDirection {
 
 	
@@ -54,6 +56,14 @@ public enum WindDirection {
 		this.mark = mark;
 	}
 
-	
+	public static WindDirection findWindDirectionByMark(String mark){
+		WindDirection[] values = WindDirection.values();
+		for(WindDirection direct : values){
+			if(StringUtils.equals(direct.getMark(), mark)){
+				return direct;
+			}
+		}
+		return null;
+	}
 	
 }

@@ -5,8 +5,6 @@ import java.io.Serializable;
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
 
-import org.springframework.data.annotation.Transient;
-
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -118,9 +116,22 @@ public class AirSensor extends Model<AirSensor> {
      */
     private String remark;
     
+    /**
+     * 检测单位
+     */
+    private String unit;
+    
     //传感器数据
     @TableField(exist=false)
     private AirSensorData sensorData;
+    
+    //传感器类型名称
+    @TableField(exist=false)
+    private String typeName;
+    
+    //图表检测类型（用于echarts显示）
+    @TableField(exist=false)
+    private String legend;
 
     public AirSensorData getSensorData() {
         return sensorData;
@@ -291,7 +302,50 @@ public class AirSensor extends Model<AirSensor> {
         this.remark = remark;
     }
 
-    @Override
+    /**
+	 * @return the typeName  
+	 */
+	public String getTypeName() {
+		return typeName;
+	}
+
+	/**
+	 * @param typeName the typeName to set
+	 */
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+	
+
+	/**
+	 * @return the legend  
+	 */
+	public String getLegend() {
+		return legend;
+	}
+
+	/**
+	 * @param legend the legend to set
+	 */
+	public void setLegend(String legend) {
+		this.legend = legend;
+	}
+
+	/**
+	 * @return the unit  
+	 */
+	public String getUnit() {
+		return unit;
+	}
+
+	/**
+	 * @param unit the unit to set
+	 */
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+	@Override
     protected Serializable pkVal() {
         return this.id;
     }
@@ -310,6 +364,7 @@ public class AirSensor extends Model<AirSensor> {
         ", rtuId=" + rtuId +
         ", status=" + status +
         ", voltage=" + voltage +
+        ", unit=" + unit +
         ", electricity=" + electricity +
         ", installer=" + installer +
         ", installTime=" + installTime +

@@ -118,4 +118,13 @@ public class Constant {
 	//系统通知类型
 	public static final List<String> sys_inform_type=ImmutableList.<String>builder().add("设备故障").add("系统通知").build(); 
 	
+	
+	
+	//设备预警参数表达式类型
+	public static final Map<String,String> SENSOR_WARN_EXPRESSION_TYPE = ImmutableMap.<String,String>builder().put("0","大于").put("1","小于").put("2","大于等于").put("3","小于等于").put("4","等于")
+																										.put("5","不等于").build();
+	
+	
+	
+	
 }

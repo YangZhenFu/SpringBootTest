@@ -24,11 +24,12 @@
         <result column="update_time" property="updateTime" />
         <result column="icon" property="icon" />
         <result column="remark" property="remark" />
+        <result column="unit" property="unit" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, code, t_name AS tName, sort_code AS sortCode, valid, station_id AS stationId, type_id AS typeId, sensor_model AS sensorModel, rtu_id AS rtuId, status, voltage, electricity, installer, install_time AS installTime, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, icon, remark
+        id, code, t_name AS tName, sort_code AS sortCode, valid, station_id AS stationId, type_id AS typeId, sensor_model AS sensorModel, rtu_id AS rtuId, status, voltage, electricity, installer, install_time AS installTime, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, icon, remark,unit
     </sql>
     
     

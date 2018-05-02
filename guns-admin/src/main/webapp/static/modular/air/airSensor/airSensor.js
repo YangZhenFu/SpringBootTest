@@ -23,6 +23,7 @@ AirSensor.initColumn = function () {
             {title: '产品型号', field: 'sensorModel', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '寄存器地址', field: 'rtuId', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle',sortable: true},
+            {title: '检测单位', field: 'unit', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '传感器图标', field: 'icon', visible: true, align: 'center', valign: 'middle',sortable: true,
             	formatter:function(value,row,index){
             		return '<i class="ace-icon fa '+value+' bigger-130" style="font-size:130% !important"></i>';

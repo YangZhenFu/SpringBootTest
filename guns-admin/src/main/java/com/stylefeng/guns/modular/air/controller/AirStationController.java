@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.air.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +23,12 @@ import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.beetl.function.AreaFunction;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.log.LogObjectHolder;
+import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.modular.air.model.AirStation;
 import com.stylefeng.guns.modular.air.service.IAirStationService;
 import com.stylefeng.guns.modular.air.warpper.AirStationWarpper;
 import com.stylefeng.guns.modular.system.model.Dept;
+import com.stylefeng.guns.modular.system.service.IAreaService;
 import com.stylefeng.guns.modular.system.service.IDeptService;
 
 /**
@@ -46,7 +49,8 @@ public class AirStationController extends BaseController {
     private IDeptService deptService;
     @Autowired
     private AreaFunction areaFunction;
-    
+    @Autowired
+    private IAreaService areaService;
     /**
      * 跳转到气象站首页
      */
@@ -63,7 +67,45 @@ public class AirStationController extends BaseController {
         return PREFIX + "station_add.html";
     }
 
-    /**
+    
+    @RequestMapping(value="ztree",method=RequestMethod.POST)
+    @ResponseBody
+    public List<ZTreeNode> getStationZTree(){
+    	List<ZTreeNode> ztree = areaService.getZtreeNode();
+    	return createStationZTree(ztree);
+    }
+    
+    /**  
+	 * <p>Title: createStationZTree</p>  
+	 * <p>Description: </p>  
+	 * @param ztree
+	 * @return  
+	 */ 
+	private List<ZTreeNode> createStationZTree(List<ZTreeNode> ztree) {
+		List<ZTreeNode> stationZTree=Lists.newArrayList();
+		if(CollectionUtils.isNotEmpty(ztree)){
+			for(ZTreeNode node : ztree){
+				List<AirStation> list = airStationService.selectList(new EntityWrapper<AirStation>().eq("area_id", node.getId()).eq("valid", "0"));
+				if(CollectionUtils.isNotEmpty(list)){
+					for(AirStation station : list){
+						ZTreeNode zTreeNode = new ZTreeNode();
+						zTreeNode.setChecked(false);
+						zTreeNode.setId(Long.valueOf(station.getCode()));
+						zTreeNode.setName(station.gettName());
+						zTreeNode.setOpen(false);
+						zTreeNode.setpId(node.getId());
+						stationZTree.add(zTreeNode);
+					}
+				}
+			
+			}
+			ztree.addAll(stationZTree);
+			ztree.add(ZTreeNode.createParent());
+		}
+		return ztree;
+	}
+
+	/**
      * 跳转到修改气象站
      */
     @RequestMapping("/station_update/{stationId}")

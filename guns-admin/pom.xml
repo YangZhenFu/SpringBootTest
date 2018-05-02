@@ -161,6 +161,17 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
+		
+		<!-- Echarts -->
+		<dependency>
+		  <groupId>com.github.abel533</groupId>
+		  <artifactId>ECharts</artifactId>
+		  <version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
     </dependencies>
 
     <build>

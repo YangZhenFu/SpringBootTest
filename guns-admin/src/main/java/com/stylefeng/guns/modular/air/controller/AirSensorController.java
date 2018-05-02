@@ -3,24 +3,32 @@ package com.stylefeng.guns.modular.air.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.Condition;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.google.common.collect.Lists;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.log.LogObjectHolder;
+import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.modular.air.model.AirSensor;
+import com.stylefeng.guns.modular.air.model.AirStation;
 import com.stylefeng.guns.modular.air.service.IAirSensorService;
+import com.stylefeng.guns.modular.air.service.IAirStationService;
 import com.stylefeng.guns.modular.air.warpper.AirSensorWarpper;
+import com.stylefeng.guns.modular.system.service.IAreaService;
 
 /**
  * 传感器管理控制器
@@ -36,6 +44,10 @@ public class AirSensorController extends BaseController {
 
     @Autowired
     private IAirSensorService airSensorService;
+    @Autowired
+    private IAreaService areaService;
+    @Autowired
+    private IAirStationService airStationService;
 
     /**
      * 跳转到传感器管理首页
@@ -44,6 +56,71 @@ public class AirSensorController extends BaseController {
     public String index() {
         return PREFIX + "airSensor.html";
     }
+    
+    /**
+     * <p>Title: getStationZTree</p>  
+     * <p>Description: 传感器ZTree</p>  
+     * @return
+     */
+    @RequestMapping(value="ztree",method=RequestMethod.POST)
+    @ResponseBody
+    public List<ZTreeNode> getStationZTree(){
+    	List<ZTreeNode> ztree = areaService.getZtreeNode();
+    	return createSensorZTree(ztree);
+    }
+    
+    /**  
+	 * <p>Title: createStationZTree</p>  
+	 * <p>Description: </p>  
+	 * @param ztree
+	 * @return  
+	 */ 
+	private List<ZTreeNode> createSensorZTree(List<ZTreeNode> ztree) {
+		List<ZTreeNode> stationZTree=Lists.newArrayList();
+		if(CollectionUtils.isNotEmpty(ztree)){
+			for(ZTreeNode node : ztree){
+				List<AirStation> list = airStationService.selectList(new EntityWrapper<AirStation>().eq("area_id", node.getId()).eq("valid", "0"));
+				if(CollectionUtils.isNotEmpty(list)){
+					for(AirStation station : list){
+						//新增气象站节点
+						ZTreeNode zTreeNode = new ZTreeNode();
+						zTreeNode.setChecked(false);
+						zTreeNode.setId(Long.valueOf(station.getCode()));
+						zTreeNode.setName(station.gettName());
+						zTreeNode.setOpen(false);
+						zTreeNode.setpId(node.getId());
+						stationZTree.add(zTreeNode);
+						
+						//查询气象站下的所有传感器
+						List<AirSensor> sensors = airSensorService.selectList(new EntityWrapper<AirSensor>().eq("station_id", station.getId()).eq("valid", "0"));
+						if(CollectionUtils.isNotEmpty(sensors)){
+							for(AirSensor sensor: sensors){
+								//新增传感器节点
+								ZTreeNode sensorNode = new ZTreeNode();
+								sensorNode.setChecked(false);
+								sensorNode.setId(Long.valueOf(sensor.getCode()));
+								sensorNode.setName(sensor.gettName());
+								sensorNode.setOpen(false);
+								sensorNode.setpId(Long.valueOf(station.getCode()));
+								stationZTree.add(sensorNode);
+							}
+						}
+						
+					}
+				}
+			
+			}
+			ztree.addAll(stationZTree);
+			ztree.add(ZTreeNode.createParent());
+		}
+		return ztree;
+	}
+    
+    
+    
+    
+    
+    
 
     /**
      * 跳转到添加传感器管理

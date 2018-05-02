@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.plugins.Page;
@@ -13,7 +14,9 @@ import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.DateUtil;
 import com.stylefeng.guns.core.util.StringUtil;
 import com.stylefeng.guns.modular.air.dao.AirSensorMapper;
+import com.stylefeng.guns.modular.air.dao.AirStationMapper;
 import com.stylefeng.guns.modular.air.model.AirSensor;
+import com.stylefeng.guns.modular.air.model.AirStation;
 import com.stylefeng.guns.modular.air.service.IAirSensorService;
 
 /**
@@ -27,6 +30,9 @@ import com.stylefeng.guns.modular.air.service.IAirSensorService;
 @Service
 public class AirSensorServiceImpl extends ServiceImpl<AirSensorMapper, AirSensor> implements IAirSensorService {
 
+	@Autowired
+	private AirStationMapper airStationMapper;
+	
 	@Override
 	public int saveAirSensor(AirSensor airSensor, String installTimes) {
 		int count=0;
@@ -35,6 +41,13 @@ public class AirSensorServiceImpl extends ServiceImpl<AirSensorMapper, AirSensor
 			if(StringUtils.isNotBlank(installTimes)){
 				airSensor.setInstallTime(DateUtil.parse(installTimes, "yyyy-MM-DD"));
 			}
+			
+//			if(airSensor.getStationId()!=null){
+//				AirStation station = airStationMapper.selectById(airSensor.getStationId());
+//				if(station!=null){
+//					airSensor.settName(station.gettName()+"-"+airSensor.gettName());
+//				}
+//			}
 			
 			if(airSensor.getId()==null){
 				airSensor.setCode(StringUtil.generatorShort());

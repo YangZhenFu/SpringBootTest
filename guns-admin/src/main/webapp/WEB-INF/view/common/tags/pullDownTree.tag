@@ -126,6 +126,8 @@ $(function() {
 		// 按名字查询
 		var keyType = "name";
 		
+		console.log(value);
+		
 		// 如果要查空字串，就退出不查了。
 		if (value === "") {
 			for(var i=0, l=pullDownTreeList${order}.length; i<l; i++) {

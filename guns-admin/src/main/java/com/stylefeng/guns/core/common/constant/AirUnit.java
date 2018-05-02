@@ -13,6 +13,9 @@ public enum AirUnit {
 	PM("μg/m3"),
 	CO2("ppm"),
 	GAS("ppm"),
+	WIND_DIRECTION("。"),
+	RADIATION("w/m2"),
+	negative_oxygen_ion("个/m3"),
 	NOISE("dB");
 	
 	private String unit;

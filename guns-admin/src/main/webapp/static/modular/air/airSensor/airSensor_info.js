@@ -101,6 +101,13 @@ var AirSensorInfoDlg = {
 	                message: '备注不能为空'
 	            }
 	        }
+	    },
+	    unit: {
+	        validators: {
+	            notEmpty: {
+	                message: '检测单位不能为空'
+	            }
+	        }
 	    }
 	    
 	}
@@ -166,6 +173,7 @@ AirSensorInfoDlg.collectData = function() {
     .set('updateBy')
     .set('updateTime')
     .set('icon')
+    .set('unit')
     .set('remark');
 }
 

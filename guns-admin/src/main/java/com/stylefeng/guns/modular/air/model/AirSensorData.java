@@ -59,10 +59,8 @@ public class AirSensorData extends Model<AirSensorData> {
      * 检测数值
      */
     private String numerical;
-    /**
-     * 检测单位
-     */
-    private String unit;
+   
+    
     /**
      * 心跳时间
      */
@@ -158,13 +156,6 @@ public class AirSensorData extends Model<AirSensorData> {
         this.numerical = numerical;
     }
 
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
 
     public Date getHeartbeatTime() {
         return heartbeatTime;
@@ -230,7 +221,6 @@ public class AirSensorData extends Model<AirSensorData> {
         ", sensorId=" + sensorId +
         ", signalStrength=" + signalStrength +
         ", numerical=" + numerical +
-        ", unit=" + unit +
         ", heartbeatTime=" + heartbeatTime +
         ", createBy=" + createBy +
         ", createTime=" + createTime +

@@ -25,24 +25,7 @@
 												 <#NameCon id="name" name="名称" />
 											</div>
 											
-											<div class="col-lg-4 col-sm-12">
-												
-												<select name="roles" multiple class="chosen-select tag-input-style" id="role-select" data-placeholder="选择角色">
-												  <option value="010">北京</option>
-												  <option value="021">上海</option>
-												  <option value="0571">杭州</option>
-												</select>
-											</div>
-											<div class="col-lg-4 col-sm-12">
-												<#myselect name="type" width="80%" id="type-choose">
-													<option value="010">北京</option>
-												  <option value="021">上海</option>
-												  <option value="0571">杭州</option>
-												</#myselect>
-											</div>
-											@var areaTree = sysDept.findAllDeptInfo();
-											<#pullDownTree order="two" treeData="${areaTree}" name="officeId" 
-							class="width-50" isRoot="false" rootNodeName="请选择归属机构" />
+											
 											
 										</div>
 									</div>

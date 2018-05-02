@@ -277,7 +277,7 @@ ContextMenu.prototype.addMarkerMenu=function () {
     //鼠标点击marker弹出自定义的信息窗体
     AMap.event.addListener(marker, 'click', function(e) {
     	
-         layer.confirm('该气象站现在是待定状态，是否添加详细数据？', function(){ 
+         var layerIndex=layer.confirm('该气象站现在是待定状态，是否添加详细数据？', function(){ 
         	 	layer.closeAll();
 	         	//根据坐标搜索地址
                  var geocoder = new AMap.Geocoder({
