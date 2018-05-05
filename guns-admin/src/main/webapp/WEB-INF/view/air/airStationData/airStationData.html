@@ -4,13 +4,13 @@
     <div class="col-sm-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>曲线分析</h5>
+                <h5>历史数据查询</h5>
             </div>
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
                        	<div class="row">
-							<div class="col-lg-2 col-sm-3" style="width: 21.966667%;margin-left: inherit;">
+							<div class="col-lg-2 col-sm-3" style="width: 17.666667%;margin-left: inherit;">
 							<input class="form-control" style="margin-bottom: 10px;" id="search_input" name="code" placeholder="输入名称查询" type="text">
 								<div class="panel panel-default" >
 									<div class="panel-heading">区域列表</div>
@@ -20,11 +20,13 @@
 								</div>
 							</div> 
 							
-							<div class="col-lg-10 col-sm-9" style="margin-right: inherit;width: 79%;">
+							<div class="col-lg-10 col-sm-9" style="margin-right: inherit;">
 								<div class="row">
 									<div class="col-lg-10 col-sm-9">
 										<div class="row form-horizontal"  id="searchForm">
-											
+											<div class="col-lg-4 col-sm-12">
+												 <#NameCon id="condition" name="名称" placeholder="传感器名称/编号/排序"/>
+											</div>
 											<div class="col-lg-4 col-sm-6">
 												<#TimeCon id="beginTime" name="开始时间" isTime="true" pattern="YYYY-MM-DD hh:mm:ss"/>
 											</div>
@@ -38,17 +40,19 @@
 									<div class="col-lg-2 col-sm-3">
 										<div class="row">
 											<div class="col-lg-12 col-sm-12">
-												<#button name="搜索" icon="fa-search" clickFun="AirCurve.search()"/>
-												<#button name="重置" icon="fa-trash" clickFun="AirCurve.resetSearch()" space="true"/>
+												<#button name="搜索" icon="fa-search" clickFun="AirData.search()"/>
+												<#button name="重置" icon="fa-trash" clickFun="AirData.resetSearch()" space="true"/>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="row" id="curve_graph" >
+								<div class="hidden-xs" id="AirDataTableToolbar" role="group">
+									@if(shiro.hasPermission("/air/data/export")){
+									<#button name="导出Excel" icon="fa-cloud-upload" clickFun="AirData.exportExcel()" space="true"/>
+									@}
 								
-									<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-    								<div id="main" style="width: 100%;height: 700px;" ></div>
 								</div>
+								<#table id="AirDataTable"/>
 							</div>
 							
 							
@@ -61,12 +65,7 @@
         </div>
     </div>
 </div>
-<script src="${ctxPath}/static/modular/air/curve/air_curve2.js"></script>
-<script type="text/javascript">
-        
-     	
-</script>
-
+<script src="${ctxPath}/static/modular/air/airStationData/airStationData.js"></script>
 @}
 
 

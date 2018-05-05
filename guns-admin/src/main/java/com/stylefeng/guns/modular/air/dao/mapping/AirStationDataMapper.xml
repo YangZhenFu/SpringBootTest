@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.air.dao.AirStationDataMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.air.model.AirStationData">
+        <id column="id" property="id" />
+        <result column="t_name" property="tName" />
+        <result column="station_id" property="stationId" />
+        <result column="heartbeat_time" property="heartbeatTime" />
+        <result column="air_temperature" property="airTemperature" />
+        <result column="air_humidity" property="airHumidity" />
+        <result column="soil_temperature" property="soilTemperature" />
+        <result column="soil_humidity" property="soilHumidity" />
+        <result column="illuminance" property="illuminance" />
+        <result column="rainfall" property="rainfall" />
+        <result column="air_pressure" property="airPressure" />
+        <result column="wind_speed" property="windSpeed" />
+        <result column="wind_direction" property="windDirection" />
+        <result column="noise" property="noise" />
+        <result column="pm_10" property="pm10" />
+        <result column="pm_25" property="pm25" />
+        <result column="pm_1" property="pm1" />
+        <result column="co" property="co" />
+        <result column="o3" property="o3" />
+        <result column="so2" property="so2" />
+        <result column="no2" property="no2" />
+        <result column="radiation" property="radiation" />
+        <result column="negative_oxygen_ion" property="negativeOxygenIon" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, t_name AS tName, station_id AS stationId, heartbeat_time AS heartbeatTime, air_temperature AS airTemperature, air_humidity AS airHumidity, soil_temperature AS soilTemperature, soil_humidity AS soilHumidity, illuminance, rainfall, air_pressure AS airPressure, wind_speed AS windSpeed, wind_direction AS windDirection, noise, pm_10 AS pm10, pm_25 AS pm25, pm_1 AS pm1, co, o3, so2, no2, radiation, negative_oxygen_ion AS negativeOxygenIon
+    </sql>
+    
+    
+     <select id="selectPageDataByParams" resultType="map">
+    
+    	select <include refid="Base_Column_List"/> from air_station_data 
+			<where>
+				<if test="condition!=null and condition!=''">
+					and ( id = #{condition} or station_id in (select id from air_station where t_name like CONCAT('%', #{condition}, '%') and valid=0))
+				</if>
+				
+				<if test="areaId!=null and areaId!='' and areaId.length()==17">
+					and station_id in (select id from air_station where code=#{areaId} and valid='0')
+				</if>
+				
+				<if test="beginTime!=null and beginTime!=''">
+		  			and <![CDATA[ heartbeat_time >= str_to_date(#{beginTime}, '%Y-%m-%d %H:%i:%s') ]]>
+		  		</if>
+		  		<if test="endTime!=null and endTime!=''">
+		  			and <![CDATA[ heartbeat_time <= str_to_date(#{endTime}, '%Y-%m-%d %H:%i:%s')  ]]>
+		  		</if>
+			</where>
+			<choose>
+				<when test="orderByField!=null and orderByField!=''">
+					<choose>
+						<when test="isAsc == true">
+							order by ${orderByField} ASC
+						</when>
+						<otherwise>
+							order by ${orderByField} DESC
+						</otherwise>
+					</choose>
+				</when>
+				<otherwise>
+					order by id asc
+				</otherwise>
+			</choose>
+    
+    </select>
+    
+    
+    <select id="selectDataByParams" resultMap="BaseResultMap">
+    	select * from air_station_data 
+			<where>
+				<if test="code!=null and code!='' and code.length()==17">
+					and station_id in (select id from air_station where code=#{code} and valid='0')
+				</if>
+				
+				<if test="beginTime!=null and beginTime!=''">
+		  			and <![CDATA[ heartbeat_time >= str_to_date(#{beginTime}, '%Y-%m-%d %H:%i:%s') ]]>
+		  		</if>
+		  		<if test="endTime!=null and endTime!=''">
+		  			and <![CDATA[ heartbeat_time <= str_to_date(#{endTime}, '%Y-%m-%d %H:%i:%s')  ]]>
+		  		</if>
+			</where>
+			
+    </select>
+    
+    
+    <select id="selectMapDataByParams" resultType="map">
+    	select <include refid="Base_Column_List"/> from air_station_data 
+			<where>
+				<if test="condition!=null and condition!=''">
+					and ( id = #{condition} or station_id in (select id from air_station where t_name like CONCAT('%', #{condition}, '%') and valid=0))
+				</if>
+				
+				<if test="areaId!=null and areaId!='' and areaId.length()==17">
+					and station_id in (select id from air_station where code=#{areaId} and valid='0')
+				</if>
+				
+				<if test="beginTime!=null and beginTime!=''">
+		  			and <![CDATA[ heartbeat_time >= str_to_date(#{beginTime}, '%Y-%m-%d %H:%i:%s') ]]>
+		  		</if>
+		  		<if test="endTime!=null and endTime!=''">
+		  			and <![CDATA[ heartbeat_time <= str_to_date(#{endTime}, '%Y-%m-%d %H:%i:%s')  ]]>
+		  		</if>
+			</where>
+    </select>
+    
+
+</mapper>

@@ -1,5 +1,4 @@
 var AirCurve = {
-//  /  id: "AirDataTable",	//表格id
     seItem: null,		//选中的条目
     table: null,
     layerIndex: -1,
@@ -9,6 +8,10 @@ var AirCurve = {
     		    return (c ? arguments.callee(m,s,c-1) : '#') +
     		      s[m.floor(m.random() * 16)]
     	})(Math,'0123456789abcdef',5)
+    },
+    symbol : function(){
+    	var symbols=['circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'];
+    	return symbols[parseInt(Math.random()*7)];
     }
 };
 
@@ -30,21 +33,33 @@ echarts.util.each(
 
 var dims = {
         time: 0,
-        pm25: 1,
-        humidity: 2,
-        temperature: 3,
-        windSpeed: 4,
-        noise: 5,
-        windDirection:6,
-        windDirectionMsg:7,
-        pm10:8
+        '大气温度':1,
+        '大气湿度':2,
+        '土壤温度':3,
+        '土壤湿度':4,
+        '照度':5,
+        '雨量':6,
+        '大气压':7,
+        '风速':8,
+        '风向':9,
+        windDirectionMsg:10,
+        '噪声':11,
+        'PM10':12,
+        'PM2.5': 13,
+        'PM1.0':14,
+        'CO':15,
+        'O3':16,
+        'SO2':17,
+        'NO2':18,
+        '辐射':19,
+        '负氧离子':20
     };
   var arrowSize = 18;
 
   function renderArrow(param, api) {
       var point = api.coord([
           api.value(dims.time),
-          api.value(dims.windSpeed)
+          api.value(dims.风速)
       ]);
 
       return {
@@ -56,7 +71,7 @@ var dims = {
               width: arrowSize,
               height: arrowSize
           },
-          rotation: directionMap[api.value(dims.windDirection)],
+          rotation: directionMap[api.value(dims.风向)],
           position: point,
           style: api.style({
               stroke: '#555',
@@ -74,7 +89,6 @@ var dims = {
 AirCurve.formParams = function() {
     var queryData = {};
     queryData['areaId'] = AirCurve.areaId;
-    queryData['condition'] = $("#condition").val();
     queryData['beginTime'] = $("#beginTime").val();
     queryData['endTime'] = $("#endTime").val();
     return queryData;
@@ -84,13 +98,7 @@ AirCurve.formParams = function() {
  * 重置查询条件
  */
 AirCurve.resetSearch = function() {
-	$("#condition").val('');$("#beginTime").val('');$("#endTime").val('');
-	this.areaId=0;
-	var treeObj = $.fn.zTree.getZTreeObj("areaTree");
-	var nodes = treeObj.getNodes();
-	if (nodes.length>0) {
-		treeObj.selectNode(nodes[0]);
-	}
+	$("#beginTime").val('');$("#endTime").val('');
 	AirCurve.search();
 }
 
@@ -98,81 +106,95 @@ AirCurve.resetSearch = function() {
  * 查询区域列表
  */
 AirCurve.search = function () {
-	console.log(this.formParams());
-	//AirCurve.table.refresh({query: AirCurve.formParams()});
-};
-
-
-
-
-AirCurve.OnClickArea = function(e, treeId, treeNode){
-//	var zTree = $.fn.zTree.getZTreeObj("areaTree");
-//	zTree.expandNode(treeNode, null, null, null, true);
+//	console.log(this.formParams());
 	
-	AirCurve.areaId=treeNode.id;
-	if((treeNode.id+'').length==17){
-		//AirCurve.search();
+	var treeObj = $.fn.zTree.getZTreeObj("areaTree");
+	var nodes = treeObj.getSelectedNodes();
+	if(nodes.length>0 && nodes[0].id.length==17){
 		
 		myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
 		 
 		 
-		var nums=[];        //数值数组（存放服务器返回的所有温度值）
 		var dates=[];		//时间数组
 		var types=[]; 		//类型数组
 		var units=[];        //单位数组
 		var legends=[];		//图表类型
 		var colors=[];		//颜色
 		
+		var data={};
 		var series=[];      //系列列表
 		var yAxises=[];		//Y轴
 		
 		$.ajax({    //使用JQuery内置的Ajax方法
 		type : "post",        //post请求方式
 		async : true,        //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-		url : "/air/curve/query",    //请求发送到ShowInfoIndexServlet处
-		data : {code:treeNode.id},        //请求内包含一个key为name，value为A0001的参数；服务器接收到客户端请求时通过request.getParameter方法获取该参数值
+		url : "/airStationData/query",    //请求发送到ShowInfoIndexServlet处
+		data : this.formParams(),        //请求内包含一个key为name，value为A0001的参数；服务器接收到客户端请求时通过request.getParameter方法获取该参数值
 		dataType : "json",        //返回数据形式为json
 		success : function(result) {
 		    //请求成功时执行该函数内容，result即为服务器返回的json对象
 		    if (result  && result.data.length > 0) {
-		   	 //console.log(result);
-		    	var data=result.data;
 		    	var device=result.device;
 		    	
-		    	for(var i=0;i<device.length;i++){
-		    		types.push(device[i].typeName);
-		    		units.push(device[i].unit);
-		    		legends.push(device[i].legend);
+		    	
+		    	for(var i=0;i<result.data.length;i++){
+		    		var stationData=result.data[i];
+		    		dates.push(stationData.heartbeatTime);
+		    		
 		    	}
 		    	
+		    	data = echarts.util.map(result.data, function (entry) {
+                    return [entry.heartbeatTime, entry.airTemperature, entry.airHumidity, entry.soilTemperature, entry.soilHumidity, 
+                            entry.illuminance, entry.rainfall, entry.airPressure, entry.windSpeed, entry.windDirection, entry.windDirectionMsg, entry.noise,
+                            entry.pm10, entry.pm25, entry.pm1, entry.co, entry.o3, entry.so2, entry.no2, entry.radiation, entry.negativeOxygenIon];
+                });
 		    	
-		    	for(var i=0;i<data.length;i++){
-		    		var sensorData=data[i];
-		    		var sensorNum = [];//传感器数值数组
-		    		var sensorDates = []; //传感器时间数组
-		    		if(sensorData.length>0){
-		    			for(var j=0;j<sensorData.length;j++){
-		    				sensorNum.push(sensorData[j].numerical);
-		    				sensorDates.push(sensorData[j].heartbeatTime);
-		    			}
-		    			nums.push(sensorNum);
-		    			dates.push(sensorDates);
-		    		}
+		    	
+		    	for(var i=0;i<device.length;i++){
+		    		var typeName=device[i].typeName;
+		    		types.push(typeName);
+		    		units.push(device[i].unit);
+		    		legends.push(device[i].legend);
 		    		
 		    		colors.push(AirCurve.color());
 		    		
-		    		var serie={name : legends[i], data : sensorNum,type : 'line',symbol:'emptycircle'};
-		    		series.push(serie);
+		    		var serie;
+		    		if(device[i].typeName=='风向'){
+		    			serie={
+                            	name:'风向(。)',
+                                type: 'custom',
+                                renderItem: renderArrow,
+                                encode: {
+                                    x: dims.time,
+                                    y: dims.风速
+                                },
+                                data: data,
+                                z: 10
+                            };
+		    		}else{
+		    			serie={name : legends[i], data : data,type : 'line',symbol:AirCurve.symbol(), 
+	                            encode: {
+	                                x: dims.time,
+	                                y: dims[typeName]
+	                            }
+		    				};
+		    			
+		    			
+		    		}
 		    		
+		    		series.push(serie);
 		    	}
 		    	
-		    	console.log(nums);
-		    	console.log(dates);
-		    	console.log(types);
-		    	console.log(units);
+		    	
+		    	
+		    	
+//		    	console.log(data);
+//		    	console.log(dates);
+//		    	console.log(types);
+//		    	console.log(units);
 		    	console.log(legends);
-		    	console.log(colors);
-		    	console.log(series);
+//		    	console.log(colors);
+//		    	console.log(series);
 		    	
 		           myChart.hideLoading();    //隐藏加载动画
 		           
@@ -188,7 +210,32 @@ AirCurve.OnClickArea = function(e, treeId, treeNode){
 		        	                backgroundColor: '#283b56'
 		        	            }
 		        	        },
-		        	    	show:true
+		        	    	show:true,
+		        	    	formatter: function (params) {
+		        	    		
+		        	    		var formatter=[echarts.format.formatTime('yyyy-MM-dd hh:mm:ss', params[0].value[dims.time])];
+		        	    		
+//		        	    		for(var i=0;i<types.length;i++){
+//		        	    			if(types[i]=='风向'){
+//		        	    				formatter.push(types[i]+' : '+params[0].value[dims.windDirectionMsg]);
+//		        	    			}else{
+//		        	    				formatter.push(types[i]+' : '+params[0].value[dims[types[i]]]);
+//		        	    			}
+//		        	    			
+//		        	    		}
+		        	    		for(var i=0;i<legends.length;i++){
+		        	    			var legend=legends[i];
+		        	    			if(legend=='风向(。)'){
+		        	    				formatter.push('风向  : '+params[0].value[dims.windDirectionMsg]);
+		        	    			}else{
+		        	    				formatter.push(legend+' : '+params[0].value[dims[legend.substring(0,legend.indexOf('('))]]);
+		        	    			}
+		        	    			
+		        	    		}
+		        	    		
+//		        	    		console.log(formatter);
+                                return formatter.join('<br>');
+                            } 
 		        	    },
 		        	    dataZoom: [
 		        	         {
@@ -205,12 +252,11 @@ AirCurve.OnClickArea = function(e, treeId, treeNode){
 		        	    toolbox: {    //工具栏显示             
 		        	        show: true,
 		        	        feature: {                
-		        	           // saveAsImage: {show:true} //显示“另存为图片”工具
-		        	        mark : {show: true},  
-		        	        dataView : {show: true, readOnly: false},  
-		        	        magicType : {show: true, type: ['line', 'bar']},  
-		        	        restore : {show: true},  
-		        	        saveAsImage : {show: true} 
+			        	        mark : {show: true},  
+			        	        dataView : {show: true, readOnly: false},  
+			        	        magicType : {show: true, type: ['line', 'bar']},  
+			        	        restore : {show: true},  
+			        	        saveAsImage : {show: true} 
 		        	        }
 		        	    },
 		        	   
@@ -220,7 +266,7 @@ AirCurve.OnClickArea = function(e, treeId, treeNode){
 		        	    },
 		        	   color : colors,
 		               xAxis: {
-		                   data: dates[0]    //填入X轴数据
+		                   data: dates    //填入X轴数据
 		               },
 		               
 		               yAxis : [    //Y轴（这里我设置了两个Y轴，左右各一个）
@@ -241,26 +287,37 @@ AirCurve.OnClickArea = function(e, treeId, treeNode){
 		    }
 		    else {
 		        //返回的数据为空时显示提示信息
-		        	layer.msg("图表请求数据为空，可能服务器暂未录入观测数据，您可以稍后再试！");
+		        	layer.msg("图表请求数据为空，可能服务器暂未录入观测数据，您可以稍后再试！",{icon:5});
 		          myChart.hideLoading();
+		          myChart.clear();
 		    }
 
 		},
 		error : function(errorMsg) {
 		    //请求失败时执行该函数
-		    layer.msg("图表请求数据失败，可能是服务器开小差了");
+		    layer.msg("图表请求数据失败，可能是服务器开小差了",{icon:5});
 		    myChart.hideLoading();        
+		    myChart.clear();
 		}
 		});
 
 
 		// 使用刚指定的配置项和数据显示图表。
 		myChart.setOption(option); 
-		console.log(myChart.getOption());
+//		console.log(myChart.getOption());
 		
+		
+	}else{
+		layer.msg('请点击选择查询传感器树节点项!',{icon:5});
 	}
-	
+};
 
+
+
+
+AirCurve.OnClickArea = function(e, treeId, treeNode){
+	AirCurve.areaId=treeNode.id;
+	AirCurve.search();
 }
 
 

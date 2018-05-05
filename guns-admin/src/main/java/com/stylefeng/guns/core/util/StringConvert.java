@@ -114,6 +114,8 @@ public class StringConvert extends StringUtils{
         System.out.println(camelhumpToUnderline("ISO9001"));
 		System.out.println(underlineToCamelhump("userType"));
 		System.out.println(StringUtils.indexOf("user_type", "_"));
+		
+		System.out.println(underlineToCamelhump("user_type"));
 	}
 
 }

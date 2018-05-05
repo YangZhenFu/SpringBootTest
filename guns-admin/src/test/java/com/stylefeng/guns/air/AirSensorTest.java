@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
 
 import com.github.abel533.echarts.axis.CategoryAxis;
 import com.github.abel533.echarts.axis.ValueAxis;
@@ -28,7 +27,9 @@ import com.stylefeng.guns.core.common.constant.WindDirection;
 import com.stylefeng.guns.core.util.DateUtil;
 import com.stylefeng.guns.core.util.StringUtil;
 import com.stylefeng.guns.modular.air.dao.AirSensorDataMapper;
+import com.stylefeng.guns.modular.air.dao.AirStationDataMapper;
 import com.stylefeng.guns.modular.air.model.AirSensorData;
+import com.stylefeng.guns.modular.air.model.AirStationData;
 
 
 
@@ -42,6 +43,9 @@ public class AirSensorTest extends BaseJunit{
 
 	@Autowired
 	AirSensorDataMapper sensorDataMapper;
+	
+	@Autowired
+	AirStationDataMapper stationDataMapper;
 	
 	@Test
 	public void test1(){
@@ -84,6 +88,31 @@ public class AirSensorTest extends BaseJunit{
 		assertTrue(count==1000);
 	}
 	
+	@Test
+	public void test2(){
+		int count=0;
+		Long startTime=System.currentTimeMillis();
+		Long[] ids=new Long[]{1L,3L,4L,7L};
+		DecimalFormat format=new DecimalFormat("#.0");
+		WindDirection[] directions = WindDirection.values();
+		for(int i=0;i<1000;i++){
+			AirStationData data=new AirStationData();
+			data.setStationId(ids[(int)(Math.random()*4)]);
+			data.settName("气象站"+data.getStationId()+"-"+DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+			data.setHeartbeatTime(new Date());
+			data.setAirTemperature(format.format((double)(Math.random()*100)+1));
+			data.setAirHumidity(format.format((double)(Math.random()*100)+1));
+			data.setWindSpeed(format.format((double)(Math.random()*100)+1));
+			data.setWindDirection(directions[(int)(Math.random()*16)].getMark());
+			data.setNoise(format.format((double)(Math.random()*100)+1));
+			data.setPm1(format.format((double)(Math.random()*100)+1));
+			data.setPm10(format.format((double)(Math.random()*100)+1));
+			data.setPm25(format.format((double)(Math.random()*100)+1));
+			count+=stationDataMapper.insert(data);
+		}
+		System.out.println("共耗时："+(System.currentTimeMillis()-startTime)+"ms");
+		assertTrue(count==1000);
+	}
 	
 	@Test
 	public void test() {
