@@ -29,11 +29,14 @@
         <result column="update_time" property="updateTime" />
          <result column="location" property="location" />
         <result column="remark" property="remark" />
+        <result column="data_upload_interval" property="dataUploadInterval" />
+        <result column="data_upload_status" property="dataUploadStatus" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, code, t_name AS tName, sort_code AS sortCode, valid, area_id AS areaId, dept_id AS deptId, detail_address AS detailAddress, offx, offy, longitude, latitude, type, conn_method AS connMethod, status, ip_addr AS ipAddr, port, installer, install_time AS installTime, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, location, remark
+        id, code, t_name AS tName, sort_code AS sortCode, valid, area_id AS areaId, dept_id AS deptId, detail_address AS detailAddress, offx, offy, longitude, latitude, type, conn_method AS connMethod, status, ip_addr AS ipAddr, port, installer, install_time AS installTime, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, location, 
+        remark, data_upload_interval AS dataUploadInterval, data_upload_status AS dataUploadStatus
     </sql>
 
 	<select id="selectByParams" resultType="map">

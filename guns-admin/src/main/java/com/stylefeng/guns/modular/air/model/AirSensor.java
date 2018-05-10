@@ -132,6 +132,18 @@ public class AirSensor extends Model<AirSensor> {
     //图表检测类型（用于echarts显示）
     @TableField(exist=false)
     private String legend;
+    
+    //传感器查询指令
+    private String command;
+    
+    
+    public String getCommand() {
+        return command;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
 
     public AirSensorData getSensorData() {
         return sensorData;

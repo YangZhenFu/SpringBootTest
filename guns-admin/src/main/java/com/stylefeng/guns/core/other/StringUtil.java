@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.util;
+package com.stylefeng.guns.core.other;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

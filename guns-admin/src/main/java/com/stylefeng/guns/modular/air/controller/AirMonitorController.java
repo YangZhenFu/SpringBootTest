@@ -20,7 +20,7 @@ import com.google.common.collect.Maps;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.constant.WindDirection;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
-import com.stylefeng.guns.core.util.StringUtil;
+import com.stylefeng.guns.core.other.StringUtil;
 import com.stylefeng.guns.modular.air.dto.AirSensorDataDto;
 import com.stylefeng.guns.modular.air.model.AirSensor;
 import com.stylefeng.guns.modular.air.model.AirSensorData;
@@ -32,7 +32,7 @@ import com.stylefeng.guns.modular.air.service.ISensorTypeService;
 
 /**  
  * <p>Title: AirMonitorController</p>  
- * <p>Description: </p>  
+ * <p>Description: </p> 
  * @author YangZhenfu  
  * @date 2018年4月20日  
  */

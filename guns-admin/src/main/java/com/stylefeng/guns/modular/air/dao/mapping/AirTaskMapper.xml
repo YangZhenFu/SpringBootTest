@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.air.dao.AirTaskMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.air.model.AirTask">
+        <id column="id" property="id" />
+        <result column="job_name" property="jobName" />
+        <result column="cron" property="cron" />
+        <result column="status" property="status" />
+        <result column="clazz_path" property="clazzPath" />
+        <result column="job_desc" property="jobDesc" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, job_name AS jobName, cron, status, clazz_path AS clazzPath, job_desc AS jobDesc, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime
+    </sql>
+
+</mapper>

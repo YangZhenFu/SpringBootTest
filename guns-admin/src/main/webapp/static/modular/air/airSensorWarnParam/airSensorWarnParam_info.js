@@ -98,10 +98,6 @@ var AirSensorWarnParamInfoDlg = {
 	        validators: {
 	            notEmpty: {
 	                message: '预警间隔不能为空'
-	            },
-	            regexp:{
-	            	regexp:/^\d+$/,
-	            	message:'只能输入整数'
 	            }
 	        }
 	    },

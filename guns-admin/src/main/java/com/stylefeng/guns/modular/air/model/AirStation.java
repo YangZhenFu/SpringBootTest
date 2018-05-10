@@ -136,6 +136,35 @@ public class AirStation extends Model<AirStation> {
      * 位置分布
      */
     private String location;
+    
+    /**
+     * 数据上传间隔（单位：分钟）
+     */
+    @TableField("data_upload_interval")
+    private String dataUploadInterval;
+    
+    /**
+     * 数据上传状态（0：启动，1：停止）
+     */
+    @TableField("data_upload_status")
+    private Integer dataUploadStatus;
+    
+    public String getDataUploadInterval() {
+        return dataUploadInterval;
+    }
+
+    public void setDataUploadInterval(String dataUploadInterval) {
+        this.dataUploadInterval = dataUploadInterval;
+    }
+    
+    public Integer getDataUploadStatus() {
+        return dataUploadStatus;
+    }
+
+    public void setDataUploadStatus(Integer dataUploadStatus) {
+        this.dataUploadStatus = dataUploadStatus;
+    }
+    
 
     public Long getId() {
         return id;
@@ -370,6 +399,8 @@ public class AirStation extends Model<AirStation> {
         ", updateBy=" + updateBy +
         ", updateTime=" + updateTime +
         ", remark=" + remark +
+        ", dataUploadInterval=" + dataUploadInterval +
+        ", dataUploadStatus=" + dataUploadStatus +
         "}";
     }
 

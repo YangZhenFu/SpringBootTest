@@ -1,6 +1,6 @@
 package com.stylefeng.guns.core.common.constant;
 
-import org.apache.commons.codec.binary.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**  
  * <p>Title: SensorTypeEnum</p>  

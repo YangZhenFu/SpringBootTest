@@ -25,7 +25,9 @@
 							</#select>
                             
                             <#input id="sensorModel" name="型号" underline="true" value="${item.sensorModel}"/>
-                            <#input id="rtuId" name="寄存器地址" underline="true" value="${item.rtuId}"/>
+                            <#input id="rtuId" name="寄存器地址" underline="true" value="${item.rtuId}" placeholder="16进制格式，例：01"/>
+                            
+                            <#input id="command" name="查询指令" underline="true" value="${item.command}" placeholder="ModbusRtu指令,例：010300000002C40B"/>
                 </div>
 
                 <div class="col-sm-6">

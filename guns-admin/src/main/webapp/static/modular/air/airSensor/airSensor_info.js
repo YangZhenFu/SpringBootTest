@@ -62,8 +62,8 @@ var AirSensorInfoDlg = {
 	                message: '寄存器地址不能为空'
 	            },
 	            regexp:{
-	            	regexp:/^\d+$/,
-	            	message:'只能输入整数'
+	            	regexp: /^[0-9a-fA-F]{2}$/,
+	            	message:'寄存器地址格式不正确'
 	            }
 	            
 	        }
@@ -108,6 +108,18 @@ var AirSensorInfoDlg = {
 	                message: '检测单位不能为空'
 	            }
 	        }
+	    },
+	    command: {
+	        validators: {
+	            notEmpty: {
+	                message: '查询指令不能为空'
+	            },
+	            regexp:{
+	            	regexp: /^[0-9a-fA-F]{16}$/,
+	            	message:'指令格式不正确'
+	            }
+	        }
+	    
 	    }
 	    
 	}
@@ -174,6 +186,7 @@ AirSensorInfoDlg.collectData = function() {
     .set('updateTime')
     .set('icon')
     .set('unit')
+    .set('command')
     .set('remark');
 }
 

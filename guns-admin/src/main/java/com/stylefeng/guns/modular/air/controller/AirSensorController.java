@@ -151,7 +151,7 @@ public class AirSensorController extends BaseController {
     	//List<Map<String, Object>> list = airSensorService.findListByParams(page, condition, page.getOrderByField(), page.isAsc());
     	//page.setRecords((List<AirSensor>) new AirSensorWarpper(list).warp());
     	Wrapper<AirSensor> sensor = Condition.create();
-    	sensor.like("t_name", condition).or().like("sort_code", condition).and().eq("valid", "0").orderBy("create_time desc");
+    	sensor.like("t_name", condition).or().like("sort_code", condition).and().eq("valid", "0");
     	Page<Map<String, Object>> pageList = airSensorService.selectMapsPage(page, sensor);
     	pageList.setRecords((List<Map<String,Object>>) new AirSensorWarpper(pageList.getRecords()).warp());
         return packForBT(pageList);

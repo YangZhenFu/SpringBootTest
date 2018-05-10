@@ -33,15 +33,17 @@
                            	
                             <#input id="longitude" name="经度" underline="true" readonly="true" value="${item.longitude}"/>
                             <#input id="latitude" name="纬度" readonly="true" value="${item.latitude}" underline="true"/>
-                </div>
-
-                <div class="col-sm-6">
-                           <#select id="connMethod" name="通讯方式" underline="true" >
+                            
+                            <#select id="connMethod" name="通讯方式" underline="true" >
                             	@for(method in connMethods){
                             	<option value="${method}" ${decode(item.connMethod,method,'selected','')}>${method}</option>
                             	@}
                             
 							</#select>
+                </div>
+
+                <div class="col-sm-6">
+                           
                             <#input id="ipAddr" name="ip地址" underline="true" value="${item.ipAddr}"/>
                             <#input id="port" name="端口号" underline="true" value="${item.port}"/>
                              <#input id="offx" name="坐标x" underline="true" value="${item.offx}" readonly="true"/>
@@ -53,6 +55,22 @@
                             <#input id="installTimes" name="安装时间" underline="true" type="date" value="${item.installTime}"
 								clickFun="laydate({istime: true, format: 'YYYY-MM-DD'})"/>
                             <#input id="remark" name="备注" underline="true" value="${item.remark}"/>
+                            
+                            
+                            <#select id="dataUploadInterval" name="数据上传间隔（分钟）" underline="true" >
+                            	<option value="10" ${decode(item.dataUploadInterval,'10','selected','')}>10</option>
+                            	<option value="20" ${decode(item.dataUploadInterval,'20','selected','')}>20</option>
+                            	<option value="30" ${decode(item.dataUploadInterval,'30','selected','')}>30</option>
+                            	<option value="40" ${decode(item.dataUploadInterval,'40','selected','')}>40</option>
+                            	<option value="50" ${decode(item.dataUploadInterval,'50','selected','')}>50</option>
+                            	<option value="60" ${decode(item.dataUploadInterval,'60','selected','')}>60</option>
+							</#select>
+							
+							<#select id="dataUploadStatus" name="数据上传状态" underline="true" >
+                            	<option value="0" ${decode(item.dataUploadStatus, 0 ,'selected','')}>启动</option>
+                            	<option value="1" ${decode(item.dataUploadStatus, 1 ,'selected','')}>停止</option>
+							</#select>
+                            
                 </div>
             </div>
 

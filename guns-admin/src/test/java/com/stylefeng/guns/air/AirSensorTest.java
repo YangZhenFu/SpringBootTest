@@ -25,7 +25,7 @@ import com.stylefeng.guns.base.BaseJunit;
 import com.stylefeng.guns.core.common.constant.AirUnit;
 import com.stylefeng.guns.core.common.constant.WindDirection;
 import com.stylefeng.guns.core.util.DateUtil;
-import com.stylefeng.guns.core.util.StringUtil;
+import com.stylefeng.guns.core.other.StringUtil;
 import com.stylefeng.guns.modular.air.dao.AirSensorDataMapper;
 import com.stylefeng.guns.modular.air.dao.AirStationDataMapper;
 import com.stylefeng.guns.modular.air.model.AirSensorData;

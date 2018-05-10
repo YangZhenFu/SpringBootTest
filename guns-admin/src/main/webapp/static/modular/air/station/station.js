@@ -24,6 +24,18 @@ Station.initColumn = function () {
             {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle', sortable: true},
             {title: 'ip地址', field: 'ipAddr', visible: true, align: 'center', valign: 'middle', sortable: true},
             {title: '端口号', field: 'port', visible: true, align: 'center', valign: 'middle', sortable: true},
+            
+            {title: '数据上传间隔（分钟）', field: 'dataUploadInterval', visible: true, align: 'center', valign: 'middle', sortable: true},
+            {title: '数据上传状态', field: 'dataUploadStatus', visible: true, align: 'center', valign: 'middle', sortable: true,
+            	formatter:function(value,row,index){
+            		if(value){
+            			return '<a href="javascript:void(0);" title="点击更改状态" onclick="changeItemStatus(this,'+row.id+');">停止</a>';
+            		}else{
+            			return '<a href="javascript:void(0);" title="点击更改状态" onclick="changeItemStatus(this,'+row.id+');">启动</a>';
+            		}
+            	}
+            },
+            
             {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle', sortable: true,
             	formatter:function(value,row,index){
             		if(value){
@@ -33,6 +45,27 @@ Station.initColumn = function () {
             }
     ];
 };
+
+
+
+/**
+ * 更改状态
+ * @param obj
+ * @param id
+ */
+function changeItemStatus(obj,id){
+	var status=$(obj).html();
+	if(status=='启动'){
+		status='1';
+	}else{
+		status='0';
+	}
+	
+	$.post(Feng.ctxPath + "/air/station/update",{id:id,dataUploadStatus:status},function(data){
+		Station.table.refresh();
+	});
+}
+
 
 /**
  * 检查是否选中
@@ -55,7 +88,7 @@ Station.openAddStation = function () {
     var index = layer.open({
         type: 2,
         title: '添加气象站',
-        area: ['920px', '750px'], //宽高
+        area: ['1000px', '750px'], //宽高
         fix: false, //不固定
         maxmin: true,
         content: Feng.ctxPath + '/air/station/station_add'
@@ -71,7 +104,7 @@ Station.openStationDetail = function () {
         var index = layer.open({
             type: 2,
             title: '修改气象站',
-            area: ['920px', '750px'], //宽高
+            area: ['1000px', '750px'], //宽高
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/air/station/station_update/' + Station.seItem.id

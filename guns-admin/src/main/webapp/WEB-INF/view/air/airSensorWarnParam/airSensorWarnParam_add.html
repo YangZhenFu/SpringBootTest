@@ -33,11 +33,19 @@
 							
                             <#input id="endTime" name="结束时间"  class="form_datetime" underline="true"/>
                             <#select id="controlMode" name="控制方式"  underline="true" >
-                             	 <option value="0">关闭</option>
-                             	 <option value="1">开启</option>
+                             	 <option value="0">开启</option>
+                             	 <option value="1">关闭</option>
 							</#select>
                             
-                            <#input id="warnInterval" name="预警间隔" underline="true" placeholder="分钟"/>
+                            <#select id="warnInterval" name="预警间隔" underline="true" >
+                            	<option value="10">10</option>
+                            	<option value="20">20</option>
+                            	<option value="30">30</option>
+                            	<option value="40">40</option>
+                            	<option value="50">50</option>
+                            	<option value="60">60</option>
+							</#select>
+                            
                             <#input id="alarmTime" name="报警时间" underline="true" placeholder="分钟"/>
                             
                             
@@ -62,6 +70,6 @@
 		 datepicker:false,
 		 step:5
 	}); 
-	 $('#sensorId').val('');$('#expression').val('');$('#controlMode').val('')
+	 $('#sensorId').val('');$('#expression').val('');$('#controlMode').val('');$('#warnInterval').val('');
 </script>
 @}

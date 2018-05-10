@@ -184,70 +184,7 @@ public class AirDataAnalyzeController extends BaseController{
 	    option.series(line);
 		return option;
 		
-		
-//		if(code!=null){
-//			AirSensor sensor = airSensorService.selectOne(new EntityWrapper<AirSensor>().eq("code", code).eq("valid", "0"));
-//			AirStation station = airStationService.selectOne(new EntityWrapper<AirStation>().eq("code", code).eq("valid", "0"));
-//			//传感器类型
-//			if(sensor!=null){
-//				//查询传感器类型名称
-//				sensor.setTypeName(sensorTypeService.selectById(sensor.getTypeId()).gettName());
-//				sensor.setLegend(sensor.getTypeName()+"("+sensor.getUnit()+")");
-//				
-//				List<List<AirSensorData>> datas=Lists.newArrayList();
-//				
-//				//查询历史数据
-//				List<AirSensorData> sensorData = airSensorDataService.selectList(new EntityWrapper<AirSensorData>().eq("sensor_id", sensor.getId()));
-//				if(CollectionUtils.isNotEmpty(sensorData)){
-//					
-//					//如果传感器是风向类型的
-//					if(sensor.getTypeName().contains("风向")){
-//						for(AirSensorData data : sensorData){
-//							data.setRemark(WindDirection.findWindDirectionByMark(data.getNumerical()).getMsg());;
-//						}
-//					}
-//					datas.add(sensorData);
-//					
-//					result.put("data", datas);
-//					result.put("device",Lists.newArrayList(sensor));
-//					
-//				}
-//				
-//			}
-//			//气象站类型
-//			else if(station!=null){
-//				//查询所有的传感器
-//				List<AirSensor> sensors = airSensorService.selectList(new EntityWrapper<AirSensor>().eq("station_id", station.getId()).eq("valid", "0"));
-//				if(CollectionUtils.isNotEmpty(sensors)){
-//					List<List<AirSensorData>> datas=Lists.newArrayList();
-//					for(AirSensor _sensor : sensors){
-//						//查询传感器类型名称
-//						_sensor.setTypeName(sensorTypeService.selectById(_sensor.getTypeId()).gettName());
-//						_sensor.setLegend(_sensor.getTypeName()+"("+_sensor.getUnit()+")");
-//						
-//						//查询历史数据
-//						List<AirSensorData> sensorData = airSensorDataService.selectList(new EntityWrapper<AirSensorData>().eq("sensor_id", _sensor.getId()));
-//						if(CollectionUtils.isNotEmpty(sensorData)){
-//							
-//							//如果传感器是风向类型的
-//							if(_sensor.getTypeName().contains("风向")){
-//								for(AirSensorData data : sensorData){
-//									data.setRemark(WindDirection.findWindDirectionByMark(data.getNumerical()).getMsg());
-//								}
-//							}
-//							datas.add(sensorData);
-//						}
-//						
-//					}
-//					result.put("data", datas);
-//					result.put("device", sensors);
-//					return result;
-//					
-//				}
-//			}
-//			
-//		}
-//		return null;
+	
 	}
 	
 }

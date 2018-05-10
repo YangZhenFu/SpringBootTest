@@ -34,7 +34,7 @@ public class AirSensorWarnParamWarpper extends BaseControllerWarpper{
 		map.put("sensorName", airSensorService.selectById((Long)map.get("sensorId")).gettName());
 		map.put("valid", "0".equals(map.get("valid")) ? "启用" : "禁用");
 		map.put("expression", Constant.SENSOR_WARN_EXPRESSION_TYPE.get(map.get("expression")));
-		map.put("controlMode", "0".equals(map.get("controlMode")) ? "关闭" : "开启");
+		map.put("controlMode", "0".equals(map.get("controlMode")) ? "开启" : "关闭");
 	}
 
 }

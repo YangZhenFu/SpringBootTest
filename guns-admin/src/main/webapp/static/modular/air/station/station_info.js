@@ -155,9 +155,22 @@ var StationInfoDlg = {
 	                message: '位置分布不能为空'
 	            }
 	        }
+	    },
+	    
+	    dataUploadInterval: {
+	    	validators: {
+	            notEmpty: {
+	                message: '数据上传间隔时间不能为空'
+	            }
+	        }
+	    },
+	    dataUploadStatus: {
+	    	validators: {
+	            notEmpty: {
+	                message: '数据上传状态不能为空'
+	            }
+	        }
 	    }
-	    
-	    
 	    
 	    
 	    
@@ -228,6 +241,8 @@ StationInfoDlg.collectData = function() {
     .set('updateBy')
     .set('updateTime')
     .set('location')
+    .set('dataUploadInterval')
+    .set('dataUploadStatus')
     .set('remark');
 }
 

@@ -29,11 +29,19 @@
 							
                             <#input id="endTime" name="结束时间"  class="form_datetime" underline="true" value="${item.endTime}"/>
                             <#select id="controlMode" name="控制方式"  underline="true" >
-                             	 <option value="0" ${item.controlMode=='0' ? 'selected' : ''}>关闭</option>
-                             	 <option value="1" ${item.controlMode=='1' ? 'selected' : ''}>开启</option>
+                             	 <option value="0" ${item.controlMode=='0' ? 'selected' : ''}>开启</option>
+                             	 <option value="1" ${item.controlMode=='1' ? 'selected' : ''}>关闭</option>
 							</#select>
                             
-                            <#input id="warnInterval" name="预警间隔" underline="true" placeholder="分钟" value="${item.warnInterval}"/>
+                            <#select id="warnInterval" name="预警间隔" underline="true" >
+                            	<option value="10" ${decode(item.warnInterval,'10','selected','')}>10</option>
+                            	<option value="20" ${decode(item.warnInterval,'20','selected','')}>20</option>
+                            	<option value="30" ${decode(item.warnInterval,'30','selected','')}>30</option>
+                            	<option value="40" ${decode(item.warnInterval,'40','selected','')}>40</option>
+                            	<option value="50" ${decode(item.warnInterval,'50','selected','')}>50</option>
+                            	<option value="60" ${decode(item.warnInterval,'60','selected','')}>60</option>
+							</#select>
+                            
                             <#input id="alarmTime" name="报警时间" underline="true" placeholder="分钟" value="${item.alarmTime}"/>
                 </div>
             </div>

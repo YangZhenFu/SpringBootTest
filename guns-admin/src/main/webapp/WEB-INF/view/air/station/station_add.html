@@ -33,16 +33,17 @@
                            	
                             <#input id="longitude" name="经度" underline="true" readonly="true"/>
                             <#input id="latitude" name="纬度" readonly="true" underline="true"/>
-                </div>
-
-                <div class="col-sm-6">
-                           
+                            
                             <#select id="connMethod" name="通讯方式" underline="true" >
                             	@for(method in connMethods){
                             	<option value="${method}">${method}</option>
                             	@}
                             
 							</#select>
+                </div>
+
+                <div class="col-sm-6">
+                           
                             <#input id="ipAddr" name="ip地址" underline="true"/>
                             <#input id="port" name="端口号" underline="true"/>
                              <#input id="offx" name="坐标x" underline="true" readonly="true"/>
@@ -54,6 +55,20 @@
                             <#input id="installTimes" name="安装时间" underline="true" type="date"
 								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
                             <#input id="remark" name="备注" underline="true"/>
+                            
+                            <#select id="dataUploadInterval" name="数据上传间隔（分钟）" underline="true" >
+                            	<option value="10">10</option>
+                            	<option value="20">20</option>
+                            	<option value="30">30</option>
+                            	<option value="40">40</option>
+                            	<option value="50">50</option>
+                            	<option value="60">60</option>
+							</#select>
+							
+							<#select id="dataUploadStatus" name="数据上传状态" underline="true" >
+                            	<option value="0">启动</option>
+                            	<option value="1">停止</option>
+							</#select>
                 </div>
             </div>
 
@@ -75,6 +90,6 @@
 </div>
 <script src="${ctxPath}/static/modular/air/station/station_info.js"></script>
 <script type="text/javascript">
-	$('#connMethod').val('');
+	$('#connMethod').val('');$('#dataUploadInterval').val('');$('#dataUploadStatus').val('');
 </script>
 @}
