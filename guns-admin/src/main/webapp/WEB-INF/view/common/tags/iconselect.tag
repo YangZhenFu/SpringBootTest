@@ -3,15 +3,18 @@
 @var value = value!'';
 @var title = title!'图标';
 @var underline = underline!'';
+@var search = search!'true';
 <div class="form-group">
     <label class="col-sm-3 control-label">${title!}</label>
     <div class="col-sm-9">
         <div class="width-100 clearfix ${class!}">
 			<input type="hidden" value="${value}" name="${name}" id="${name}-input"/>
 			<i class="ace-icon ${value} bigger-200 pink" style="vertical-align: middle;padding-right: 10px;"></i>
-			<span class="btn btn-sm btn-primary" id="${name}-icon-btn">
-				<i class="ace-icon fa fa-search bigger-110"></i>查找
-			</span>
+			@if(search=='true'){
+				<span class="btn btn-sm btn-primary" id="${name}-icon-btn">
+					<i class="ace-icon fa fa-search bigger-110"></i>查找
+				</span>
+			@}
 		</div>
     </div>
 </div>

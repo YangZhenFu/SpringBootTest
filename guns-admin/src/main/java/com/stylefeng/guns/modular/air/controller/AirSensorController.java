@@ -205,4 +205,23 @@ public class AirSensorController extends BaseController {
     public Object detail(@PathVariable("airSensorId") Integer airSensorId) {
         return airSensorService.selectById(airSensorId);
     }
+    
+    
+    
+    /**
+     * <p>Title: layerDetail</p>  
+     * <p>Description: 弹出传感器详情页面</p>  
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="/layerdetail/{id}")
+    public String layerDetail(@PathVariable("id") Integer id,Model model){
+    	if(id!=null){
+    		AirSensor sensor = airSensorService.selectById(id);
+    		model.addAttribute("item", sensor);
+    	}
+    	return PREFIX + "airSensor_detail.html";
+    }
+    
+    
 }

@@ -1,0 +1,60 @@
+@layout("/common/_container.html"){
+@var sensors = airSensor.findAllAirSensor();
+@var exceptions = airSensor.findSensorExceptionType();
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            
+                            <#input id="code" name="编号" underline="true" value="${item.code}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="tName" name="名称" underline="true" value="${item.tName}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="sortCode" name="排序" underline="true" value="${item.sortCode}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            
+                            @for(sensor in sensors){
+                          	  		@if(item.sensorId==sensor.key){
+                          	  			<#input id="sensorId" name="所属传感器" underline="true" value="${sensor.value.tName}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	  		@}
+                            @}
+                            
+                       	  @for(exception in exceptions){
+                       	  	@if(item.alarmType==exception.key){
+                    	  			<#input id="alarmType" name="告警类型" underline="true" value="${exception.value}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                    	  		@}
+                       	  
+                       	  @}
+                       	  
+                       	   <#textarea id="alarmInfo" name="告警信息" underline="true" autosize="true"  value="${item.alarmInfo}" readonly="readonly" style="resize:none;background-color: #ffffff !important;"/>
+                            <#input id="alarmTimes" name="告警时间" underline="true"   value="${strutil.formatDate(item.alarmTime,'yyyy-MM-dd HH:mm:ss')}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            
+                </div>
+
+                <div class="col-sm-6">
+                          
+                         	  <#textarea id="alarmInfo" name="告警信息" underline="true" autosize="true"  value="${item.alarmInfo}" readonly="readonly" style="resize:none;background-color: #ffffff !important;"/>
+                           
+                            <#input id="alarmTimes" name="告警时间" underline="true"   value="${strutil.formatDate(item.alarmTime,'yyyy-MM-dd HH:mm:ss')}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            
+                             <#input id="handleState" name="处理状态" underline="true" value="${decode(item.handleState,'0','未恢复','1','已恢复','')}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                             
+                             @if(item.handleState=='1'){
+                             		<#input id="handleName" name="处理人" underline="true" value="${item.handleName}" readonly="readonly" style="background-color: #ffffff !important;"/>
+	                             	<#textarea id="handleContent" name="处理内容" underline="true" autosize="true"  value="${item.handleContent}" readonly="readonly" style="resize:none;background-color: #ffffff !important;"/>
+	                              <#input id="handleTime" name="处理时间" underline="true"   value="${strutil.formatDate(item.handleTime,'yyyy-MM-dd HH:mm:ss')}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                             @}
+                             
+                            
+                            
+                            
+                            <#textarea id="remark" name="备注" underline="true" autosize="true"   value="${item.remark}" readonly="readonly" style="resize:none;background-color: #ffffff !important;"/>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+@}

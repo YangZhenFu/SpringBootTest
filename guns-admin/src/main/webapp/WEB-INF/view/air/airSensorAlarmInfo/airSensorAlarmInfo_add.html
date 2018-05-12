@@ -1,0 +1,53 @@
+@layout("/common/_container.html"){
+@var sensors = airSensor.findAllAirSensor();
+@var exceptions = airSensor.findSensorExceptionType();
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="alarmInfoForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                           
+                            <#input id="tName" name="告警名称" underline="true"/>
+                            <#input id="sortCode" name="序号" underline="true"/>
+                             <#select id="sensorId" name="所属传感器"  underline="true" >
+                             	  @for(sensor in sensors){
+                             	       <option value="${sensor.key}">${sensor.value.tName}</option>
+                             	  @}
+							</#select>
+                            <#select id="alarmType" name="告警类型"  underline="true" >
+                             	  @for(exception in exceptions){
+                             	       <option value="${exception.key}">${exception.value}</option>
+                             	  @}
+							</#select>
+                            
+                </div>
+
+                <div class="col-sm-6">
+                           
+                            <#textarea id="alarmInfo" name="告警信息" underline="true" autosize="true" style="resize:none;"/>
+                           
+                            <#input id="alarmTimes" name="告警时间" underline="true" type="datetime"
+								clickFun="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
+                            
+                            <#textarea id="remark" name="备注" underline="true" autosize="true" style="resize:none;"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AirSensorAlarmInfoInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AirSensorAlarmInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/air/airSensorAlarmInfo/airSensorAlarmInfo_info.js"></script>
+<script type="text/javascript">
+	$('#sensorId').val('');$('#alarmType').val('');
+</script>
+@}

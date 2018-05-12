@@ -1,0 +1,54 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="alarmInfoForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-12 ">
+							<div class="form-group has-feedback">
+							    <label class="col-sm-3 control-label">处理结果</label>
+                                    <div class="radio-inline i-checks" style="margin-left: 25px;">
+                                        <label>
+                                            <input type="radio" ${decode(item.handleState,'1','checked','')} value="1"  name="handleState"> <i></i> 已恢复</label>
+                                    </div>
+                                    <div class="radio-inline i-checks" style="margin-left: 30px;">
+                                        <label>
+                                            <input type="radio"  ${decode(item.handleState,'0','checked','')} value="0" name="handleState" > <i></i> 未恢复</label>
+                                    </div>
+								
+							</div>
+							<div class="hr-line-dashed"></div>
+							
+							<#textarea id="handleContent" name="处理内容" underline="true" autosize="true" style="resize:none;height:94px;" value="${item.handleContent}"/>
+                </div>
+
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-12">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AirSensorAlarmInfoInfoDlg.handleSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AirSensorAlarmInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/air/airSensorAlarmInfo/airSensorAlarmInfo_info.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function () {
+	    $('.i-checks').iCheck({
+	        checkboxClass: 'icheckbox_square-green',
+	        radioClass: 'iradio_square-green',
+	    });
+	    
+	    
+	});
+
+</script>
+
+
+@}

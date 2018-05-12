@@ -80,4 +80,13 @@ public class AirSensorFunction {
 		return units;
 	}
 	
+	/**
+	 * <p>Title: findSensorExceptionType</p>  
+	 * <p>Description: 获取传感器异常告警类型</p>  
+	 * @return
+	 */
+	public Map<String,String> findSensorExceptionType(){
+		return Constant.sensor_exception_type;
+	}
+	
 }

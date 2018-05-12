@@ -1,0 +1,58 @@
+@layout("/common/_container.html"){
+@var airStations = airStation.findAllAirStation();
+@var sensorTypes = airSensor.findAllAirSensorType();
+@var units = airSensor.findAllAirUnit();
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="code" name="编号" underline="true" value="${item.code}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="tName" name="名称" underline="true" value="${item.tName}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="sortCode" name="排序" underline="true" value="${item.sortCode}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	  @for(station in airStations){
+                          	  		@if(item.stationId==station.key){
+                          	  			<#input id="stationId" name="所属气象站" underline="true" value="${station.value.tName}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	  		@}
+                          	  @}
+                            
+                              @for(sensorType in sensorTypes){
+                          	       @if(item.typeId==sensorType.key){
+                          	       	<#input id="type" name="类型" underline="true" value="${sensorType.value.tName}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	       @}
+                          	  @}
+                            <#input id="sensorModel" name="型号" underline="true" value="${item.sensorModel}" readonly="true" style="background-color: #ffffff !important;"/>
+                            <#input id="rtuId" name="寄存器地址" underline="true" value="${item.rtuId}" placeholder="16进制格式，例：01" readonly="true" style="background-color: #ffffff !important;"/>
+                            
+                            <#input id="command" name="查询指令" underline="true" value="${item.command}" placeholder="ModbusRtu指令,例：010300000002C40B" readonly="true" style="background-color: #ffffff !important;"/>
+                            
+                            
+                </div>
+
+                <div class="col-sm-6">
+                          
+                         	  @for(unit in units){
+                         	  	@if(item.unit==unit){
+                      	  			<#input id="unit" name="检测单位" underline="true" value="${unit}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                      	  		@}
+                         	  @}
+							
+                            <#input id="voltage" name="电压（V）" underline="true" value="${item.voltage}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="electricity" name="电流（mA）" underline="true" value="${item.electricity}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="installer" name="安装者" underline="true" value="${item.installer}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                             <#input id="installTimes" name="安装时间" underline="true" type="date"  value="${item.installTime}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#iconselect  name="icon"  title="图标" underline="true" search="false"  value="${item.icon}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            @var createTime = strutil.formatDate(item.createTime,'yyyy-MM-dd HH:mm:ss');
+                            <#input id="createTime" name="创建时间" underline="true" value="${createTime!}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="remark" name="备注" underline="true" value="${item.remark}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+@}

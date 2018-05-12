@@ -101,6 +101,21 @@ AirSensor.delete = function () {
     }
 };
 
+AirSensor.layerDetail = function(){
+	if(this.check()){
+		var index = layer.open({
+	        type: 2,
+	        title: '传感器详情',
+	        area: ['950px', '520px'], //宽高
+	        fix: false, //不固定
+	        maxmin: true,
+	        content: Feng.ctxPath + '/airSensor/layerdetail/' + AirSensor.seItem.id
+	    });
+	    this.layerIndex = index;
+	}
+}
+
+
 /**
  * 查询传感器管理列表
  */

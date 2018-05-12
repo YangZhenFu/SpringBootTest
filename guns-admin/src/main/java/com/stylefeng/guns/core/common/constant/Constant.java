@@ -127,4 +127,8 @@ public class Constant {
 	
 	
 	
+	//传感器异常告警类型
+	public static final Map<String,String> sensor_exception_type=ImmutableMap.<String, String>builder().put("0","设备离线").put("1","数值异常").put("2","设备故障")
+																									   .put("3","电缆断开").put("4","接地故障").put("5","未知错误").build();
+	
 }

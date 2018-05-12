@@ -21,15 +21,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.stylefeng.guns.core.common.constant.Constant;
 import com.stylefeng.guns.core.common.constant.SensorTypeEnum;
 import com.stylefeng.guns.core.other.DateUtil;
+import com.stylefeng.guns.core.other.StringUtil;
 import com.stylefeng.guns.core.util.Contrast;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.modular.air.model.AirSensor;
+import com.stylefeng.guns.modular.air.model.AirSensorAlarmInfo;
 import com.stylefeng.guns.modular.air.model.AirSensorWarnParam;
 import com.stylefeng.guns.modular.air.model.AirStation;
 import com.stylefeng.guns.modular.air.model.AirStationData;
 import com.stylefeng.guns.modular.air.model.SensorType;
+import com.stylefeng.guns.modular.air.service.IAirSensorAlarmInfoService;
 import com.stylefeng.guns.modular.air.service.IAirSensorService;
 import com.stylefeng.guns.modular.air.service.IAirSensorWarnParamService;
 import com.stylefeng.guns.modular.air.service.IAirStationService;
@@ -59,6 +63,8 @@ public class AirSensorWarnJob implements Job{
 	private IAirSensorWarnParamService sensorWarnParamService;
 	@Autowired
 	private ISensorTypeService sensorTypeService;
+	@Autowired
+	private IAirSensorAlarmInfoService sensorAlarmInfoService;
 	
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -119,6 +125,21 @@ public class AirSensorWarnJob implements Job{
 												if(compareNumToThreshold(param,num)){
 													//TODO 当前数值超出阈值范围内   新增报警信息
 													
+													//查询报警信息是否存在
+													List<AirSensorAlarmInfo> alarms = sensorAlarmInfoService.selectList(new EntityWrapper<AirSensorAlarmInfo>().eq("sensor_id", sensor.getId()).eq("valid", "0").eq("alarm_type", "1").eq("handle_state", "0"));
+													if(CollectionUtils.isEmpty(alarms)){
+														//新增传感器报警信息
+														AirSensorAlarmInfo alarm=new AirSensorAlarmInfo();
+														alarm.settName(sensor.gettName()+"-"+Constant.sensor_exception_type.get("1"));
+														alarm.setSensorId(sensor.getId());
+														alarm.setAlarmType("1");//设备离线
+														alarm.setAlarmInfo(String.format("站点[%s]，传感器[%s]值%s设定预警值[%s]，当前值[%s]，请检查", station.gettName(),sensor.gettName(),Constant.SENSOR_WARN_EXPRESSION_TYPE.get(param.getExpression()),param.getThreshold(),num));
+														alarm.setAlarmTime(new Date());
+														alarm.setCode(StringUtil.generatorShort());
+														alarm.setCreateTime(new Date());
+														sensorAlarmInfoService.insert(alarm);
+														
+													}
 													
 													break;
 												}
@@ -126,7 +147,24 @@ public class AirSensorWarnJob implements Job{
 										}
 										
 									}else{
-										//TODO 传感器离线，新增报警信息
+										
+										//TODO 传感器离线   新增传感器报警信息
+										//查询报警信息是否存在
+										List<AirSensorAlarmInfo> alarms = sensorAlarmInfoService.selectList(new EntityWrapper<AirSensorAlarmInfo>().eq("sensor_id", sensor.getId()).eq("valid", "0").eq("alarm_type", "0").eq("handle_state", "0"));
+										if(CollectionUtils.isEmpty(alarms)){
+											//新增传感器报警信息
+											AirSensorAlarmInfo alarm=new AirSensorAlarmInfo();
+											alarm.settName(sensor.gettName()+"-"+Constant.sensor_exception_type.get("0"));
+											alarm.setSensorId(sensor.getId());
+											alarm.setAlarmType("0");//设备离线
+											alarm.setAlarmInfo(String.format("站点[%s]，传感器[%s]设备离线，请检查", station.gettName(),sensor.gettName()));
+											alarm.setAlarmTime(new Date());
+											alarm.setCode(StringUtil.generatorShort());
+											alarm.setCreateTime(new Date());
+											sensorAlarmInfoService.insert(alarm);
+											
+										}
+										
 										continue;
 									}
 									
