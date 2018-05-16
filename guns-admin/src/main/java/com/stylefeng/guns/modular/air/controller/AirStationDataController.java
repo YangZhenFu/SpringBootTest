@@ -151,8 +151,42 @@ public class AirStationDataController extends BaseController {
 		return null;
 	}
     
+	/**
+	 * <p>Title: analyzeFiveDaysAQI</p>  
+	 * <p>Description: 查询气象站近五天AQI数值</p>  
+	 * @return
+	 */
+	@RequestMapping(value="showFiveDaysAQI",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> analyzeFiveDaysAQI(){
+		Map<String,Object> result=Maps.newHashMap();
+		List<AirStation> stations = airStationService.selectList(new EntityWrapper<AirStation>().eq("valid", "0"));
+		if(CollectionUtils.isNotEmpty(stations)){
+			for(AirStation station : stations){
+				//查询气象站近五天数据
+				List<AirStationData> data=airStationDataService.selectFiveDaysData(station.getId());
+				//计算AQI平均数值
+				String aqi=calAvgAQIData(data);
+			}
+		}
+		
+		return result;
+	}
+	
     
     
+	/**  
+	 * <p>Title: calAvgAQIData</p>  
+	 * <p>Description: 计算aqi平均数值</p>  
+	 * @param data
+	 * @return  
+	 */ 
+	private String calAvgAQIData(List<AirStationData> data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	/**
 	 * 导出用户
 	 * @param params

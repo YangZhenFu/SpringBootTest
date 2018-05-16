@@ -29,6 +29,9 @@
                             @if(shiro.hasPermission("/airSensor/delete")){
                                 <#button name="查看详情" icon="fa-search-plus" clickFun="AirSensor.layerDetail()" space="true"/>
                             @}
+                            @if(shiro.hasPermission("/airSensor/delete")){
+                                <#button name="检查在线" icon="fa-check-circle" clickFun="AirSensor.checkOnline()" space="true"/>
+                            @}
                         </div>
                         <#table id="AirSensorTable"/>
                     </div>

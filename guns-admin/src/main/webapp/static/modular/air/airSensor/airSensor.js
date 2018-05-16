@@ -13,7 +13,7 @@ var AirSensor = {
  */
 AirSensor.initColumn = function () {
     return [
-        {field: 'selectItem', radio: true},
+        {field: 'selectItem', checkbox:true},
             {title: '唯一标识', field: 'id', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '编号', field: 'code', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '传感器名称', field: 'tName', visible: true, align: 'center', valign: 'middle',sortable: true},
@@ -47,9 +47,12 @@ AirSensor.check = function () {
     if(selected.length == 0){
         Feng.info("请先选中表格中的某一记录！");
         return false;
+    }else if(selected.length>1){
+    	Feng.info('只能选择一条记录!');
+    	return false;
     }else{
-        AirSensor.seItem = selected[0];
-        return true;
+    	 AirSensor.seItem = selected[0];
+         return true;
     }
 };
 
@@ -113,6 +116,42 @@ AirSensor.layerDetail = function(){
 	    });
 	    this.layerIndex = index;
 	}
+}
+
+AirSensor.checkOnline = function(){
+	var selected = $('#' + this.id).bootstrapTable('getSelections');
+    if(selected.length == 0){
+        Feng.info("请至少选择一条记录！");
+        return false;
+    }else{
+    	 var ids=[];
+        for(var i=0;i<selected.length;i++){
+        	console.log(selected[i].id);
+        	ids.push(selected[i].id);
+        }
+//        console.log(ids);
+        
+        var url=Feng.ctxPath+'/airSensor/checkOnline';
+        layer.msg('指令发送成功,请稍后.', {
+        	  icon: 16,
+        	  time: 1000000, //2秒关闭（如果不配置，默认是3秒）
+        	  shade: [0.1,'#fff'] //0.1透明度的白色背景
+        });
+        $.post(url,{ids : ids.join(';')},function(result){
+        	
+        	if(result.code=='000000'){
+    			 var index=layer.alert('选中的设备都在线!',{icon:1},function(){
+    				 	layer.close(index);
+        				AirSensor.table.refresh();
+        			});
+    		 }else{
+    			var index=layer.alert(result.msg,{icon:5},function(){
+    				layer.close(index);
+    				AirSensor.table.refresh();
+    			});
+    		 }
+        });
+    }
 }
 
 

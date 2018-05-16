@@ -46,4 +46,12 @@ public interface IAirSensorService extends IService<AirSensor> {
 	public List<Map<String, Object>> findListByParams(Page<AirSensor> page, String condition, String orderByField,
 			boolean isAsc);
 
+	/**  
+	 * <p>Title: checkOnline</p>  
+	 * <p>Description: </p>  
+	 * @param ids
+	 * @return  
+	 */ 
+	public Map<String, Object> checkOnline(String ids);
+
 }

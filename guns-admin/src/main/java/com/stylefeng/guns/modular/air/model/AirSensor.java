@@ -1,14 +1,14 @@
 package com.stylefeng.guns.modular.air.model;
 
 import java.io.Serializable;
-
-import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
+import java.util.List;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 /**
  * <p>
@@ -121,9 +121,9 @@ public class AirSensor extends Model<AirSensor> {
      */
     private String unit;
     
-    //传感器数据
+    //检测数值
     @TableField(exist=false)
-    private AirSensorData sensorData;
+    private String numerical;
     
     //传感器类型名称
     @TableField(exist=false)
@@ -136,6 +136,40 @@ public class AirSensor extends Model<AirSensor> {
     //传感器查询指令
     private String command;
     
+    @TableField(exist=false)
+    private List<AirSensorWarnParam> warnParams;
+    
+    //传感器图片
+    @TableField(exist=false)
+    private String img;
+    
+    
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+    
+    
+    
+    public List<AirSensorWarnParam> getWarnParams() {
+        return warnParams;
+    }
+
+    public void setWarnParams(List<AirSensorWarnParam> warnParams) {
+        this.warnParams = warnParams;
+    }
+    
+    
+    public String getNumerical() {
+        return numerical;
+    }
+
+    public void setNumerical(String numerical) {
+        this.numerical = numerical;
+    }
     
     public String getCommand() {
         return command;
@@ -145,13 +179,6 @@ public class AirSensor extends Model<AirSensor> {
         this.command = command;
     }
 
-    public AirSensorData getSensorData() {
-        return sensorData;
-    }
-
-    public void setSensorData(AirSensorData sensorData) {
-        this.sensorData = sensorData;
-    }
     
 
     public Long getId() {

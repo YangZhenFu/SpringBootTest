@@ -1,7 +1,5 @@
 package com.stylefeng.guns.modular.air.dao;
 
-import com.stylefeng.guns.modular.air.model.AirStationData;
-
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.modular.air.model.AirStationData;
 
 /**
  * <p>
@@ -56,5 +55,21 @@ public interface AirStationDataMapper extends BaseMapper<AirStationData> {
 	 */ 
 	public List<Map<String, Object>> selectMapDataByParams(@Param("condition") String condition, @Param("areaId") String areaId,
 			@Param("beginTime") String beginTime, @Param("endTime") String endTime);
+
+	/**  
+	 * <p>Title: findOneDayData</p>  
+	 * <p>Description: </p>  
+	 * @param id
+	 * @return  
+	 */ 
+	public List<AirStationData> findOneDayData(@Param("id") Long id);
+	
+	/**
+	 * <p>Title: findFiveDaysData</p>  
+	 * <p>Description: </p>  
+	 * @param id
+	 * @return
+	 */
+	public List<AirStationData> findFiveDaysData(@Param("id") Long id);
 
 }

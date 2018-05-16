@@ -29,7 +29,6 @@ public class AirStationWarpper extends BaseControllerWarpper{
 		map.put("type",Constant.AIR_STATION_TYPE.get(map.get("type")));
 		map.put("deptName", ConstantFactory.me().getDeptName(((Long)map.get("deptId")).intValue()));
 		map.put("areaName", areaFunction.getAreaStrByAreaId(StringConvert.toLong(map.get("areaId"))));
-		map.put("status", Constant.DEVICE_STATUS.get(map.get("status")));
 	}
 
 }

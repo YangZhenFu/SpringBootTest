@@ -69,7 +69,7 @@ Monitor.OnClickArea = function(e, treeId, treeNode){
 											    '<a href="javascript:void(0);">'+
 													'<div class="col-sm-4">'+
 														'<div class="text-center">'+
-															'<img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">'+
+															'<img alt="image" class="img-circle m-t-xs img-responsive" style="height: 65.66px;" src="/static/img/sensor/'+sensor.icon+'.png">'+
 														'</div>'+
 													'</div>'+
 													'<div class="col-sm-8">'+

@@ -39,4 +39,15 @@ public class AirStationDataServiceImpl extends ServiceImpl<AirStationDataMapper,
 		return baseMapper.selectMapDataByParams(condition,areaId,beginTime,endTime);
 	}
 
+	
+	@Override
+	public List<AirStationData> findOneDayData(Long id) {
+		return baseMapper.findOneDayData(id);
+	}
+
+	@Override
+	public List<AirStationData> selectFiveDaysData(Long id) {
+		return baseMapper.findFiveDaysData(id);
+	}
+
 }

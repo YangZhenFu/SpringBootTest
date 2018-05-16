@@ -224,4 +224,11 @@ public class AirSensorController extends BaseController {
     }
     
     
+    @RequestMapping(value="checkOnline",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> checkOnline(String ids){
+    	return airSensorService.checkOnline(ids);
+    }
+    
+    
 }

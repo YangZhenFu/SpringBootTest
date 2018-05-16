@@ -112,7 +112,29 @@ public class AirDataUploadJob implements Job{
 									}
 									
 									
+									//更新传感器状态
+									sensor.setStatus("2");//通讯故障
+									sensor.setUpdateTime(new Date());
+									airSensorService.updateById(sensor);
+									
 									continue;
+								}else{
+									//更新传感器状态
+									sensor.setStatus("0");//正常
+									sensor.setUpdateTime(new Date());
+									airSensorService.updateById(sensor);
+									
+									//更改传感器报警信息状态
+									//查询报警信息是否存在
+									List<AirSensorAlarmInfo> alarms = sensorAlarmInfoService.selectList(new EntityWrapper<AirSensorAlarmInfo>().eq("sensor_id", sensor.getId()).eq("valid", "0").eq("alarm_type", "0").eq("handle_state", "0"));
+									if(CollectionUtils.isNotEmpty(alarms)){
+										for(AirSensorAlarmInfo info : alarms){
+											info.setHandleState("1");//已恢复
+											info.setHandleContent("自动恢复");
+											info.setHandleTime(new Date());
+											sensorAlarmInfoService.updateById(info);
+										}
+									}
 								}
 							}
 							

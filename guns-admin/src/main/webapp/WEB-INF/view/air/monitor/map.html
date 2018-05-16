@@ -99,6 +99,69 @@ for (var i = 0, marker; i < lnglats.length; i++) {
 		    });
 			 
 			 
+		   /*  var contextMenu = new AMap.ContextMenu();  //创建右键菜单
+		    //读取
+		    contextMenu.addItem("读取", function() {
+		    	var lng=marker.getPosition().getLng();
+			  	var lat=marker.getPosition().getLat();
+			  	$.post('${ctxPath}/air/map/select',{lng:lng,lat:lat},function(result){
+			  		
+			  			var station = result.station;
+			  			if(station){
+			  				var ids=station.id+';';
+							
+							if(ids){
+								var url=Feng.ctxPath+'/airSensor/checkOnline';
+						        layer.msg('指令发送成功,请稍后.', {
+						        	  icon: 16,
+						        	  time: 1000000, //2秒关闭（如果不配置，默认是3秒）
+						        	  shade: [0.1,'#fff'] //0.1透明度的白色背景
+						        });
+						        $.post(url,{ids : ids},function(result){
+						        	
+						        	if(result.code=='000000'){
+						    			 var index=layer.alert('选中的设备都在线!',{icon:1},function(){
+						    				 	location.reload();
+						        			});
+						    		 }else{
+						    			var index=layer.alert(result.msg,{icon:5},function(){
+						    				location.reload();
+						    			});
+						    		 }
+						        });
+							}
+			  			}
+			  		
+			  	});
+		    }, 2);
+		    //删除
+		    contextMenu.addItem("删除", function() {
+		        layer.confirm('您确定要删除此气象站吗？',function(){
+		        	var lng=marker.getPosition().getLng();
+				  	var lat=marker.getPosition().getLat();
+				  	$.post('${ctxPath}/air/map/select',{lng:lng,lat:lat},function(result){
+				  			var station = result.station;
+				  			if(station){
+				  				 var ajax = new $ax(Feng.ctxPath + "/air/station/delete", function (data) {
+				  		            Feng.success("删除成功!");
+				  		            location.reload();
+				  		        }, function (data) {
+				  		            Feng.error("删除失败!" + data.responseJSON.message + "!");
+				  		        });
+				  		        ajax.set("stationId",station.id);
+				  		        ajax.start();	 
+				  			}
+				  	});
+		        });
+		    }, 3);
+			 
+		  //绑定鼠标右击事件——弹出右键菜单
+		    marker.on('rightclick', function(e) {
+		        contextMenu.open(map, e.lnglat);
+		    }); */
+			 
+			 
+			 
 		  //鼠标点击marker弹出自定义的信息窗体
 		    AMap.event.addListener(marker, 'click', function(e) {
 		  	   //console.log(marker);
@@ -119,7 +182,7 @@ for (var i = 0, marker; i < lnglats.length; i++) {
 		    		   $('#refresh_time').html(new Date(result.refreshTime).format('yyyy-MM-dd hh:mm:ss') );
 		    		   for(var i=0;i<sensors.length;i++){
 		    			   var sensor=sensors[i];
-		    			   var li='<li><a href="javascript:void(0);"> <i class="fa fa-circle text-navy"></i> '+sensor.tName+':&nbsp;&nbsp;&nbsp;&nbsp; '+(sensor.sensorData.numerical||'')+(sensor.sensorData.unit||'')+'</a></li>';
+		    			   var li='<li><a href="javascript:void(0);"> <i class="fa fa-circle text-navy"></i> '+sensor.tName+':&nbsp;&nbsp;&nbsp;&nbsp; '+(sensor.numerical||'')+(sensor.unit||'')+'</a></li>';
 		    			   $('#sensors').append(li);
 		    		   }
 		    		   

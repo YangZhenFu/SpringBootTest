@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.stylefeng.guns.core.common.constant.SensorTypeEnum;
+import com.stylefeng.guns.core.common.constant.WindDirection;
 import com.stylefeng.guns.modular.air.model.AirSensor;
-import com.stylefeng.guns.modular.air.model.AirSensorData;
 import com.stylefeng.guns.modular.air.model.AirStation;
-import com.stylefeng.guns.modular.air.service.IAirSensorDataService;
+import com.stylefeng.guns.modular.air.model.AirStationData;
+import com.stylefeng.guns.modular.air.model.SensorType;
 import com.stylefeng.guns.modular.air.service.IAirSensorService;
+import com.stylefeng.guns.modular.air.service.IAirStationDataService;
 import com.stylefeng.guns.modular.air.service.IAirStationService;
+import com.stylefeng.guns.modular.air.service.ISensorTypeService;
 
 /**  
  * <p>Title: AirMapMonitorController</p>  
@@ -39,7 +43,9 @@ public class AirMapMonitorController {
 	@Autowired
 	private IAirSensorService airSensorService;
 	@Autowired
-	private IAirSensorDataService airSensorDataService;
+	private IAirStationDataService airStationDataService;
+	@Autowired
+	private ISensorTypeService sensorTypeService;
 	
 	@RequestMapping
 	public String main(Model model){
@@ -80,6 +86,37 @@ public class AirMapMonitorController {
 	 * @param lat
 	 * @return
 	 */
+//	@RequestMapping(value="queryData",method=RequestMethod.POST)
+//	@ResponseBody
+//	public Map<String,Object> queryAirSensorData(String lng,String lat){
+//		Map<String,Object> result=Maps.newHashMap();
+//		AirStation station = airStationService.selectOne(new EntityWrapper<AirStation>().eq("longitude", lng).eq("latitude", lat).eq("valid", "0"));
+//		if(station!=null){
+//			List<AirSensor> sensors = airSensorService.selectList(new EntityWrapper<AirSensor>().eq("station_id", station.getId()).eq("valid", "0"));
+//			if(CollectionUtils.isNotEmpty(sensors)){
+//				for(AirSensor sensor : sensors){
+//					List<AirSensorData> datas = airSensorDataService.selectList(new EntityWrapper<AirSensorData>().eq("sensor_id", sensor.getId()).eq("valid", "0").orderBy("heartbeat_time desc"));
+//					if(CollectionUtils.isNotEmpty(datas)){
+//						sensor.setSensorData(datas.get(0));
+//					}
+//				}
+//				result.put("sensors", sensors);
+//				result.put("refreshTime", new Date());
+//			}
+//			
+//		}
+//		result.put("station", station);
+//		return result;
+//	}
+	
+	
+	/**
+	 * <p>Title: queryAirSensorData</p>  
+	 * <p>Description: 查询传感器数据</p>  
+	 * @param lng
+	 * @param lat
+	 * @return
+	 */
 	@RequestMapping(value="queryData",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> queryAirSensorData(String lng,String lat){
@@ -88,20 +125,36 @@ public class AirMapMonitorController {
 		if(station!=null){
 			List<AirSensor> sensors = airSensorService.selectList(new EntityWrapper<AirSensor>().eq("station_id", station.getId()).eq("valid", "0"));
 			if(CollectionUtils.isNotEmpty(sensors)){
-				for(AirSensor sensor : sensors){
-					List<AirSensorData> datas = airSensorDataService.selectList(new EntityWrapper<AirSensorData>().eq("sensor_id", sensor.getId()).eq("valid", "0").orderBy("heartbeat_time desc"));
-					if(CollectionUtils.isNotEmpty(datas)){
-						sensor.setSensorData(datas.get(0));
+				
+				//查询气象站当前数据
+				List<AirStationData> datas = airStationDataService.selectList(new EntityWrapper<AirStationData>().eq("station_id", station.getId()).orderBy("heartbeat_time desc"));
+				if(CollectionUtils.isNotEmpty(datas)){
+					AirStationData nowData = datas.get(0);
+					for(AirSensor sensor : sensors){
+						//查询传感器类型
+						SensorType type = sensorTypeService.selectById(sensor.getTypeId());
+						SensorTypeEnum typeEnum = SensorTypeEnum.findSensorTypeByName(type.gettName());
+						if(typeEnum!=null){
+							//检测数值
+							String numerical = String.valueOf(SensorTypeEnum.findDataBySensorType(typeEnum.getCode(), nowData));
+							if(type.gettName().contains("风向")){
+								sensor.setNumerical(WindDirection.findWindDirectionByMark(numerical).getMsg());
+							}else{
+								sensor.setNumerical(numerical);
+							}
+						}
 					}
+					result.put("sensors", sensors);
+					result.put("refreshTime", nowData.getHeartbeatTime());
 				}
-				result.put("sensors", sensors);
-				result.put("refreshTime", new Date());
+				
 			}
 			
 		}
 		result.put("station", station);
 		return result;
 	}
+	
 	
 	/**
 	 * <p>Title: layerAddStation</p>  

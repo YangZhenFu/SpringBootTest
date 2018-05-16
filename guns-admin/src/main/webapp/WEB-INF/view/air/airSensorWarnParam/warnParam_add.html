@@ -1,0 +1,75 @@
+@layout("/common/_container.html"){
+@var sensors = airSensor.findAllAirSensor();
+@var expressions = airSensor.findSensorExpression();
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="warnParamForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            
+                            <#input id="tName" name="名称" underline="true"/>
+                            <#input id="sortCode" name="顺序位" underline="true"/>
+                            <#select id="sensorId" name="所属传感器"  underline="true" >
+                             	  @for(sensor in sensors){
+                             	       <option value="${sensor.key}">${sensor.value.tName}</option>
+                             	  @}
+							</#select>
+							<#select id="expression" name="表达式类型"  underline="true" >
+                             	  @for(expression in expressions){
+                             	       <option value="${expression.key}">${expression.value}</option>
+                             	  @}
+							</#select>
+                            <#input id="threshold" name="阈值" underline="true"/>
+							
+                            
+                </div>
+
+                <div class="col-sm-6">
+                			
+                            <#input id="startTime" name="开始时间" class="form_datetime" underline="true"/>
+							
+                            <#input id="endTime" name="结束时间"  class="form_datetime" underline="true"/>
+                            <#select id="controlMode" name="控制方式"  underline="true" >
+                             	 <option value="0">开启</option>
+                             	 <option value="1">关闭</option>
+							</#select>
+                            
+                            <#select id="warnInterval" name="预警间隔" underline="true" >
+                            	<option value="10">10</option>
+                            	<option value="20">20</option>
+                            	<option value="30">30</option>
+                            	<option value="40">40</option>
+                            	<option value="50">50</option>
+                            	<option value="60">60</option>
+							</#select>
+                            
+                            <#input id="alarmTime" name="报警时间" underline="true" placeholder="分钟"/>
+                            
+                            
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AirSensorWarnParamInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AirSensorWarnParamInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/air/airSensorWarnParam/warnControl_info.js"></script>
+<script type="text/javascript">
+	$.datetimepicker.setLocale('zh');
+	 $(".form_datetime").datetimepicker({ 
+		 format: 'H:i',//显示格式  
+		 datepicker:false,
+		 step:5
+	}); 
+	 $('#sensorId').val('');$('#expression').val('');$('#controlMode').val('');$('#warnInterval').val('');
+</script>
+@}

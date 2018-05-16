@@ -111,5 +111,29 @@
 			</where>
     </select>
     
+    
+    <select id="findOneDayData" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    	SELECT
+			*
+		FROM
+			air_station_data
+		WHERE
+			station_id = #{id}
+		AND heartbeat_time >= (NOW() - INTERVAL 24 HOUR)
+		ORDER BY
+			heartbeat_time DESC
+    </select>
+    
+    <select id="findFiveDaysData" resultMap="BaseResultMap">
+    	SELECT
+			*
+		FROM
+			air_station_data
+		WHERE
+			station_id = #{id}
+		AND heartbeat_time >= (NOW() - INTERVAL 5 DAY)
+		ORDER BY
+			heartbeat_time DESC
+    </select>
 
 </mapper>

@@ -55,4 +55,20 @@ public interface IAirStationDataService extends IService<AirStationData> {
 	public List<Map<String, Object>> selectMapDataByParams(String condition, String areaId, String beginTime,
 			String endTime);
 
+	/**  
+	 * <p>Title: findOneDayData</p>  
+	 * <p>Description: </p>  
+	 * @param id
+	 * @return  
+	 */ 
+	public List<AirStationData> findOneDayData(Long id);
+
+	/**  
+	 * <p>Title: selectFiveDaysData</p>  
+	 * <p>Description: </p>  
+	 * @param id
+	 * @return  
+	 */ 
+	public List<AirStationData> selectFiveDaysData(Long id);
+
 }

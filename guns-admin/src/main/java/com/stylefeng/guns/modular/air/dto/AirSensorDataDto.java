@@ -62,6 +62,9 @@ public class AirSensorDataDto implements Serializable{
      */
     private String nowNumerical;
     
+    //图标
+    private String icon;
+    
     
 	/**
 	 * @return the id  
@@ -184,6 +187,13 @@ public class AirSensorDataDto implements Serializable{
 		this.nowNumerical = nowNumerical;
 	}
 	
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	
 	
 	@Override
 	public String toString() {
@@ -191,6 +201,7 @@ public class AirSensorDataDto implements Serializable{
 				+ ", unit=" + unit + ", minNumerical=" + minNumerical + ", minTime=" + minTime + ", maxNumerical="
 				+ maxNumerical + ", maxTime=" + maxTime + ", nowNumerical=" + nowNumerical + "]";
 	}
+	
 	
 	
     

@@ -21,7 +21,6 @@ Station.initColumn = function () {
             {title: '归属部门', field: 'deptName', visible: true, align: 'center', valign: 'middle', sortable: false},
             {title: '类型', field: 'type', visible: true, align: 'center', valign: 'middle', sortable: true},
             {title: '通讯方式', field: 'connMethod', visible: true, align: 'center', valign: 'middle', sortable: true},
-            {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle', sortable: true},
             {title: 'ip地址', field: 'ipAddr', visible: true, align: 'center', valign: 'middle', sortable: true},
             {title: '端口号', field: 'port', visible: true, align: 'center', valign: 'middle', sortable: true},
             

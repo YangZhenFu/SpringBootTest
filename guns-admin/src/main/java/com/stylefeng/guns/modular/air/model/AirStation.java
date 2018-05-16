@@ -86,10 +86,6 @@ public class AirStation extends Model<AirStation> {
     @TableField("conn_method")
     private String connMethod;
     /**
-     * 状态(0:正常，1:响应，2：通讯故障，3：设备故障)
-     */
-    private String status;
-    /**
      * ip地址
      */
     @TableField("ip_addr")
@@ -278,13 +274,6 @@ public class AirStation extends Model<AirStation> {
         this.connMethod = connMethod;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public String getIpAddr() {
         return ipAddr;
@@ -389,7 +378,6 @@ public class AirStation extends Model<AirStation> {
         ", latitude=" + latitude +
         ", type=" + type +
         ", connMethod=" + connMethod +
-        ", status=" + status +
         ", ipAddr=" + ipAddr +
         ", port=" + port +
         ", installer=" + installer +

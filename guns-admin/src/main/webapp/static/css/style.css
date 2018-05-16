@@ -7900,6 +7900,10 @@ body.skin-3 {
     box-shadow: 2px 3px 6px #777;
     cursor: pointer;
 }
+
+.warn-control-selected{
+    box-shadow: 2px 3px 6px #777;
+}
 .row  .aleft {
     float: left;
 }
