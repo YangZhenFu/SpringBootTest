@@ -479,4 +479,24 @@ public class UserMgrController extends BaseController {
             System.out.println("transMap2Bean2 Error " + e);  
         }  
     } 
+    
+    
+    /**
+     * <p>Title: toSysAbout</p>  
+     * <p>Description: 跳转到系统关于页面</p>  
+     * @return
+     */
+    @RequestMapping(value="sysAbout")
+    public String toSysAbout(){
+    	return PREFIX + "sys_about.html";
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

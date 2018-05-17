@@ -35,6 +35,7 @@ import com.stylefeng.guns.modular.air.service.IAirSensorService;
 import com.stylefeng.guns.modular.air.service.IAirStationDataService;
 import com.stylefeng.guns.modular.air.service.IAirStationService;
 import com.stylefeng.guns.modular.air.service.ISensorTypeService;
+import com.stylefeng.guns.modular.air.warpper.AirSensorAlarmInfoWarpper;
 
 import cn.hutool.core.util.NumberUtil;
 
@@ -179,6 +180,8 @@ public class AirMonitorController extends BaseController{
     			if(CollectionUtils.isNotEmpty(sensors)){
     				List<AirSensorDataDto> dtos=Lists.newArrayList();
     				
+    				
+    				List<AirSensorAlarmInfo> alarms=Lists.newArrayList();
     				//查询全部数据
     				List<AirStationData> allData = airStationDataService.selectList(new EntityWrapper<AirStationData>().eq("station_id", station.getId()).orderBy("heartbeat_time desc"));
     				
@@ -193,8 +196,8 @@ public class AirMonitorController extends BaseController{
         					String code = typeEnum.getCode();
         					
         					//查询传感器报警信息
-        					List<AirSensorAlarmInfo> alarms = sensorAlarmInfoService.selectList(new EntityWrapper<AirSensorAlarmInfo>().eq("valid", "0").eq("sensor_id", sensor.getId()).eq("handle_state", "0"));
-        					
+        					List<Map<String, Object>> sensorAlarm = sensorAlarmInfoService.selectMaps(new EntityWrapper<AirSensorAlarmInfo>().eq("valid", "0").eq("sensor_id", sensor.getId()).eq("handle_state", "0"));
+        					alarms.addAll((List<AirSensorAlarmInfo>)new AirSensorAlarmInfoWarpper(sensorAlarm).warp());
         					
         					AirStationData nowData = null;//当前数值
         					AirStationData minData = null;//最大数值
@@ -259,7 +262,7 @@ public class AirMonitorController extends BaseController{
             					}
             					dtos.add(dto);
     				}
-        				
+        			result.put("alarms", alarms);	
         			result.put("data", dtos);
     				if(CollectionUtils.isNotEmpty(allData)){
     					result.put("refreshTime", allData.get(0).getHeartbeatTime());

@@ -35,7 +35,7 @@ public class TaskJob {
 	private Logger logger=LoggerFactory.getLogger(TaskJob.class);
 	
 	
-	@Scheduled(cron="0 0/5 * * * ?")//每5分钟执行一次
+//	@Scheduled(cron="0 0/5 * * * ?")//每5分钟执行一次
 	public void schedule(){
 		String syncKey = StringUtil.getUUID();
 		long beginTime = System.currentTimeMillis();

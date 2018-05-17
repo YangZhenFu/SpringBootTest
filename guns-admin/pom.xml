@@ -20,7 +20,7 @@
     <dependencies>
 
         <!--flowable-->
-        <dependency>
+         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-spring-boot-starter-basic</artifactId>
             <exclusions>
@@ -33,7 +33,7 @@
                     <groupId>javax.activation</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency> 
 
         <dependency>
             <groupId>com.stylefeng</groupId>

@@ -50,6 +50,36 @@ Monitor.OnClickArea = function(e, treeId, treeNode){
 				$('#data_refresh_time').html(result.refreshTime); 
 				$('#refresh_time').html(refreshTime.split(' ')[1]);
 				
+				
+				toastr.clear();
+				var alarms=result.alarms;
+				if(alarms && alarms.length>0){
+					
+					 //参数设置，若用默认值可以省略以下面代
+				    toastr.options = {
+					     "closeButton": true, //是否显示关闭按钮
+					     "debug": false, //是否使用debug模式
+					     "progressBar": true,
+					     "positionClass": "toast-bottom-right",//弹出窗的位置
+					     "showDuration": "300",//显示的动画时间
+					     "hideDuration": "1000",//消失的动画时间
+					     "timeOut": "60000", //展现时间
+					     "extendedTimeOut": "1000",//加长展示时间
+					     "showEasing": "swing",//显示时的动画缓冲方式
+					     "hideEasing": "linear",//消失时的动画缓冲方式
+					     "showMethod": "fadeIn",//显示时的动画方式
+					     "hideMethod": "fadeOut", //消失时的动画方式
+				   };
+				    
+					for(var i=0;i<alarms.length;i++){
+						var alarm=alarms[i];
+						toastr.warning('<a class="J_menuItem" href="/airSensorAlarmInfo" data-index="89">'+alarm.alarmInfo+'</a>','告警信息');
+					}
+				}
+				
+				
+				
+				
 				var data=result.data;
 				if(data){
 					for(var i=0;i<data.length;i++){

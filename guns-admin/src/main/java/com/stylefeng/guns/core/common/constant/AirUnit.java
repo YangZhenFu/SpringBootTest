@@ -13,6 +13,7 @@ public enum AirUnit {
 	PM("μg/m3"),
 	CO2("ppm"),
 	GAS("ppm"),
+	CO("mg/m3"),
 	WIND_DIRECTION("。"),
 	RADIATION("w/m2"),
 	negative_oxygen_ion("个/m3"),

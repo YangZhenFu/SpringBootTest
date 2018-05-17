@@ -98,8 +98,9 @@ AirCurve.formParams = function() {
  * 重置查询条件
  */
 AirCurve.resetSearch = function() {
-	$("#beginTime").val('');$("#endTime").val('');
-	AirCurve.search();
+	location.reload();
+//	$("#beginTime").val('');$("#endTime").val('');
+//	AirCurve.search();
 }
 
 /**
