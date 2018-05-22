@@ -22,7 +22,29 @@ AirSensor.initColumn = function () {
             {title: '传感器类型', field: 'type', visible: true, align: 'center', valign: 'middle',sortable: false},
             {title: '产品型号', field: 'sensorModel', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '寄存器地址', field: 'rtuId', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle',sortable: true},
+            {title: '状态', field: 'status', visible: true, align: 'center', valign: 'middle',sortable: true,
+            	formatter:function(value,row,index){
+            		var status;
+            		switch(value){
+            			case '正常':
+            				status='label-info';
+            				break;
+            			case '响应':
+            				status='label-success';
+            				break;
+            			case '通讯故障':
+            				status='label-warning';
+            				break;
+            			case '设备故障':
+            				status='label-important';
+            				break;
+            			default : 
+            				status='';
+            				break;
+            		}
+            		return '<span class="label '+status+'">'+value+'</span>';
+            	}
+            },
             {title: '检测单位', field: 'unit', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '传感器图标', field: 'icon', visible: true, align: 'center', valign: 'middle',sortable: true,
             	formatter:function(value,row,index){

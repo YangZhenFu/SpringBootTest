@@ -1,0 +1,34 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="airLedForm">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                			<#input id="id" name="唯一标识" underline="true" value="${item.id}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="tName" name="名称" underline="true" value="${item.tName}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="sortCode" name="排序" underline="true" value="${item.sortCode}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	<#input id="stationId" name="所属气象站" underline="true" value="${item.stationId}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	<#input id="type" name="LED类型" underline="true" value="${item.type}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="ipAddr" name="IP地址" underline="true" value="${item.ipAddr}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="port" name="端口号" underline="true" value="${item.port}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="code" name="编号" underline="true" value="${item.code}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="unitCode" name="控制卡编号" underline="true" value="${item.unitCode}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                          	<#input id="unitType" name="控制卡型号" underline="true" value="${item.unitType}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="screenHeight" name="屏幕高度" underline="true" value="${item.screenHeight}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="screenWidth" name="屏幕宽度" underline="true" value="${item.screenWidth}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="controlMode" name="实时发布" underline="true" value="${item.controlMode}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                            <#input id="remark" name="备注" underline="true" value="${item.remark}" readonly="readonly" style="background-color: #ffffff !important;"/>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@}

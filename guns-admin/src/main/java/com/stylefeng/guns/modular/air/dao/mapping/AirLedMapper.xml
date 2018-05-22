@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.air.dao.AirLedMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.air.model.AirLed">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="t_name" property="tName" />
+        <result column="sort_code" property="sortCode" />
+        <result column="valid" property="valid" />
+        <result column="type" property="type" />
+        <result column="station_id" property="stationId" />
+        <result column="status" property="status" />
+        <result column="ip_addr" property="ipAddr" />
+        <result column="port" property="port" />
+        <result column="unit_code" property="unitCode" />
+        <result column="unit_type" property="unitType" />
+        <result column="screen_height" property="screenHeight" />
+        <result column="screen_width" property="screenWidth" />
+        <result column="screen_status" property="screenStatus" />
+        <result column="brightness" property="brightness" />
+        <result column="control_mode" property="controlMode" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, t_name AS tName, sort_code AS sortCode, valid, type, station_id AS stationId, status, ip_addr AS ipAddr, port, unit_code AS unitCode, unit_type AS unitType, screen_height AS screenHeight, screen_width AS screenWidth, screen_status AS screenStatus, brightness, control_mode AS controlMode, create_by AS createBy, create_time AS createTime, update_by AS updateBy, update_time AS updateTime, remark
+    </sql>
+
+</mapper>

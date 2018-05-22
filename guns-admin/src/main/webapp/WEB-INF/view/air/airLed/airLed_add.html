@@ -1,0 +1,65 @@
+@layout("/common/_container.html"){
+@var airStations = airStation.findAllAirStation();
+@var ledTypes = airLed.findAllLedType();
+@var cardTypes = airLed.findAllControlCardType();
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="airLedForm">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            
+                            <#input id="tName" name="名称" underline="true"/>
+                            <#input id="sortCode" name="排序" underline="true"/>
+                            <#select id="stationId" name="所属气象站"  underline="true" >
+                             	  @for(station in airStations){
+                             	       <option value="${station.key}">${station.value.tName}</option>
+                             	  @}
+							</#select>
+                            <#select id="type" name="LED类型"  underline="true" >
+                             	  @for(ledType in ledTypes){
+                             	       <option value="${ledType.key}">${ledType.value}</option>
+                             	  @}
+							</#select>
+                            
+                            <#input id="ipAddr" name="IP地址" underline="true"/>
+                            <#input id="port" name="端口号" underline="true"/>
+                           
+                </div>
+
+                <div class="col-sm-6">
+                 			<#input id="unitCode" name="控制卡编号" underline="true"/>
+                            <#select id="unitType" name="控制卡型号"  underline="true" >
+                             	  @for(cardType in cardTypes){
+                             	       <option value="${cardType}">${cardType}</option>
+                             	  @}
+							</#select>
+                            
+                            <#input id="screenHeight" name="屏幕高度" underline="true"/>
+                            <#input id="screenWidth" name="屏幕宽度" underline="true"/>
+                            <#select id="controlMode" name="实时发布"  underline="true" >
+                             	       <option value="0">开启</option>
+                             	        <option value="1">关闭</option>
+							</#select>
+                            
+                            <#input id="remark" name="备注" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AirLedInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AirLedInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/air/airLed/airLed_info.js"></script>
+<script type="text/javascript">
+	$('#stationId').val('');$('#type').val('');$('#unitType').val('');$('#controlMode').val('');
+</script>
+@}

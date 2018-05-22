@@ -1,0 +1,621 @@
+INFO  08:54:32 uia.comm.SocketClient                                   - MyScreen> connect to 192.168.1.199:5005
+DEBUG 08:54:32 uia.comm.SocketDataController                           - MyScreen> send a5-a5-a5-a5-a5-a5-a5-a5-fe-ff-00-80-07-01-fe-ff-01-00-3e-21-90-01-96-6e-00-00-00-00-00-00-05-00-1e-78-00-92-01-a2-00-00-00-5a-5a
+DEBUG 08:54:32 uia.comm.SocketClient                                   - MyScreen> cmd:a2-80 tx:00-80-fe-ff-3e-a1 callout reply
+DEBUG 08:54:32 onbon.bx06.Bx6GControllerClient                         - MyScreen> recv a5-a5-a5-a5-a5-a5-a5-a5-00-80-fe-ff-07-01-66-01-01-01-3e-a1-90-01-96-a6-01-8a-8a-8a-8a-8a-8a-38-00-3c-68-00-b2-01-a2-80-00-00-00-00-2f-00-66-01-31-37-30-34-32-34-31-30-01-01-00-02-80-00-40-00-ff-02-01-10-00-10-00-20-00-00-03-03-01-43-30-36-51-31-42-31-37-30-36-30-37-30-32-30-33-5a
+INFO  08:54:33 onbon.bx06.Bx6GController                               - MyScreen> execute: Ping, 0.49 secs, result: 正確
+INFO  08:54:33 onbon.bx06.Bx6GController                               - MyScreen> 66-01 bufferSize:8000, fixedSeqNo:-1, fixedPhyType:-1
+INFO  08:54:33 onbon.bx06.Bx6GControllerClient                         - MyScreen> connect result: 66-01@01-00, screen:(128,64), color:255, brightness:2, onOff:1, ver:17042410, barcodeFlag:1
+INFO  08:54:33 uia.comm.SocketClient                                   - MyController> connect to 192.168.1.199:5005
+DEBUG 08:54:33 uia.comm.SocketDataController                           - MyController> send a5-a5-a5-a5-a5-a5-a5-a5-fe-ff-00-80-07-01-fe-ff-01-00-1a-25-90-01-96-5f-00-00-00-00-00-00-05-00-1e-78-00-83-01-a2-00-00-00-5a-5a
+DEBUG 08:54:33 uia.comm.SocketClient                                   - MyController> cmd:a2-80 tx:00-80-fe-ff-1a-a5 callout reply
+DEBUG 08:54:33 onbon.bx06.Bx6GControllerClient                         - MyController> recv a5-a5-a5-a5-a5-a5-a5-00-80-fe-ff-07-01-66-01-01-01-1a-a6-02-90-01-96-3d-8a-8a-8a-8a-8a-8a-38-00-3c-68-00-09-01-a2-80-00-00-00-00-2f-00-66-01-31-37-30-34-32-34-31-30-01-01-00-02-80-00-40-00-ff-02-01-10-00-10-00-20-00-00-03-03-01-43-30-36-51-31-42-31-37-30-36-30-37-30-32-30-33-5a
+INFO  08:54:34 onbon.bx06.Bx6GController                               - MyController> execute: Ping, 0.234 secs, result: 正確
+INFO  08:54:34 onbon.bx06.Bx6GController                               - MyController> 66-01 bufferSize:8000, fixedSeqNo:-1, fixedPhyType:-1
+INFO  08:54:34 onbon.bx06.Bx6GControllerClient                         - MyController> connect result: 66-01@01-00, screen:(128,64), color:255, brightness:2, onOff:1, ver:17042410, barcodeFlag:1
+DEBUG 08:54:34 uia.comm.SocketDataController                           - MyController> send a5-a5-a5-a5-a5-a5-a5-a5-fe-ff-00-80-07-01-fe-ff-01-00-8c-28-90-01-96-5f-00-00-00-00-00-00-05-00-1e-78-00-18-01-a2-00-00-00-5a-5a
+DEBUG 08:54:34 uia.comm.SocketClient                                   - MyController> cmd:a2-80 tx:00-80-fe-ff-8c-a8 callout reply
+DEBUG 08:54:34 onbon.bx06.Bx6GControllerClient                         - MyController> recv a5-a5-a5-a5-a5-a5-a5-00-80-fe-ff-07-01-66-01-01-01-8c-a8-90-01-96-17-8a-8a-8a-8a-8a-8a-38-00-3c-68-00-b8-01-a2-80-00-00-00-00-2f-00-66-01-31-37-30-34-32-34-31-30-01-01-00-02-80-00-40-00-ff-02-01-10-00-10-00-20-00-00-03-03-01-43-30-36-51-31-42-31-37-30-36-30-37-30-32-30-33-5a
+INFO  08:54:34 onbon.bx06.Bx6GController                               - MyController> execute: Ping, 0.176 secs, result: 正確
+INFO  08:54:34 onbon.bx06.Bx6GController                               - MyController> 66-01 bufferSize:8000, fixedSeqNo:-1, fixedPhyType:-1
+DEBUG 08:54:34 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:34 druid.sql.Statement                                     - {conn-10002, pstmt-20033} created. UPDATE air_led  SET code=?,
+	t_name=?,
+	sort_code=?,
+	`valid`=?,
+	`type`=?,
+	station_id=?,
+	`status`=?,
+	ip_addr=?,
+	port=?,
+	unit_code=?,
+	unit_type=?,
+	screen_height=?,
+	screen_width=?,
+	screen_status=?,
+	brightness=?,
+	control_mode=?,
+	create_by=?,
+	create_time=?,
+	update_by=?,
+	update_time=?,
+	remark=?  WHERE id=?
+DEBUG 08:54:34 druid.sql.Statement                                     - {conn-10002, pstmt-20033} Parameters : [18051811571330101, LED屏1, 1, 0, 0, 1, 0, 192.168.1.199, 5005, C06Q1B1706070203, BX-6Q1, 64, 128, 1, 2, 1, 张三, 2018-05-18 11:57:13.0, 张三, 2018-05-22 08:54:34.829, 的点点滴滴, 1]
+DEBUG 08:54:34 druid.sql.Statement                                     - {conn-10002, pstmt-20033} Types : [VARCHAR, VARCHAR, INTEGER, VARCHAR, VARCHAR, BIGINT, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, VARCHAR, INTEGER, VARCHAR, VARCHAR, TIMESTAMP, VARCHAR, TIMESTAMP, VARCHAR, BIGINT]
+DEBUG 08:54:34 druid.sql.Statement                                     - {conn-10002, pstmt-20033} executed. 34.07898 millis. UPDATE air_led  SET code=?,
+	t_name=?,
+	sort_code=?,
+	`valid`=?,
+	`type`=?,
+	station_id=?,
+	`status`=?,
+	ip_addr=?,
+	port=?,
+	unit_code=?,
+	unit_type=?,
+	screen_height=?,
+	screen_width=?,
+	screen_status=?,
+	brightness=?,
+	control_mode=?,
+	create_by=?,
+	create_time=?,
+	update_by=?,
+	update_time=?,
+	remark=?  WHERE id=?
+DEBUG 08:54:34 druid.sql.Statement                                     - {conn-10002, pstmt-20033} clearParameters. 
+DEBUG 08:54:34 druid.sql.Connection                                    - {conn-10002} pool-recycle
+INFO  08:54:34 uia.comm.SocketClient                                   - MyScreen> disconnect
+INFO  08:54:35 uia.comm.SocketClient                                   - MyController> disconnect
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20034} created. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ?)
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20034} Parameters : [0]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20034} Types : [VARCHAR]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20034} executed. 1.374461 millis. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ?)
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20034, rs-50537} open
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20034, rs-50537} Header: [COUNT(1)]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20034, rs-50537} Result: [13]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20034, rs-50537} closed
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20034} clearParameters. 
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} created. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ? AND alarm_type = ?)
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Parameters : [0, 0]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Types : [VARCHAR, VARCHAR]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} executed. 1.597123 millis. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ? AND alarm_type = ?)
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50538} open
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50538} Header: [COUNT(1)]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50538} Result: [13]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50538} closed
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} clearParameters. 
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Parameters : [0, 1]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Types : [VARCHAR, VARCHAR]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} executed. 0.796851 millis. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ? AND alarm_type = ?)
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50539} open
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50539} Header: [COUNT(1)]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50539} Result: [0]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50539} closed
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} clearParameters. 
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Parameters : [0, 2]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Types : [VARCHAR, VARCHAR]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} executed. 0.683096 millis. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ? AND alarm_type = ?)
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50540} open
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50540} Header: [COUNT(1)]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50540} Result: [0]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50540} closed
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} clearParameters. 
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Parameters : [0, 3]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Types : [VARCHAR, VARCHAR]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} executed. 0.720445 millis. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ? AND alarm_type = ?)
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50541} open
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50541} Header: [COUNT(1)]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50541} Result: [0]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50541} closed
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} clearParameters. 
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Parameters : [0, 4]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Types : [VARCHAR, VARCHAR]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} executed. 0.697922 millis. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ? AND alarm_type = ?)
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50542} open
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50542} Header: [COUNT(1)]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50542} Result: [0]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50542} closed
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} clearParameters. 
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Parameters : [0, 5]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} Types : [VARCHAR, VARCHAR]
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} executed. 1.019228 millis. SELECT COUNT(1) FROM air_sensor_alarm_info 
+ WHERE  (valid = ? AND alarm_type = ?)
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50543} open
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50543} Header: [COUNT(1)]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50543} Result: [0]
+DEBUG 08:54:36 druid.sql.ResultSet                                     - {conn-10002, pstmt-20035, rs-50543} closed
+DEBUG 08:54:36 druid.sql.Statement                                     - {conn-10002, pstmt-20035} clearParameters. 
+DEBUG 08:54:36 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:38 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Parameters : [0]
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Types : [VARCHAR]
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20030, rs-50544} query executed. 2.908291 millis. SELECT COUNT(1) FROM air_led WHERE (valid = ?)
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50544} open
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50544} Header: [COUNT(1)]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50544} Result: [2]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50544} closed
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20030} clearParameters. 
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Parameters : [0]
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Types : [VARCHAR]
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20031} executed. 0.708185 millis. SELECT  id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,`type`,station_id AS stationId,`status`,ip_addr AS ipAddr,port,unit_code AS unitCode,unit_type AS unitType,screen_height AS screenHeight,screen_width AS screenWidth,screen_status AS screenStatus,brightness,control_mode AS controlMode,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark  FROM air_led 
+ WHERE  (valid = ?) LIMIT 0,14
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50545} open
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50545} Header: [id, code, t_name, sort_code, valid, type, station_id, status, ip_addr, port, unit_code, unit_type, screen_height, screen_width, screen_status, brightness, control_mode, create_by, create_time, update_by, update_time, remark]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50545} Result: [1, 18051811571330101, LED屏1, 1, 0, 0, 1, 0, 192.168.1.199, 5005, C06Q1B1706070203, BX-6Q1, 64, 128, 1, 2, 1, 张三, 2018-05-18 11:57:13.0, 张三, 2018-05-22 08:54:34.0, 的点点滴滴]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50545} Result: [2, 18051814344826001, LED屏2, 2, 0, 0, 4, 2, 192.168.1.1, 9090, C06Q1B1706070203, BX-6Q1, 256, 128, 0, null, 1, 张三, 2018-05-18 14:34:48.0, 张三, 2018-05-21 17:38:08.0, 二维无无无无无无无无无无]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50545} closed
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20031} clearParameters. 
+DEBUG 08:54:38 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:38 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [1]
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 1.082235 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50546} open
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50546} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50546} Result: [1, 18041817012791301, 气象站2, 2, 0, 64, 26, 河南省郑州市惠济区老鸦陈街道北四环路, 254, 204, 113.567854, 34.871808, 0, 蓝牙, 87.123.1.90, 474, 54, 2018-01-09 00:00:00.0, 张三, 2018-04-18 17:01:28.0, 张三, 2018-05-16 14:25:31.0, 288888888888888880000000000000000000000000000000000000000000000000000000, 监控室楼顶, 10, false]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50546} closed
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:38 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:38 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [4]
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.766915 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50547} open
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50547} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50547} Result: [4, 18041909121931401, 气象站3, 3, 0, 61, 24, 河南省郑州市金水区龙湖街道龙湖中环路中盟龙湖里& #40;建设中& #41;, 269.5154952754965, 152.21943619200465, 113.740926, 34.791011, 7, Wifi, 192.168.1.12, 3356, 636, 2018-01-17 00:00:00.0, 张三, 2018-04-19 09:12:19.0, 张三, 2018-05-15 08:58:31.0, 365, 教学楼楼顶, 30, false]
+DEBUG 08:54:38 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50547} closed
+DEBUG 08:54:38 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:38 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:54:39 druid.sql.Statement                                     - {conn-110001, pstmt-120010} Parameters : [1, 0]
+DEBUG 08:54:39 druid.sql.Statement                                     - {conn-110001, pstmt-120010} Types : [INTEGER, INTEGER]
+DEBUG 08:54:39 druid.sql.Statement                                     - {conn-110001, pstmt-120010} executed. 1.05629 millis. select
+        RES.*   
+        from ACT_RU_JOB RES
+        where LOCK_EXP_TIME_ is null
+         LIMIT ? OFFSET ?
+DEBUG 08:54:39 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150032} open
+DEBUG 08:54:39 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150032} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:54:39 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150032} closed
+DEBUG 08:54:39 druid.sql.Statement                                     - {conn-110001, pstmt-120010} clearParameters. 
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:54:39 druid.sql.Statement                                     - {conn-110001, pstmt-120011} Parameters : [2018-05-22 08:54:39.514, 1, 0]
+DEBUG 08:54:39 druid.sql.Statement                                     - {conn-110001, pstmt-120011} Types : [TIMESTAMP, INTEGER, INTEGER]
+DEBUG 08:54:39 druid.sql.Statement                                     - {conn-110001, pstmt-120011} executed. 0.62066 millis. select
+        RES.*   
+        from ACT_RU_TIMER_JOB RES
+        where DUEDATE_ <= ?
+        and LOCK_OWNER_ is null
+         LIMIT ? OFFSET ?
+DEBUG 08:54:39 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150033} open
+DEBUG 08:54:39 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150033} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:54:39 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150033} closed
+DEBUG 08:54:39 druid.sql.Statement                                     - {conn-110001, pstmt-120011} clearParameters. 
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:39 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:45 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Parameters : [0]
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Types : [VARCHAR]
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20030, rs-50548} query executed. 0.643753 millis. SELECT COUNT(1) FROM air_led WHERE (valid = ?)
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50548} open
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50548} Header: [COUNT(1)]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50548} Result: [2]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50548} closed
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20030} clearParameters. 
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Parameters : [0]
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Types : [VARCHAR]
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20031} executed. 0.628928 millis. SELECT  id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,`type`,station_id AS stationId,`status`,ip_addr AS ipAddr,port,unit_code AS unitCode,unit_type AS unitType,screen_height AS screenHeight,screen_width AS screenWidth,screen_status AS screenStatus,brightness,control_mode AS controlMode,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark  FROM air_led 
+ WHERE  (valid = ?) LIMIT 0,14
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50549} open
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50549} Header: [id, code, t_name, sort_code, valid, type, station_id, status, ip_addr, port, unit_code, unit_type, screen_height, screen_width, screen_status, brightness, control_mode, create_by, create_time, update_by, update_time, remark]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50549} Result: [1, 18051811571330101, LED屏1, 1, 0, 0, 1, 0, 192.168.1.199, 5005, C06Q1B1706070203, BX-6Q1, 64, 128, 1, 2, 1, 张三, 2018-05-18 11:57:13.0, 张三, 2018-05-22 08:54:34.0, 的点点滴滴]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50549} Result: [2, 18051814344826001, LED屏2, 2, 0, 0, 4, 2, 192.168.1.1, 9090, C06Q1B1706070203, BX-6Q1, 256, 128, 0, null, 1, 张三, 2018-05-18 14:34:48.0, 张三, 2018-05-21 17:38:08.0, 二维无无无无无无无无无无]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50549} closed
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20031} clearParameters. 
+DEBUG 08:54:45 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:45 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [1]
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.573904 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50550} open
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50550} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50550} Result: [1, 18041817012791301, 气象站2, 2, 0, 64, 26, 河南省郑州市惠济区老鸦陈街道北四环路, 254, 204, 113.567854, 34.871808, 0, 蓝牙, 87.123.1.90, 474, 54, 2018-01-09 00:00:00.0, 张三, 2018-04-18 17:01:28.0, 张三, 2018-05-16 14:25:31.0, 288888888888888880000000000000000000000000000000000000000000000000000000, 监控室楼顶, 10, false]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50550} closed
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:45 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:45 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [4]
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.618094 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50551} open
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50551} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50551} Result: [4, 18041909121931401, 气象站3, 3, 0, 61, 24, 河南省郑州市金水区龙湖街道龙湖中环路中盟龙湖里& #40;建设中& #41;, 269.5154952754965, 152.21943619200465, 113.740926, 34.791011, 7, Wifi, 192.168.1.12, 3356, 636, 2018-01-17 00:00:00.0, 张三, 2018-04-19 09:12:19.0, 张三, 2018-05-15 08:58:31.0, 365, 教学楼楼顶, 30, false]
+DEBUG 08:54:45 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50551} closed
+DEBUG 08:54:45 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:45 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Parameters : [0]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Types : [VARCHAR]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030, rs-50552} query executed. 1.0848 millis. SELECT COUNT(1) FROM air_led WHERE (valid = ?)
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50552} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50552} Header: [COUNT(1)]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50552} Result: [2]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50552} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} clearParameters. 
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Parameters : [0]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Types : [VARCHAR]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} executed. 1.572034 millis. SELECT  id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,`type`,station_id AS stationId,`status`,ip_addr AS ipAddr,port,unit_code AS unitCode,unit_type AS unitType,screen_height AS screenHeight,screen_width AS screenWidth,screen_status AS screenStatus,brightness,control_mode AS controlMode,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark  FROM air_led 
+ WHERE  (valid = ?) LIMIT 0,14
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50553} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50553} Header: [id, code, t_name, sort_code, valid, type, station_id, status, ip_addr, port, unit_code, unit_type, screen_height, screen_width, screen_status, brightness, control_mode, create_by, create_time, update_by, update_time, remark]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50553} Result: [1, 18051811571330101, LED屏1, 1, 0, 0, 1, 0, 192.168.1.199, 5005, C06Q1B1706070203, BX-6Q1, 64, 128, 1, 2, 1, 张三, 2018-05-18 11:57:13.0, 张三, 2018-05-22 08:54:34.0, 的点点滴滴]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50553} Result: [2, 18051814344826001, LED屏2, 2, 0, 0, 4, 2, 192.168.1.1, 9090, C06Q1B1706070203, BX-6Q1, 256, 128, 0, null, 1, 张三, 2018-05-18 14:34:48.0, 张三, 2018-05-21 17:38:08.0, 二维无无无无无无无无无无]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50553} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [1]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.501204 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50554} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50554} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50554} Result: [1, 18041817012791301, 气象站2, 2, 0, 64, 26, 河南省郑州市惠济区老鸦陈街道北四环路, 254, 204, 113.567854, 34.871808, 0, 蓝牙, 87.123.1.90, 474, 54, 2018-01-09 00:00:00.0, 张三, 2018-04-18 17:01:28.0, 张三, 2018-05-16 14:25:31.0, 288888888888888880000000000000000000000000000000000000000000000000000000, 监控室楼顶, 10, false]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50554} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [4]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.730423 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50555} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50555} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50555} Result: [4, 18041909121931401, 气象站3, 3, 0, 61, 24, 河南省郑州市金水区龙湖街道龙湖中环路中盟龙湖里& #40;建设中& #41;, 269.5154952754965, 152.21943619200465, 113.740926, 34.791011, 7, Wifi, 192.168.1.12, 3356, 636, 2018-01-17 00:00:00.0, 张三, 2018-04-19 09:12:19.0, 张三, 2018-05-15 08:58:31.0, 365, 教学楼楼顶, 30, false]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50555} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Parameters : [0]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Types : [VARCHAR]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030, rs-50556} query executed. 0.496641 millis. SELECT COUNT(1) FROM air_led WHERE (valid = ?)
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50556} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50556} Header: [COUNT(1)]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50556} Result: [2]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50556} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} clearParameters. 
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Parameters : [0]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Types : [VARCHAR]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} executed. 1.325994 millis. SELECT  id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,`type`,station_id AS stationId,`status`,ip_addr AS ipAddr,port,unit_code AS unitCode,unit_type AS unitType,screen_height AS screenHeight,screen_width AS screenWidth,screen_status AS screenStatus,brightness,control_mode AS controlMode,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark  FROM air_led 
+ WHERE  (valid = ?) LIMIT 0,14
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50557} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50557} Header: [id, code, t_name, sort_code, valid, type, station_id, status, ip_addr, port, unit_code, unit_type, screen_height, screen_width, screen_status, brightness, control_mode, create_by, create_time, update_by, update_time, remark]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50557} Result: [1, 18051811571330101, LED屏1, 1, 0, 0, 1, 0, 192.168.1.199, 5005, C06Q1B1706070203, BX-6Q1, 64, 128, 1, 2, 1, 张三, 2018-05-18 11:57:13.0, 张三, 2018-05-22 08:54:34.0, 的点点滴滴]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50557} Result: [2, 18051814344826001, LED屏2, 2, 0, 0, 4, 2, 192.168.1.1, 9090, C06Q1B1706070203, BX-6Q1, 256, 128, 0, null, 1, 张三, 2018-05-18 14:34:48.0, 张三, 2018-05-21 17:38:08.0, 二维无无无无无无无无无无]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50557} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [1]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 6.855766 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50558} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50558} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50558} Result: [1, 18041817012791301, 气象站2, 2, 0, 64, 26, 河南省郑州市惠济区老鸦陈街道北四环路, 254, 204, 113.567854, 34.871808, 0, 蓝牙, 87.123.1.90, 474, 54, 2018-01-09 00:00:00.0, 张三, 2018-04-18 17:01:28.0, 张三, 2018-05-16 14:25:31.0, 288888888888888880000000000000000000000000000000000000000000000000000000, 监控室楼顶, 10, false]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50558} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [4]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.632919 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50559} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50559} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50559} Result: [4, 18041909121931401, 气象站3, 3, 0, 61, 24, 河南省郑州市金水区龙湖街道龙湖中环路中盟龙湖里& #40;建设中& #41;, 269.5154952754965, 152.21943619200465, 113.740926, 34.791011, 7, Wifi, 192.168.1.12, 3356, 636, 2018-01-17 00:00:00.0, 张三, 2018-04-19 09:12:19.0, 张三, 2018-05-15 08:58:31.0, 365, 教学楼楼顶, 30, false]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50559} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Parameters : [0]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Types : [VARCHAR]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030, rs-50560} query executed. 1.497908 millis. SELECT COUNT(1) FROM air_led WHERE (valid = ?)
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50560} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50560} Header: [COUNT(1)]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50560} Result: [2]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50560} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} clearParameters. 
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Parameters : [0]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Types : [VARCHAR]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} executed. 0.681386 millis. SELECT  id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,`type`,station_id AS stationId,`status`,ip_addr AS ipAddr,port,unit_code AS unitCode,unit_type AS unitType,screen_height AS screenHeight,screen_width AS screenWidth,screen_status AS screenStatus,brightness,control_mode AS controlMode,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark  FROM air_led 
+ WHERE  (valid = ?) LIMIT 0,14
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50561} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50561} Header: [id, code, t_name, sort_code, valid, type, station_id, status, ip_addr, port, unit_code, unit_type, screen_height, screen_width, screen_status, brightness, control_mode, create_by, create_time, update_by, update_time, remark]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50561} Result: [1, 18051811571330101, LED屏1, 1, 0, 0, 1, 0, 192.168.1.199, 5005, C06Q1B1706070203, BX-6Q1, 64, 128, 1, 2, 1, 张三, 2018-05-18 11:57:13.0, 张三, 2018-05-22 08:54:34.0, 的点点滴滴]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50561} Result: [2, 18051814344826001, LED屏2, 2, 0, 0, 4, 2, 192.168.1.1, 9090, C06Q1B1706070203, BX-6Q1, 256, 128, 0, null, 1, 张三, 2018-05-18 14:34:48.0, 张三, 2018-05-21 17:38:08.0, 二维无无无无无无无无无无]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50561} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [1]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.82536 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50562} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50562} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50562} Result: [1, 18041817012791301, 气象站2, 2, 0, 64, 26, 河南省郑州市惠济区老鸦陈街道北四环路, 254, 204, 113.567854, 34.871808, 0, 蓝牙, 87.123.1.90, 474, 54, 2018-01-09 00:00:00.0, 张三, 2018-04-18 17:01:28.0, 张三, 2018-05-16 14:25:31.0, 288888888888888880000000000000000000000000000000000000000000000000000000, 监控室楼顶, 10, false]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50562} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [4]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.683096 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50563} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50563} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50563} Result: [4, 18041909121931401, 气象站3, 3, 0, 61, 24, 河南省郑州市金水区龙湖街道龙湖中环路中盟龙湖里& #40;建设中& #41;, 269.5154952754965, 152.21943619200465, 113.740926, 34.791011, 7, Wifi, 192.168.1.12, 3356, 636, 2018-01-17 00:00:00.0, 张三, 2018-04-19 09:12:19.0, 张三, 2018-05-15 08:58:31.0, 365, 教学楼楼顶, 30, false]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50563} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Parameters : [0]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} Types : [VARCHAR]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030, rs-50564} query executed. 0.670837 millis. SELECT COUNT(1) FROM air_led WHERE (valid = ?)
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50564} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50564} Header: [COUNT(1)]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50564} Result: [2]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20030, rs-50564} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20030} clearParameters. 
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Parameters : [0]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} Types : [VARCHAR]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} executed. 0.740972 millis. SELECT  id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,`type`,station_id AS stationId,`status`,ip_addr AS ipAddr,port,unit_code AS unitCode,unit_type AS unitType,screen_height AS screenHeight,screen_width AS screenWidth,screen_status AS screenStatus,brightness,control_mode AS controlMode,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark  FROM air_led 
+ WHERE  (valid = ?) LIMIT 0,14
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50565} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50565} Header: [id, code, t_name, sort_code, valid, type, station_id, status, ip_addr, port, unit_code, unit_type, screen_height, screen_width, screen_status, brightness, control_mode, create_by, create_time, update_by, update_time, remark]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50565} Result: [1, 18051811571330101, LED屏1, 1, 0, 0, 1, 0, 192.168.1.199, 5005, C06Q1B1706070203, BX-6Q1, 64, 128, 1, 2, 1, 张三, 2018-05-18 11:57:13.0, 张三, 2018-05-22 08:54:34.0, 的点点滴滴]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50565} Result: [2, 18051814344826001, LED屏2, 2, 0, 0, 4, 2, 192.168.1.1, 9090, C06Q1B1706070203, BX-6Q1, 256, 128, 0, null, 1, 张三, 2018-05-18 14:34:48.0, 张三, 2018-05-21 17:38:08.0, 二维无无无无无无无无无无]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20031, rs-50565} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20031} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [1]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.699347 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50566} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50566} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50566} Result: [1, 18041817012791301, 气象站2, 2, 0, 64, 26, 河南省郑州市惠济区老鸦陈街道北四环路, 254, 204, 113.567854, 34.871808, 0, 蓝牙, 87.123.1.90, 474, 54, 2018-01-09 00:00:00.0, 张三, 2018-04-18 17:01:28.0, 张三, 2018-05-16 14:25:31.0, 288888888888888880000000000000000000000000000000000000000000000000000000, 监控室楼顶, 10, false]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50566} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Parameters : [4]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} Types : [BIGINT]
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} executed. 0.776324 millis. SELECT id AS id,code,t_name AS tName,sort_code AS sortCode,`valid`,area_id AS areaId,dept_id AS deptId,detail_address AS detailAddress,offx,offy,longitude,latitude,`type`,conn_method AS connMethod,ip_addr AS ipAddr,port,installer,install_time AS installTime,create_by AS createBy,create_time AS createTime,update_by AS updateBy,update_time AS updateTime,remark,`location`,data_upload_interval AS dataUploadInterval,data_upload_status AS dataUploadStatus FROM air_station WHERE id=?
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50567} open
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50567} Header: [id, code, t_name, sort_code, valid, area_id, dept_id, detail_address, offx, offy, longitude, latitude, type, conn_method, ip_addr, port, installer, install_time, create_by, create_time, update_by, update_time, remark, location, data_upload_interval, data_upload_status]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50567} Result: [4, 18041909121931401, 气象站3, 3, 0, 61, 24, 河南省郑州市金水区龙湖街道龙湖中环路中盟龙湖里& #40;建设中& #41;, 269.5154952754965, 152.21943619200465, 113.740926, 34.791011, 7, Wifi, 192.168.1.12, 3356, 636, 2018-01-17 00:00:00.0, 张三, 2018-04-19 09:12:19.0, 张三, 2018-05-15 08:58:31.0, 365, 教学楼楼顶, 30, false]
+DEBUG 08:54:46 druid.sql.ResultSet                                     - {conn-10002, pstmt-20028, rs-50567} closed
+DEBUG 08:54:46 druid.sql.Statement                                     - {conn-10002, pstmt-20028} clearParameters. 
+DEBUG 08:54:46 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:54:49 druid.sql.Statement                                     - {conn-110001, pstmt-120010} Parameters : [1, 0]
+DEBUG 08:54:49 druid.sql.Statement                                     - {conn-110001, pstmt-120010} Types : [INTEGER, INTEGER]
+DEBUG 08:54:49 druid.sql.Statement                                     - {conn-110001, pstmt-120010} executed. 1.018942 millis. select
+        RES.*   
+        from ACT_RU_JOB RES
+        where LOCK_EXP_TIME_ is null
+         LIMIT ? OFFSET ?
+DEBUG 08:54:49 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150034} open
+DEBUG 08:54:49 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150034} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:54:49 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150034} closed
+DEBUG 08:54:49 druid.sql.Statement                                     - {conn-110001, pstmt-120010} clearParameters. 
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:54:49 druid.sql.Statement                                     - {conn-110001, pstmt-120011} Parameters : [2018-05-22 08:54:49.521, 1, 0]
+DEBUG 08:54:49 druid.sql.Statement                                     - {conn-110001, pstmt-120011} Types : [TIMESTAMP, INTEGER, INTEGER]
+DEBUG 08:54:49 druid.sql.Statement                                     - {conn-110001, pstmt-120011} executed. 1.168619 millis. select
+        RES.*   
+        from ACT_RU_TIMER_JOB RES
+        where DUEDATE_ <= ?
+        and LOCK_OWNER_ is null
+         LIMIT ? OFFSET ?
+DEBUG 08:54:49 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150035} open
+DEBUG 08:54:49 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150035} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:54:49 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150035} closed
+DEBUG 08:54:49 druid.sql.Statement                                     - {conn-110001, pstmt-120011} clearParameters. 
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:49 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:54:59 druid.sql.Statement                                     - {conn-110001, pstmt-120010} Parameters : [1, 0]
+DEBUG 08:54:59 druid.sql.Statement                                     - {conn-110001, pstmt-120010} Types : [INTEGER, INTEGER]
+DEBUG 08:54:59 druid.sql.Statement                                     - {conn-110001, pstmt-120010} executed. 0.980169 millis. select
+        RES.*   
+        from ACT_RU_JOB RES
+        where LOCK_EXP_TIME_ is null
+         LIMIT ? OFFSET ?
+DEBUG 08:54:59 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150036} open
+DEBUG 08:54:59 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150036} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:54:59 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150036} closed
+DEBUG 08:54:59 druid.sql.Statement                                     - {conn-110001, pstmt-120010} clearParameters. 
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:54:59 druid.sql.Statement                                     - {conn-110001, pstmt-120011} Parameters : [2018-05-22 08:54:59.532, 1, 0]
+DEBUG 08:54:59 druid.sql.Statement                                     - {conn-110001, pstmt-120011} Types : [TIMESTAMP, INTEGER, INTEGER]
+DEBUG 08:54:59 druid.sql.Statement                                     - {conn-110001, pstmt-120011} executed. 0.683951 millis. select
+        RES.*   
+        from ACT_RU_TIMER_JOB RES
+        where DUEDATE_ <= ?
+        and LOCK_OWNER_ is null
+         LIMIT ? OFFSET ?
+DEBUG 08:54:59 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150037} open
+DEBUG 08:54:59 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150037} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:54:59 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150037} closed
+DEBUG 08:54:59 druid.sql.Statement                                     - {conn-110001, pstmt-120011} clearParameters. 
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:54:59 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120004} Parameters : [2018-05-22 08:55:09.444, 2018-05-21 08:55:09.444, 3, 0]
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120004} Types : [TIMESTAMP, TIMESTAMP, INTEGER, INTEGER]
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120004} executed. 1.096775 millis. select
+        RES.*   
+        from ACT_RU_JOB RES
+        where (LOCK_EXP_TIME_ is not null and LOCK_EXP_TIME_ < ?)
+              or (LOCK_EXP_TIME_ is null and CREATE_TIME_ < ?)
+         LIMIT ? OFFSET ?
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120004, rs-150038} open
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120004, rs-150038} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120004, rs-150038} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120004} clearParameters. 
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120010} Parameters : [1, 0]
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120010} Types : [INTEGER, INTEGER]
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120010} executed. 2.63146 millis. select
+        RES.*   
+        from ACT_RU_JOB RES
+        where LOCK_EXP_TIME_ is null
+         LIMIT ? OFFSET ?
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150039} open
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150039} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120010, rs-150039} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120010} clearParameters. 
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-110001} pool-connect
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120011} Parameters : [2018-05-22 08:55:09.541, 1, 0]
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120011} Types : [TIMESTAMP, INTEGER, INTEGER]
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120011} executed. 6.069465 millis. select
+        RES.*   
+        from ACT_RU_TIMER_JOB RES
+        where DUEDATE_ <= ?
+        and LOCK_OWNER_ is null
+         LIMIT ? OFFSET ?
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150040} open
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150040} Header: [ID_, REV_, TYPE_, LOCK_EXP_TIME_, LOCK_OWNER_, EXCLUSIVE_, EXECUTION_ID_, PROCESS_INSTANCE_ID_, PROC_DEF_ID_, RETRIES_, EXCEPTION_STACK_ID_, EXCEPTION_MSG_, DUEDATE_, REPEAT_, HANDLER_TYPE_, HANDLER_CFG_, CREATE_TIME_, TENANT_ID_]
+DEBUG 08:55:09 druid.sql.ResultSet                                     - {conn-110001, pstmt-120011, rs-150040} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-110001, pstmt-120011} clearParameters. 
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-110001} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-connect
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit false
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} commited
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} setAutoCommit true
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} pool-recycle
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10001} closed
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10004} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20005} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20006} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20007} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20008} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20009} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20010} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20011} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20012} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20013} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20019} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20014} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20015} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20016} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20017} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20018} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20020} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20021} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10003, pstmt-20024} closed
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10003} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20000} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20001} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20002} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20003} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20004} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20026} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20027} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20025} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20029} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20022} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20023} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20032} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20033} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20034} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20035} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20030} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20031} closed
+DEBUG 08:55:09 druid.sql.Statement                                     - {conn-10002, pstmt-20028} closed
+DEBUG 08:55:09 druid.sql.Connection                                    - {conn-10002} closed

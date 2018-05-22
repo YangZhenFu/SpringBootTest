@@ -1,0 +1,57 @@
+@layout("/common/_container.html"){
+<link href="${ctxPath}/static/slider/bootstrap-slider.min.css" rel="stylesheet">	
+<script type="text/javascript" src="${ctxPath}/static/slider/bootstrap-slider.min.js"></script>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>LED终端管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="AirLed.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="AirLedTableToolbar" role="group">
+                            @if(shiro.hasPermission("/airLed/add")){
+                                <#button name="检查在线" icon="fa-check-circle" clickFun="AirLed.checkOnline()"/>
+                            @}
+                            @if(shiro.hasPermission("/airLed/update")){
+                                <#button name="屏幕亮度" icon="fa-adjust" clickFun="AirLed.changeLinghting()" space="true"/>
+                                
+                                <input id="ex1" data-slider-id='ex1Slider' type="text"  
+				data-slider-min="1" data-slider-max="16" data-slider-step="1" data-slider-value="14"/>
+                            @}
+                            @if(shiro.hasPermission("/airLed/update")){
+                                <#button name="校时" icon="fa-clock-o" clickFun="AirLed.syncTime()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/airLed/delete")){
+                                <#button name="开机" icon="fa-toggle-on" clickFun="AirLed.turnOn()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/airLed/delete")){
+                                <#button name="关机" icon="fa-toggle-off" clickFun="AirLed.turnOff()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="AirLedTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var slider = new Slider('#ex1', {
+	formatter: function(value) {
+		return value;
+	},
+	tooltip_position:'bottom'
+});
+</script>
+<script src="${ctxPath}/static/modular/air/airLed/airLed_control.js"></script>
+@}

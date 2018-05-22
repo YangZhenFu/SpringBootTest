@@ -2,6 +2,7 @@ package com.stylefeng.guns.modular.air.task.jobs;
 
 import java.net.DatagramSocket;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -132,7 +133,7 @@ public class AirSensorWarnJob implements Job{
 														AirSensorAlarmInfo alarm=new AirSensorAlarmInfo();
 														alarm.settName(sensor.gettName()+"-"+Constant.sensor_exception_type.get("1"));
 														alarm.setSensorId(sensor.getId());
-														alarm.setAlarmType("1");//设备离线
+														alarm.setAlarmType("1");//数值异常
 														alarm.setAlarmInfo(String.format("站点[%s]，传感器[%s]值%s设定预警值[%s]，当前值[%s]，请检查", station.gettName(),sensor.gettName(),Constant.SENSOR_WARN_EXPRESSION_TYPE.get(param.getExpression()),param.getThreshold(),num));
 														alarm.setAlarmTime(new Date());
 														alarm.setCode(StringUtil.generatorShort());
@@ -275,6 +276,10 @@ public class AirSensorWarnJob implements Job{
 			Double num = Convert.toDouble(map2.get(typeEnum.getCode()));
 			System.out.println(num);
 		}
+		String msg="站点[气象站1]，传感器[气象站1-风速]值大于设定预警值[20]，当前值[21.6]，请检查";
+		String[] split = msg.split("，");
+		System.out.println(Arrays.toString(split));
+		
 	}
 
 }

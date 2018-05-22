@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.assertj.core.util.Lists;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
@@ -25,10 +26,12 @@ import com.stylefeng.guns.core.other.DateUtil;
 import com.stylefeng.guns.core.other.StringUtil;
 import com.stylefeng.guns.core.util.Contrast;
 import com.stylefeng.guns.core.util.Convert;
+import com.stylefeng.guns.modular.air.model.AirLed;
 import com.stylefeng.guns.modular.air.model.AirSensor;
 import com.stylefeng.guns.modular.air.model.AirSensorAlarmInfo;
 import com.stylefeng.guns.modular.air.model.AirStation;
 import com.stylefeng.guns.modular.air.model.AirStationData;
+import com.stylefeng.guns.modular.air.service.IAirLedService;
 import com.stylefeng.guns.modular.air.service.IAirSensorAlarmInfoService;
 import com.stylefeng.guns.modular.air.service.IAirSensorService;
 import com.stylefeng.guns.modular.air.service.IAirStationDataService;
@@ -52,6 +55,8 @@ public class AirDataUploadJob implements Job{
 	private IAirStationDataService airStationDataService;
 	@Autowired
 	private IAirSensorAlarmInfoService sensorAlarmInfoService;
+	@Autowired
+	private IAirLedService airLedService;
 	
 	private Logger logger = LoggerFactory.getLogger(AirDataUploadJob.class);
 	
@@ -146,6 +151,10 @@ public class AirDataUploadJob implements Job{
 							data.setHeartbeatTime(new Date());
 							data.settName(station.gettName()+"-"+DateUtil.formatFullDateTime(new Date()));
 							airStationDataService.insert(data);
+							
+							
+							//TODO 将气象站数据实时发布到LED终端
+							releaseAirStationData(data,station,sensors);
 						}
 						
 					} catch (Exception e) {
@@ -163,6 +172,43 @@ public class AirDataUploadJob implements Job{
 				
 			}
 			
+		}
+		
+	}
+
+	/**  
+	 * <p>Title: releaseAirStationData</p>  
+	 * <p>Description: </p>  
+	 * @param data
+	 * @param station  
+	 */ 
+	private void releaseAirStationData(AirStationData data, AirStation station,List<AirSensor> sensors) {
+		List<AirLed> leds = airLedService.selectList(new EntityWrapper<AirLed>().eq("station_id", station.getId()).eq("valid", "0"));
+		if(leds!=null && leds.size()==1){
+			AirLed led = leds.get(0);
+			List<AirSensorAlarmInfo> alarms=Lists.newArrayList();
+			//查询传感器报警信息
+			for(AirSensor sensor : sensors){
+				List<AirSensorAlarmInfo> alarm = sensorAlarmInfoService.selectList(new EntityWrapper<AirSensorAlarmInfo>().eq("sensor_id", sensor.getId())
+																														  .eq("valid", "0")
+																														  .eq("alarm_type", "1")
+																														  .eq("handle_state", "0")
+																														  .orderBy("alarm_time desc"));
+				alarms.addAll(alarm);
+			}
+			
+			if(CollectionUtils.isNotEmpty(alarms)){
+				StringBuilder msg=new StringBuilder();
+				msg.append(String.format("站点[%s]，", station.gettName()));
+				for(AirSensorAlarmInfo alarm : alarms){
+					String[] split = alarm.getAlarmInfo().split("，");
+					msg.append(split[1]).append("，").append(split[2]).append("，");
+				}
+				msg.append("请检查！");
+				airLedService.releaseAirStationData(msg.toString(), led);
+			}else{
+				airLedService.releaseAirStationData(data, led);
+			}
 		}
 		
 	}

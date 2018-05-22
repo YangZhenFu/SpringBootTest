@@ -1,5 +1,7 @@
 package com.stylefeng.guns.modular.air.task;
 
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+
 import java.util.Date;
 import java.util.HashSet;
 
@@ -11,6 +13,7 @@ import org.quartz.JobDetail;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
+import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
@@ -87,6 +90,45 @@ public class JobTask {
     }
     return false;
   }
+  
+  
+  /**
+   * <p>Title: startJobNow</p>  
+   * <p>Description: 启动任务 并立即执行一次</p>  
+   * @param job
+   * @param intervalMinutes
+   * @return
+   */
+  public boolean startJobNow(AirTask job,int intervalMinutes){
+		Scheduler scheduler = schedulerFactoryBean.getScheduler();
+	    try {
+	      Class clazz = Class.forName(job.getClazzPath());
+	      JobDetail jobDetail = JobBuilder.newJob(clazz).build();
+	      
+	      jobDetail.getJobDataMap().put("deviceCode", job.getDeviceCode());
+	      
+	      // 触发器
+	      TriggerKey triggerKey = TriggerKey.triggerKey(job.getId(), Scheduler.DEFAULT_GROUP);
+	      SimpleTrigger trigger = TriggerBuilder.newTrigger()
+	          .withIdentity(triggerKey)
+	          .startNow()
+	          .withSchedule(simpleSchedule().withIntervalInMinutes(intervalMinutes).repeatForever()).build();
+	      scheduler.scheduleJob(jobDetail, trigger);
+	      // 启动
+	      if (!scheduler.isShutdown()) {
+	        scheduler.start();
+	        log.info("---任务[" + triggerKey.getName() + "]启动成功-------");
+	        return true;
+	      }else{
+	        log.info("---任务[" + triggerKey.getName() + "]已经运行，请勿再次启动-------");
+	      }
+	    } catch (Exception e) {
+	      throw new RuntimeException(e);
+	    }
+	    return false;
+	}
+  
+  
 
   /**
    * 更新

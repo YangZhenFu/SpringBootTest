@@ -1,0 +1,38 @@
+ERROR 08:54:26 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 08:54:26 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:54:28 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 08:54:28 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:54:35 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 08:54:35 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:54:37 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 08:54:37 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:54:46 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 08:54:46 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:54:48 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 08:54:48 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:54:55 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 08:54:55 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:54:57 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 08:54:57 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:55:52 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 08:55:52 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 08:55:54 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 08:55:54 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:06:27 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 09:06:27 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:06:29 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 09:06:29 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:22:34 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 09:22:34 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:22:41 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 09:22:41 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:22:43 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 09:22:43 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:22:50 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.101:5000 failure. null
+ERROR 09:22:50 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:22:52 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 09:22:52 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:23:00 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 09:23:00 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException
+ERROR 09:23:07 uia.comm.SocketClient                              tryConnect           234   - MyScreen> connect to 192.168.1.1:9090 failure. null
+ERROR 09:23:07 uia.comm.SocketClient                              tryConnect           241   - java.net.SocketTimeoutException

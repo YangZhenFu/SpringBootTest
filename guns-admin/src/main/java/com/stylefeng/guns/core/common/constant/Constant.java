@@ -129,6 +129,14 @@ public class Constant {
 	
 	//传感器异常告警类型
 	public static final Map<String,String> sensor_exception_type=ImmutableMap.<String, String>builder().put("0","设备离线").put("1","数值异常").put("2","设备故障")
-																									   .put("3","电缆断开").put("4","接地故障").put("5","未知错误").build();
+																					   .put("3","电缆断开").put("4","接地故障").put("5","未知错误").build();
 	
+	
+	
+	//LED类型
+	public static final Map<String,String> air_led_type=ImmutableMap.<String, String>builder().put("0","全彩").put("1","单色").put("2","双色").put("3","三色").build();
+	
+	//LED控制卡型号
+	public static final List<String> control_card_type=ImmutableList.<String>builder().add("BX-6QL").add("BX-6Q0").add("BX-6Q1").add("BX-6Q2").add("BX-6Q2L").add("BX-6Q3").add("BX-6Q3L").add("BX-6QX-M").add("BX-6QX-YD").build(); 
+
 }
