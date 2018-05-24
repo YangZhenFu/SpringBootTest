@@ -17,11 +17,11 @@ guns:
       url: jdbc:mysql://127.0.0.1:3306/guns_flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
       password: root
-  muti-datasource:
-    default-dataSource-name: dataSourceGuns #默认的数据源名称
-    url: jdbc:mysql://127.0.0.1:3306/guns_flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-    username: root
-    password: root
+  #muti-datasource:
+    #default-dataSource-name: dataSourceGuns #默认的数据源名称
+    #url: jdbc:mysql://127.0.0.1:3306/guns_flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    #username: root
+    #password: root
 
 logging:
   level.root: info

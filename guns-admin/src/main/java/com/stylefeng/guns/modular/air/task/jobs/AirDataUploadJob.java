@@ -10,7 +10,6 @@ import java.util.concurrent.Future;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.assertj.core.util.Lists;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
@@ -21,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.google.common.collect.Lists;
 import com.stylefeng.guns.core.common.constant.Constant;
 import com.stylefeng.guns.core.other.DateUtil;
 import com.stylefeng.guns.core.other.StringUtil;

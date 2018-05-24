@@ -42,8 +42,4 @@ public class TaskTest extends BaseJunit{
 		assertTrue(flag);
 	}
 	
-	
-	
-	
-	
 }

@@ -115,12 +115,11 @@ public class AirSensorWarnJob implements Job{
 									Future<String> future = service.submit(task.new GetUdpDataThread(socket, sensor.getCommand()));
 									Object[] status = task.getEntity(future.get(), data, sensor);
 									if((boolean) status[0] && !Contrast.isAllFieldNull(data)){
-										//将查询数值转为map
-										Map<String, Object> map = BeanUtil.beanToMap(data, true, true);
+										
 										//根据传感器类型获取数据
 										SensorTypeEnum typeEnum = SensorTypeEnum.findSensorTypeByName(type.gettName());
 										if(typeEnum!=null){
-											Double num = Convert.toDouble(map.get(typeEnum.getCode()));
+											Double num = Convert.toDouble(SensorTypeEnum.findDataBySensorType(typeEnum.getCode(), data));
 											if(num!=null){
 												//将当前数值与预警参数阈值作比较  
 												if(compareNumToThreshold(param,num)){
@@ -268,17 +267,13 @@ public class AirSensorWarnJob implements Job{
 		data.setAirTemperature("32.2");
 		data.setRadiation("56.3");
 		data.setNegativeOxygenIon("11.1");
+		data.setPm25("16.5");
 		Map<String, Object> map2 = BeanUtil.beanToMap(data, true, true);
 		System.out.println(map2);
 		//根据传感器类型获取数据
-		SensorTypeEnum typeEnum = SensorTypeEnum.findSensorTypeByName("负氧离子");
-		if(typeEnum!=null){
-			Double num = Convert.toDouble(map2.get(typeEnum.getCode()));
-			System.out.println(num);
-		}
-		String msg="站点[气象站1]，传感器[气象站1-风速]值大于设定预警值[20]，当前值[21.6]，请检查";
-		String[] split = msg.split("，");
-		System.out.println(Arrays.toString(split));
+		SensorTypeEnum typeEnum = SensorTypeEnum.findSensorTypeByName("大气温度");
+		
+		System.out.println(SensorTypeEnum.findDataBySensorType(typeEnum.getCode(), data));
 		
 	}
 

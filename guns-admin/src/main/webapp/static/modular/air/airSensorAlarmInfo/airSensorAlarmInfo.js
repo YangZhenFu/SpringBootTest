@@ -17,18 +17,26 @@ AirSensorAlarmInfo.initColumn = function () {
             {title: '唯一标识', field: 'id', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '编号', field: 'code', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '告警名称', field: 'tName', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '序号', field: 'sortCode', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '传感器名称', field: 'sensorName', visible: true, align: 'center', valign: 'middle'},
             {title: '告警类型', field: 'alarmType', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '告警信息', field: 'alarmInfo', visible: true, align: 'center', valign: 'middle',sortable: true},
             {title: '告警时间', field: 'alarmTime', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '处理状态', field: 'handleState', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '备注', field: 'remark', visible: true, align: 'center', valign: 'middle',sortable: true,
+            {title: '处理状态', field: 'handleState', visible: true, align: 'center', valign: 'middle',sortable: true,
             	formatter:function(value,row,index){
-            		if(value){
-            			return value.substring(0,5)+'...';
+            		var status;
+            		switch(value){
+            			case '已恢复':
+            				status='label-info';
+            				break;
+            			case '未恢复':
+            				status='label-warning';
+            				break;
+            			default : 
+            				status='';
+            				break;
             		}
-            	}	
+            		return '<span class="label '+status+'">'+value+'</span>';
+            	}
             }
     ];
 };

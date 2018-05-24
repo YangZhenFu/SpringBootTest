@@ -468,7 +468,7 @@ public class AirLedServiceImpl extends ServiceImpl<AirLedMapper, AirLed> impleme
 	            
 	        	//更新控制卡状态
 	        	led.setStatus("0");
-	        	led.setUpdateBy(ShiroKit.getUser().getName());
+	        	led.setUpdateBy(ShiroKit.isGuest() ? "" : ShiroKit.getUser().getName());
 	        	led.setUpdateTime(new Date());
 	        	baseMapper.updateById(led);
 				

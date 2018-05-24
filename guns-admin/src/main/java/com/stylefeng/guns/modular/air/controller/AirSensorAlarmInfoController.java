@@ -98,7 +98,7 @@ public class AirSensorAlarmInfoController extends BaseController {
     public Object list(@RequestParam(required=false)String condition) {
         Page<AirSensorAlarmInfo> page=new PageFactory<AirSensorAlarmInfo>().defaultPage();
         Wrapper<AirSensorAlarmInfo> wrapper=Condition.create();
-        wrapper.like("t_name", condition).or().like("sort_code", condition).and().eq("valid", "0");
+        wrapper.like("t_name", condition).or().like("sort_code", condition).and().eq("valid", "0").orderBy("handle_state,alarm_time desc");
         Page<Map<String, Object>> pageList = airSensorAlarmInfoService.selectMapsPage(page, wrapper);
         pageList.setRecords((List<Map<String,Object>>)new AirSensorAlarmInfoWarpper(pageList.getRecords()).warp());
         return super.packForBT(pageList);
@@ -190,13 +190,13 @@ public class AirSensorAlarmInfoController extends BaseController {
     @ResponseBody
     public Map<String,Object> getAlarmInfoCount(){
     	Map<String,Object> result=Maps.newHashMap();
-    	int total = airSensorAlarmInfoService.selectCount(new EntityWrapper<AirSensorAlarmInfo>().eq("valid", "0"));
+    	int total = airSensorAlarmInfoService.selectCount(new EntityWrapper<AirSensorAlarmInfo>().eq("valid", "0").eq("handle_state", "0"));
     	if(total>0){
     		Map<String,Object> typeCount=Maps.newHashMap();
     		//查询传感器异常类型
     		Set<String> types = Constant.sensor_exception_type.keySet();
     		for(String type : types){
-    			int count = airSensorAlarmInfoService.selectCount(new EntityWrapper<AirSensorAlarmInfo>().eq("valid", "0").eq("alarm_type", type));
+    			int count = airSensorAlarmInfoService.selectCount(new EntityWrapper<AirSensorAlarmInfo>().eq("valid", "0").eq("alarm_type", type).eq("handle_state", "0"));
     			typeCount.put(Constant.sensor_exception_type.get(type), count);
     		}
     		result.put("typeCount", typeCount);

@@ -23,6 +23,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.Lists;
+import com.stylefeng.guns.core.beetl.function.AirStationFunction;
 import com.stylefeng.guns.core.common.constant.WindDirection;
 import com.stylefeng.guns.core.other.CHexConver;
 import com.stylefeng.guns.core.other.CRC16;
@@ -30,6 +31,7 @@ import com.stylefeng.guns.core.other.DateUtil;
 import com.stylefeng.guns.core.other.StringUtil;
 import com.stylefeng.guns.core.util.Contrast;
 import com.stylefeng.guns.core.util.Convert;
+import com.stylefeng.guns.core.util.SpringContextHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.air.model.AirSensor;
 import com.stylefeng.guns.modular.air.model.AirStationData;
@@ -45,10 +47,9 @@ public class GetUdpDataTask  {
 	
 	private Logger logger = LoggerFactory.getLogger(GetUdpDataTask.class);
 	
-	@Autowired
-	private IAirSensorService airSensorService;
-	@Autowired
-	private ISensorTypeService sensorTypeService;
+	private IAirSensorService airSensorService=SpringContextHolder.getBean(IAirSensorService.class);
+	
+	private ISensorTypeService sensorTypeService=SpringContextHolder.getBean(ISensorTypeService.class);
 	
 	// 定义发送数据报的目的地  
     public  int DEST_PORT;  
@@ -315,25 +316,23 @@ public class GetUdpDataTask  {
         task.RETRIES=2;
         ExecutorService service = Executors.newCachedThreadPool();
         DatagramSocket socket=new DatagramSocket();
-        //查询百叶窗数据
+//        //查询百叶窗数据
 //		Future<String> airData = service.submit(task.new GetAirDataThread(socket));
-//		task.getEntity(airData.get(), new RodAirMonitorItem());
+//		System.out.println(airData.get());
 //		//查询风速传感器数据
 //		Future<String> windSpeed = service.submit(task.new GetWindSpeedDataThread(socket));
-//		task.getEntity(windSpeed.get(), new RodAirMonitorItem());
-//		//查询风向传感器数据
+//		System.out.println(windSpeed.get());
+		//查询风向传感器数据
 //		Future<String> windDirection = service.submit(task.new GetWindDirectionThread(socket));
-//		task.getEntity(windDirection.get(), new RodAirMonitorItem());
+//		System.out.println(windDirection.get());
 //		
-//		boolean windSpeedFlag = StringUtils.equals(windSpeed.get().substring(0, 23), "00 00 00 00 00 00 00 00");
-//		boolean windDirectFlag = StringUtils.equals(windDirection.get().substring(0, 23), "00 00 00 00 00 00 00 00");
-//		boolean airDataFlag = StringUtils.equals(airData.get().substring(0, 23), "00 00 00 00 00 00 00 00");
-//		System.out.println(windSpeedFlag+" " +windDirectFlag+" "+airDataFlag);
-        
-        byte[] bytes = StringUtil.HexString2Bytes("03030017000135EC");
-        System.out.println(Arrays.toString(bytes));
-        byte[] data=new byte[]{0x03,0x03,0x00,0x17,0x00,0x01,0x35,(byte) 0xEC};
-        System.out.println(Arrays.toString(data));
+		Future<String> udp = service.submit(task.new GetUdpDataThread(socket, "03030017000135EC"));
+		System.out.println(udp.get());
+//        
+//        byte[] bytes = StringUtil.HexString2Bytes("03030017000135EC");
+//        System.out.println(Arrays.toString(bytes));
+//        byte[] data=new byte[]{0x03,0x03,0x00,0x17,0x00,0x01,0x35,(byte) 0xEC};
+//        System.out.println(Arrays.toString(data));
         
 		service.shutdown();
 		socket.close();

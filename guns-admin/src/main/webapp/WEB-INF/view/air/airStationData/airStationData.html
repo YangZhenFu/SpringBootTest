@@ -47,7 +47,7 @@
 									</div>
 								</div>
 								<div class="hidden-xs" id="AirDataTableToolbar" role="group">
-									@if(shiro.hasPermission("/air/data/export")){
+									@if(shiro.hasPermission("/airStationData/export")){
 									<#button name="导出Excel" icon="fa-cloud-upload" clickFun="AirData.exportExcel()" space="true"/>
 									@}
 								

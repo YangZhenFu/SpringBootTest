@@ -104,7 +104,7 @@ Monitor.OnClickArea = function(e, treeId, treeNode){
 													'</div>'+
 													'<div class="col-sm-8">'+
 														'<h3><font color="white">'+sensor.typeName+'</font></h3>'+
-														'<h3><strong><font color="white">'+sensor.nowNumerical+sensor.unit+'</font></strong></h3>'+
+														'<h3><strong><font color="white">'+(sensor.nowNumerical || '')+sensor.unit+'</font></strong></h3>'+
 													'</div>'+
 													'<div class="clearfix"></div>'+
 											    '</a>'+

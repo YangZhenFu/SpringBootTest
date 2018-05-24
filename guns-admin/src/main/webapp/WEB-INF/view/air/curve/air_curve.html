@@ -165,14 +165,15 @@ success : function(result) {
                                 type:'line',
                                 symbol:AirCurve.symbol(), 
                                 data:aqis,
-                                markLine : {
-                                    lineStyle: {
-                                        normal: {
-                                            type: 'dashed'
-                                        }
-                                    },
-                                    data : [
-                                        [{type : 'min'}, {type : 'max'}]
+                                markPoint: {
+                                    data: [
+                                        {type: 'max', name: '最大值'},
+                                        {type: 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine: {
+                                    data: [
+                                        {type: 'average', name: '平均值'}
                                     ]
                                 }
                             },
