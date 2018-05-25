@@ -182,7 +182,7 @@ public class AirSensorWarnJob implements Job{
 									
 									//更改传感器报警信息状态
 									//查询报警信息是否存在
-									List<AirSensorAlarmInfo> alarms = sensorAlarmInfoService.selectList(new EntityWrapper<AirSensorAlarmInfo>().eq("sensor_id", sensor.getId()).eq("valid", "0").eq("handle_state", "0").eq("alarm_type", "0").or().eq("alarm_type", "1"));
+									List<AirSensorAlarmInfo> alarms = sensorAlarmInfoService.selectList(new EntityWrapper<AirSensorAlarmInfo>().eq("sensor_id", sensor.getId()).eq("valid", "0").eq("handle_state", "0"));
 									if(CollectionUtils.isNotEmpty(alarms)){
 										for(AirSensorAlarmInfo info : alarms){
 											info.setHandleState("1");//已恢复

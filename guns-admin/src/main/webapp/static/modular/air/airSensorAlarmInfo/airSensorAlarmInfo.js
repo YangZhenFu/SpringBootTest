@@ -14,14 +14,14 @@ var AirSensorAlarmInfo = {
 AirSensorAlarmInfo.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-            {title: '唯一标识', field: 'id', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '编号', field: 'code', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '告警名称', field: 'tName', visible: true, align: 'center', valign: 'middle',sortable: true},
+            {title: '唯一标识', field: 'id', visible: true, align: 'center', valign: 'middle',sortable: false},
+            {title: '编号', field: 'code', visible: true, align: 'center', valign: 'middle',sortable: false},
+            {title: '告警名称', field: 'tName', visible: true, align: 'center', valign: 'middle',sortable: false},
             {title: '传感器名称', field: 'sensorName', visible: true, align: 'center', valign: 'middle'},
-            {title: '告警类型', field: 'alarmType', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '告警信息', field: 'alarmInfo', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '告警时间', field: 'alarmTime', visible: true, align: 'center', valign: 'middle',sortable: true},
-            {title: '处理状态', field: 'handleState', visible: true, align: 'center', valign: 'middle',sortable: true,
+            {title: '告警类型', field: 'alarmType', visible: true, align: 'center', valign: 'middle',sortable: false},
+            {title: '告警信息', field: 'alarmInfo', visible: true, align: 'center', valign: 'middle',sortable: false},
+            {title: '告警时间', field: 'alarmTime', visible: true, align: 'center', valign: 'middle',sortable: false},
+            {title: '处理状态', field: 'handleState', visible: true, align: 'center', valign: 'middle',sortable: false,
             	formatter:function(value,row,index){
             		var status;
             		switch(value){
